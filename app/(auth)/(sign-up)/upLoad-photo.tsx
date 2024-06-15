@@ -55,7 +55,8 @@ const SignUp = () => {
           fileType: "",
         });
         if (downloadURL) {
-          await AsyncStorage.setItem("user-avatar-url", downloadURL.url);
+          const jsonString = JSON.stringify(downloadURL);
+          await AsyncStorage.setItem("user-avatar-url", jsonString);
           router.push("password");
         }
       } else {

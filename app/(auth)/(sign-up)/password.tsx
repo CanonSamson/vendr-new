@@ -68,7 +68,7 @@ const SignUp = () => {
       // You can update the user's profile here with username and profileUrl
       await updateProfile(Res.user, {
         displayName: `${firstLastName.firstname} ${firstLastName.lastname}`,
-        photoURL: typeof downloadURL === "string" ? downloadURL : "",
+        photoURL: typeof downloadURL.url === "string" ? downloadURL.url : "",
       });
       const joinAt = new Date();
       await createDB("users", Res?.user?.uid, {
@@ -76,7 +76,7 @@ const SignUp = () => {
         ...firstLastName,
         ...address,
         email_isVerified: true,
-        photoURL: downloadURL != (null || undefined) ? downloadURL : "",
+        photoURL: downloadURL.url != (null || undefined) ? downloadURL.url : "",
         joinAt: joinAt.toString(),
       });
     } catch (error) {
