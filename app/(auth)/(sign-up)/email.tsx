@@ -157,7 +157,7 @@ const SignUp = () => {
             </Text>
 
             <Text className={`text-center pb-10`}>
-              {!IsVerifyOtp ? "" : "sample@gmail.com"}
+              {!IsVerifyOtp ? "" : values.email}
             </Text>
 
             <View className="p-4">

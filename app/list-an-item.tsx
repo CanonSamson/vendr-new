@@ -73,7 +73,7 @@ const ListAnItem: React.FC = () => {
         <View style={styles.innercontainer}>
           <View style={styles.heading}>
             <Text style={styles.title}>Title</Text>
-            <Pen width={30} height={30} />
+            <Pen width={24} height={24} />
           </View>
 
           <TextInput
@@ -85,7 +85,7 @@ const ListAnItem: React.FC = () => {
         <View style={styles.innercontainer}>
           <View style={styles.heading}>
             <Text style={styles.title}>Description</Text>
-            <Pen width={30} height={30} />
+            <Pen width={24} height={24} />
           </View>
 
           <TextInput
@@ -186,7 +186,7 @@ const ListAnItem: React.FC = () => {
         <View style={styles.innercontainer}>
           <View style={styles.heading}>
             <Text style={styles.title}>Price</Text>
-            <Pen width={30} height={30} />
+            <Pen width={24} height={24} />
           </View>
 
           <TextInput
@@ -249,7 +249,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   title: {
-    fontSize: 30,
+    fontSize: 24,
     fontWeight: "bold",
     marginBottom: 10,
     marginRight: 10,
@@ -308,7 +308,7 @@ const styles = StyleSheet.create({
   actionButton: {
     padding: 15,
     borderRadius: 12,
-    width: 300,
+    width: 240,
     alignItems: "center",
     marginHorizontal: "auto",
     marginTop: 20,

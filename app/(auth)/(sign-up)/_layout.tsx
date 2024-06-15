@@ -1,3 +1,4 @@
+import { useModal } from "@/context/ModalContext";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
@@ -5,10 +6,13 @@ import { Platform } from "react-native";
 import { View, Text, StyleSheet } from "react-native";
 
 export default function RootLayout() {
+  const { confirmAnicationModal } = useModal();
   return (
     <>
       <View
-        className="pt-14 pb-4  absolute top-0 w-full right-0 z-20 items-center bg-white border-b-[2px] border-primary"
+        className={` ${
+          confirmAnicationModal ? " opacity-0" : " opacity-100"
+        } pt-14 pb-4  absolute top-0 w-full right-0 z-20 items-center bg-white border-b-[2px] border-primary`}
         style={styles.heading}
       >
         <Text className="text-xl text-black font-medium">Sign Up</Text>

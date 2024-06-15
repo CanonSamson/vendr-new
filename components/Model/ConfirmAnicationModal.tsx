@@ -17,7 +17,7 @@ const ConfirmAnicationModal: React.FC = () => {
     <Modal
       visible={confirmAnicationModal}
       onRequestClose={() => setConfirmAnicationModal(false)}
-      animationType="fade"
+      // animationType="fade"
       className="  flex-1 items-center justify-center bg-white "
     >
       <View className=" flex-1 items-center justify-center bg-white ">

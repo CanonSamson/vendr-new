@@ -17,7 +17,6 @@ import { StatusBar } from "expo-status-bar";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/firebase_config";
 import { Alert } from "react-native";
-import ConfirmAnicationModal from "@/components/Model/ConfirmAnicationModal";
 import { useModal } from "@/context/ModalContext";
 
 interface LogInFormValues {
@@ -27,7 +26,7 @@ interface LogInFormValues {
 
 const LogIn = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const { setConfirmAnicationModal } = useModal();
+  const { confirmAnicationModal, setConfirmAnicationModal } = useModal();
 
   const onSubmit = async (values: LogInFormValues) => {
     try {
@@ -66,7 +65,9 @@ const LogIn = () => {
       <CustomKeyBoardView>
         <View
           style={{ marginTop: hp("10%") }}
-          className="flex-1 p-4 items-center justify-end"
+          className={`${
+            confirmAnicationModal ? " opacity-0" : " opacity-100"
+          } flex-1 p-4 items-center justify-end`}
         >
           <View
             style={{ width: hp("50%"), height: hp(8) }}

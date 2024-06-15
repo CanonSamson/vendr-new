@@ -60,9 +60,11 @@ const SignUp = () => {
           router.push("password");
         }
       } else {
+        await AsyncStorage.removeItem("user-avatar-url");
         router.push("password");
       }
     } catch (error) {
+      console.log(error);
     } finally {
       setIsLoading(false);
     }

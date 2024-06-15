@@ -19,6 +19,7 @@ import { GestureResponderEvent } from "react-native";
 import { PanResponderGestureState } from "react-native";
 import { router } from "expo-router";
 import FilterProductModal from "@/components/Model/FIlterModel";
+import { useModal } from "@/context/ModalContext";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -45,6 +46,7 @@ export default function HomeScreen() {
   const [productData, setProductData] = useState<ProductDataMap>(ProductObject);
   const [viewProductDetails, setViewProductDetails] = useState<ProductData>();
   const [filterProduct, setFilterProduct] = useState(false);
+  const { confirmAnicationModal, setConfirmAnicationModal } = useModal();
 
   const triggerSwipe = (direction: number) => {
     Animated.timing(swipe, {
@@ -104,7 +106,9 @@ export default function HomeScreen() {
       <StatusBar style="light" hidden={false} />
       <LinearGradient
         colors={[Colors.primary, Colors.primary, "#85DBF9"]}
-        className=" pt-14  px-4 items-center relative rounded-md  pb-5"
+        className={`${
+          confirmAnicationModal ? " opacity-0" : " opacity-100"
+        }  pt-14  px-4 items-center relative rounded-md  pb-5`}
       >
         <View className="  px-4 w-full justify-center items-center relative flex-row  ">
           <Pressable

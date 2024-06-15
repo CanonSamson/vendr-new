@@ -27,6 +27,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "@/firebase_config";
 import { createDB } from "@/utils/firebase/database";
+import { useModal } from "@/context/ModalContext";
 
 interface SignUpFormValues {
   password: string;
@@ -36,6 +37,7 @@ interface SignUpFormValues {
 const SignUp = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [hidePassword, setHidePassword] = useState(true);
+  const { confirmAnicationModal, setConfirmAnicationModal } = useModal();
 
   const handleChangeAccount = async () => {
     try {
@@ -65,10 +67,12 @@ const SignUp = () => {
         email.email,
         values.password
       );
+      setConfirmAnicationModal(true);
+
       // You can update the user's profile here with username and profileUrl
       await updateProfile(Res.user, {
         displayName: `${firstLastName.firstname} ${firstLastName.lastname}`,
-        photoURL: typeof downloadURL.url === "string" ? downloadURL.url : "",
+        photoURL: typeof downloadURL?.url === "string" ? downloadURL?.url : "",
       });
       const joinAt = new Date();
       await createDB("users", Res?.user?.uid, {
@@ -76,12 +80,12 @@ const SignUp = () => {
         ...firstLastName,
         ...address,
         email_isVerified: true,
-        photoURL: downloadURL.url != (null || undefined) ? downloadURL.url : "",
+        photoURL:
+          downloadURL?.url != (null || undefined) ? downloadURL?.url : "",
         joinAt: joinAt.toString(),
       });
     } catch (error) {
       console.error("Error:", error);
-
       if (error instanceof Error) {
         Alert.alert("Error", error.message);
       } else {
@@ -116,7 +120,9 @@ const SignUp = () => {
       >
         <ScrollView
           contentContainerStyle={{ flexGrow: 1 }}
-          className=" flex-1  mt-[100px] py-4  pb-5"
+          className={`flex-1  mt-[100px] py-4  pb-5 ${
+            confirmAnicationModal ? "opacity-0" : " opacity-100"
+          }`}
           bounces={false}
         >
           <View

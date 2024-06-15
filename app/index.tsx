@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, SafeAreaView, Pressable } from "react-native";
-import LogoV1 from "../assets/vector/logo-v1.svg";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  Pressable,
+  ActivityIndicator,
+} from "react-native";
+import { useModal } from "@/context/ModalContext";
 
 const Index = () => {
   const [loading, setLoading] = useState<boolean>(true);
+  const { confirmAnicationModal } = useModal();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -16,8 +23,12 @@ const Index = () => {
   return (
     <>
       <View className=" flex-1 justify-center items-center">
-        <View className=" animate-pulse w-auto h-[60px] flex-row">
-          <LogoV1 width={"100%"} height={"100%"} />
+        <View
+          className={`${
+            confirmAnicationModal ? "opacity-0" : "opacity-100"
+          } animate-pulse w-auto h-[60px] flex-row`}
+        >
+          <ActivityIndicator size="large" color="#fff" />
         </View>
       </View>
     </>

@@ -7,7 +7,7 @@ import { Pressable, StyleSheet } from "react-native";
 import "react-native-reanimated";
 import { Colors } from "../constants/Colors";
 import { AuthProvider, useAuth } from "@/context/GlobalContext";
-import { ModalProvider } from "@/context/ModalContext";
+import { ModalProvider, useModal } from "@/context/ModalContext";
 import ConfirmAnicationModal from "@/components/Model/ConfirmAnicationModal";
 
 SplashScreen.preventAutoHideAsync();
@@ -16,7 +16,9 @@ function AppRoutes() {
   const { user, isAuthenticated } = useAuth();
   const segments = useSegments();
   const router = useRouter();
+  const { setConfirmAnicationModal } = useModal();
 
+  
   useEffect(() => {
     //check  if you is  isAuthenticated
     if (typeof isAuthenticated == "undefined") return;
@@ -32,6 +34,10 @@ function AppRoutes() {
       router.replace("/(auth)");
     }
   }, [isAuthenticated]);
+
+  useEffect(() => {
+    setConfirmAnicationModal(true);
+  }, []);
 
   return (
     <>

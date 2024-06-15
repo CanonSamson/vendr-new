@@ -32,7 +32,7 @@ interface ModalProviderProps {
 
 // ModalProvider component
 export function ModalProvider({ children }: ModalProviderProps) {
-  const [confirmAnicationModal, setConfirmAnicationModal] = useState(false);
+  const [confirmAnicationModal, setConfirmAnicationModal] = useState(true);
 
   useSocketConnection();
 
