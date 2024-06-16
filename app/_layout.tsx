@@ -18,7 +18,6 @@ function AppRoutes() {
   const router = useRouter();
   const { setConfirmAnicationModal } = useModal();
 
-  
   useEffect(() => {
     //check  if you is  isAuthenticated
     if (typeof isAuthenticated == "undefined") return;
@@ -53,24 +52,8 @@ function AppRoutes() {
         <Stack.Screen name="(auth)" options={{ headerShown: false }} />
         <Stack.Screen name="(settings)" options={{ headerShown: false }} />
         <Stack.Screen name="user-profile" options={{ headerShown: false }} />
+        <Stack.Screen name="list-an-item" options={{ headerShown: false }} />
 
-        <Stack.Screen
-          name="list-an-item"
-          options={{
-            headerShown: true,
-            headerTitle: "List An Item",
-            headerStyle: styles.headerStyle,
-            headerTitleStyle: styles.headerTitleStyle,
-            headerLeft: () => (
-              <Pressable
-                onPress={() => router.back()}
-                style={{ paddingLeft: 10 }}
-              >
-                <Ionicons name="close" size={40} color={Colors.primary} />
-              </Pressable>
-            ),
-          }}
-        />
         <Stack.Screen
           name="safety"
           options={{

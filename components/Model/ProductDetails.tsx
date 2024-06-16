@@ -41,13 +41,13 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
   return (
     <Modal
       visible={modalVisible}
-      onRequestClose={hideModal}
+      onRequestClose={() => hideModal()}
       animationType="slide"
     >
-      <ScrollView>
+      <ScrollView style={{ flex: 1 }}>
         <LinearGradient
           colors={[Colors.primary, Colors.primary, "#85DBF9"]}
-          className=" pt-14  px-4 items-center relative rounded-md  pb-5"
+          className=" pt-14  px-4 items-center relative rounded-md pb-5"
         >
           <View className="  px-4 w-full justify-center items-center relative flex-row  ">
             <View className=" w-auto h-[45px] z-40 relative ">
@@ -55,8 +55,24 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
             </View>
           </View>
         </LinearGradient>
-        <View className=" rounded-xl  relative -mt-2 bg-[#303030]">
-          <Image source={images[0]} style={styles.image} resizeMode="contain" />
+        <View className=" rounded-2xl overflow-hidden  relative -mt-4 bg-[#303030]">
+          <View className=" flex-row items-center absolute top-2 right-0  px-[18px] h-[4px] z-20 w-full">
+            <View className="  flex-1   ">
+              <View className=" h-[4px] rounded-2xl bg-white "></View>
+            </View>
+            <View className="  flex-1   opacity-10 px-[4px] ">
+              <View className=" h-[4px] rounded-2xl bg-white "></View>
+            </View>
+            <View className="  flex-1   opacity-10 ">
+              <View className=" h-[4px] rounded-2xl bg-white "></View>
+            </View>
+          </View>
+          <Image
+            source={images[0]}
+            style={styles.image}
+            className=" rounded-[20px]"
+            resizeMode="contain"
+          />
           <LinearGradient
             colors={[
               "rgba(0,0,0,.9)",
@@ -71,62 +87,66 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
               <View className="p-5 w-full flex-row items-center"></View>
             </View>
 
-            <View className="absolute bottom-6 left-0 w-full flex-row">
+            <View className="absolute bottom-0 left-0 w-full flex-row">
               <Pressable
                 onPress={hideModal}
-                className="p-5 w-full flex-row justify-end"
+                className="p-5 w-full active:scale-150  duration-500 mr-2 flex-row justify-end"
               >
                 <DownIcon />
               </Pressable>
             </View>
           </LinearGradient>
         </View>
-        <View className=" p-5  bg-white rounded-xl" style={styles.container}>
-          <Text className="text-black text-[26px] font-bold">{name}</Text>
-          <Text className="text-black text-[17px] font-light">
-            {price} or Best Offer
-          </Text>
-          <Text className="text-black text-[17px] font-light">
-            Condition: New
-          </Text>
-        </View>
-        <View
-          className=" p-5 mt-5  bg-white  rounded-xl"
-          style={styles.container}
-        >
-          <Text className="text-black text-[26px] font-bold">Description</Text>
+        <View className="flex-1 p-4">
+          <View className=" p-5  bg-white rounded-xl" style={styles.container}>
+            <Text className="text-black text-[26px] font-semibold">{name}</Text>
+            <Text className="text-black text-[17px] my-2 font-light">
+              {price} or Best Offer
+            </Text>
+            <Text className="text-black text-[17px] font-light mt-2">
+              Condition: New
+            </Text>
+          </View>
+          <View
+            className=" p-5 mt-5  bg-white  rounded-xl"
+            style={styles.container}
+          >
+            <Text className="text-black text-[26px] font-semibold">
+              Description
+            </Text>
 
-          <Text className="text-black text-[17px] font-light">
-            Size 11 and brand new in box, never worn. I bought them from the
-            adidas store. Local pick up or I can ship them out if for $15.
-          </Text>
-        </View>
+            <Text className="text-black text-[17px] font-light mt-2">
+              Size 11 and brand new in box, never worn. I bought them from the
+              adidas store. Local pick up or I can ship them out if for $15.
+            </Text>
+          </View>
 
-        <View
-          className="p-5 mt-5 bg-white rounded-xl "
-          style={styles.container}
-        >
-          <Text className="text-black text-[26px] font-bold">
-            Seller Details
-          </Text>
-          <Text className="text-black text-[17px] font-light">
-            Seller: <Text className="text-primary underline">Kyle R</Text>
-          </Text>
-          <Text className="text-black text-[17px] font-light">
-            Rating: 5 Stars 99% Positive feedback
-          </Text>
-          <Text className="text-black text-[17px] font-light">
-            Location: Point Pleasant NJ, O8742
-          </Text>
-        </View>
+          <View
+            className="p-5 mt-5 bg-white rounded-xl "
+            style={styles.container}
+          >
+            <Text className="text-black text-[26px] font-semibold">
+              Seller Details
+            </Text>
+            <Text className="text-black text-[17px] font-light mt-2">
+              Seller: <Text className="text-primary underline">Kyle R</Text>
+            </Text>
+            <Text className="text-black text-[17px] font-light mt-2">
+              Rating: 5 Stars 99% Positive feedback
+            </Text>
+            <Text className="text-black text-[17px] font-light mt-2">
+              Location: Point Pleasant NJ, O8742
+            </Text>
+          </View>
 
-        <View
-          className=" p-5 mt-5  bg-white   rounded-xl"
-          style={styles.container}
-        >
-          <Text className="text-[#EE393B] text-[26px]  font-semibold text-center">
-            Report Item
-          </Text>
+          <View
+            className=" p-5 mt-5  bg-white   rounded-xl"
+            style={styles.container}
+          >
+            <Text className="text-[#EE393B] text-[26px]  font-semibold text-center">
+              Report Item
+            </Text>
+          </View>
         </View>
         <View className=" flex-1 w-full">
           <View className=" w-full px-4 flex-row">
@@ -180,6 +200,5 @@ const styles = StyleSheet.create({
   image: {
     width: width * 0.9,
     height: height * 0.6,
-    borderRadius: 20,
   },
 });

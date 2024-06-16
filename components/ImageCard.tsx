@@ -3,7 +3,6 @@ import {
   Pressable,
   StyleSheet,
   Image,
-  ImageSourcePropType,
 } from "react-native";
 import React from "react";
 import Add from "../assets/svg/add.svg";
@@ -26,8 +25,9 @@ const ImageCard: React.FC<ImageCardProps> = ({ uri, id, pickImage }) => {
       {uri ? (
         <Image source={{ uri }} style={styles.image} />
       ) : (
-        <View style={styles.placeholder}>
-          <View style={styles.add}>
+        <View>
+          <View style={styles.placeholder}></View>
+          <View className="  absolute -bottom-[2px] -right-[2px]">
             <Add width={28} height={28} color={Colors.primary} />
           </View>
         </View>
@@ -40,6 +40,11 @@ const styles = StyleSheet.create({
   container: {
     position: "relative",
     overflow: "visible",
+    shadowColor: "#000",
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 1 },
+    shadowRadius: 5,
+    elevation: 2,
   },
   image: {
     width: 100,

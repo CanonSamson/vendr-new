@@ -28,8 +28,9 @@ const Index = () => {
             confirmAnicationModal ? "opacity-0" : "opacity-100"
           } animate-pulse w-auto h-[60px] flex-row`}
         >
-          <ActivityIndicator size="large" color="#fff" />
+          <ActivityIndicator size="large" color="#42BEED" />
         </View>
+
       </View>
     </>
   );

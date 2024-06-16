@@ -48,7 +48,7 @@ const UserProfile = () => {
       </View>
 
       <ScrollView contentContainerStyle={{ flexGrow: 1, marginBottom: 20 }}>
-        <View className=" mt-[100px] py-4 justify-center ">
+        <View className=" mt-[100px] py-4 justify-center px-4 ">
           <View style={styles.container} className="  p-5 bg-white rounded-xl">
             <View
               style={styles.container}

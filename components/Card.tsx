@@ -128,16 +128,30 @@ const Card: React.FC<CardData> = ({
           ]}
           className="absolute bottom-0 left-0 right-0 w-full h-full rounded-lg"
         >
-          <View className="absolute top-0 left-0 w-full flex-row">
-            <View className="p-5 w-full flex-row items-center">
+          <View className=" flex-row items-center absolute top-2 right-0  px-[18px] h-[4px] z-20 w-full">
+            <View className="  flex-1   ">
+              <View className=" h-[4px] rounded-2xl bg-white "></View>
+            </View>
+            <View className="  flex-1   opacity-10 px-[4px] ">
+              <View className=" h-[4px] rounded-2xl bg-white "></View>
+            </View>
+            <View className="  flex-1   opacity-10 ">
+              <View className=" h-[4px] rounded-2xl bg-white "></View>
+            </View>
+          </View>
+
+          <View className="absolute top-[27px] left-0 w-full flex-row">
+            <View className=" pl-[18px] w-full flex-row items-center">
               <Image
                 source={seller.avatar}
-                className="w-12 h-12 rounded-full"
+                className="w-[61px] h-[61px] rounded-full"
                 resizeMode="contain"
               />
               <View className="ml-4">
-                <Text className="text-white text-lg">{seller.name}</Text>
-                <Text className="text-white text-sm font-light">
+                <Text className=" font-bold text-white  capitalize text-[21px]">
+                  {seller.name}
+                </Text>
+                <Text className="text-white text-[19px] font-light">
                   {distance} miles away
                 </Text>
               </View>
@@ -145,16 +159,19 @@ const Card: React.FC<CardData> = ({
           </View>
 
           <View className="absolute bottom-6 left-0 w-full flex-row">
-            <View className="p-5 w-full flex-row items-end">
-              <View className="mr-1 items-center flex-1">
-                <Text className="text-white text-lg text-center font-medium">
+            <View className=" w-full flex-row items-end">
+              <View className="mr-1 pb-[14px] items-center flex-1">
+                <Text className="text-white text-[19px]  text-center font-bold">
                   {name}
                 </Text>
-                <Text className="text-white text-sm text-center font-light">
+                <Text className="text-white text-[17px] text-center font-light">
                   {price} or Best Offer
                 </Text>
               </View>
-              <Pressable onPress={showModal}>
+              <Pressable
+                className=" active:scale-150  duration-500 mr-[25px]"
+                onPress={showModal}
+              >
                 <InfoIcon />
               </Pressable>
             </View>
@@ -186,9 +203,8 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   image: {
-    width: width * 0.9,
-    height: hp(61),
-    // height: height * 0.6,
+    width: width * 0.95,
+    height: hp(62.3),
     borderRadius: 20,
   },
   gradient: {
