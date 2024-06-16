@@ -122,7 +122,7 @@ const ListAnItem: React.FC = () => {
             <View style={styles.heading}>
               <Text
                 style={{ fontSize: hp(3.2) }}
-                className="  mr-2 font-semibold "
+                className="  mr-2 font-medium "
               >
                 Photos
               </Text>
@@ -161,7 +161,7 @@ const ListAnItem: React.FC = () => {
             <View className=" flex-row items-center">
               <Text
                 style={{ fontSize: hp(3.2) }}
-                className=" mr-2 font-semibold "
+                className=" mr-2 font-medium "
               >
                 Title
               </Text>
@@ -178,7 +178,7 @@ const ListAnItem: React.FC = () => {
             <View style={styles.heading}>
               <Text
                 style={{ fontSize: hp(3.2) }}
-                className="  mr-2 font-semibold "
+                className="  mr-2 font-medium "
               >
                 Description
               </Text>
@@ -200,7 +200,7 @@ const ListAnItem: React.FC = () => {
           <View style={styles.innercontainer}>
             <Text
               style={{ fontSize: hp(3.2) }}
-              className="  mr-2 font-semibold "
+              className="  mr-2 font-medium "
             >
               Searchability
             </Text>
@@ -242,10 +242,10 @@ const ListAnItem: React.FC = () => {
             </View>
 
             <View className=" mt-[17px] items-center flex-row justify-between">
-              <Text style={{ fontSize: hp(2.4) }} className=" ">
+              <Text style={{ fontSize: hp(2.4) }} className="  text-primary ">
                 Maximum Distance
               </Text>
-              <Text style={{ fontSize: hp(1.7) }} >{rangeValue} mi</Text>
+              <Text style={{ fontSize: hp(1.7) }}  className=" text-[#949494]">{rangeValue} mi</Text>
             </View>
             <View className=" flex-row justify-center">
               <Slider
@@ -260,10 +260,10 @@ const ListAnItem: React.FC = () => {
               />
             </View>
 
-            <Text style={{ fontSize: hp(2.9) }} className="my-4 text-primary">
+            <Text style={{ fontSize: hp(2.9) }} className="my-4  text-primary">
               Condition
             </Text>
-            <View className=" flex-row    w-full gap-2">
+            <View className=" flex-row  w-full gap-2">
               <Pressable
                 onPress={() => setCondication("New")}
                 className=" active:scale-95 duration-300  flex-1"
@@ -278,7 +278,7 @@ const ListAnItem: React.FC = () => {
                 >
                   <Text
                     style={{ fontSize: hp(1.5) }}
-                    className=" font-semibold text-white"
+                    className=" font-medium text-white"
                   >
                     New
                   </Text>
@@ -298,7 +298,7 @@ const ListAnItem: React.FC = () => {
                 >
                   <Text
                     style={{ fontSize: hp(1.5) }}
-                    className=" font-semibold text-white"
+                    className=" font-medium text-white"
                   >
                     Used
                   </Text>
@@ -318,7 +318,7 @@ const ListAnItem: React.FC = () => {
                 >
                   <Text
                     style={{ fontSize: hp(1.5) }}
-                    className="  font-semibold text-white"
+                    className="  font-medium text-white"
                   >
                     Not Specified
                   </Text>
@@ -331,7 +331,7 @@ const ListAnItem: React.FC = () => {
             <View style={styles.heading}>
               <Text
                 style={{ fontSize: hp(3.2) }}
-                className="  mr-2 font-semibold "
+                className="  mr-2 font-medium "
               >
                 Categories
               </Text>
@@ -351,7 +351,7 @@ const ListAnItem: React.FC = () => {
             <View style={styles.heading}>
               <Text
                 style={{ fontSize: hp(3.2) }}
-                className="  mr-2 font-semibold "
+                className="  mr-2 font-medium "
               >
                 Price
               </Text>
@@ -369,7 +369,7 @@ const ListAnItem: React.FC = () => {
             <View style={styles.confirmListing}>
               <Text
                 style={{ fontSize: hp(3.2) }}
-                className=" mr-2 font-semibold "
+                className=" mr-2 font-medium "
               >
                 Confirm Listing
               </Text>
