@@ -204,7 +204,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: width * 0.95,
-    height: hp(62.3),
+    height: 526,
     borderRadius: 20,
   },
   gradient: {

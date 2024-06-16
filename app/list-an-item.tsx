@@ -23,6 +23,7 @@ import {
 } from "react-native-responsive-screen";
 import { MaterialIcons } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
+import Slider from "@react-native-community/slider";
 
 interface ImageData {
   id: string;
@@ -36,6 +37,9 @@ const ListAnItem: React.FC = () => {
     allCategories: false,
     maximumDistance: [50],
   });
+  const [rangeValue, setRangeValue] = useState(20);
+
+  const [condication, setCondication] = useState("Not Specified");
 
   const pickImage = async (id: string) => {
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -70,6 +74,28 @@ const ListAnItem: React.FC = () => {
         },
         ...prev,
       }));
+    }
+  };
+  const [selected, setSelected] = useState(false);
+
+  const toggleSelected = () => {
+    setSelected(!selected);
+  };
+
+  const [rightLabel, setRightLabel] = useState<string>("0-20mi.");
+  const maxDistance = 50;
+
+  // Update the range from the slider
+  // Update the right label to match the current range value
+  const updateRange = (range: number) => {
+    setRangeValue(range);
+
+    if (range < 5) {
+      setRightLabel("Local Pickup Only");
+    } else if (range < maxDistance) {
+      setRightLabel(`0-${range}mi.`);
+    } else {
+      setRightLabel("Global");
     }
   };
 
@@ -135,7 +161,7 @@ const ListAnItem: React.FC = () => {
             <View className=" flex-row items-center">
               <Text
                 style={{ fontSize: hp(3.2) }}
-                className="  mr-2 font-semibold "
+                className=" mr-2 font-semibold "
               >
                 Title
               </Text>
@@ -143,7 +169,6 @@ const ListAnItem: React.FC = () => {
             </View>
 
             <TextInput
-              value={""}
               style={styles.input}
               placeholder={"Tap here to add a title"}
               placeholderTextColor={"gray"}
@@ -161,7 +186,6 @@ const ListAnItem: React.FC = () => {
             </View>
 
             <TextInput
-              value={""}
               style={[
                 styles.input,
                 { height: 200 },
@@ -181,9 +205,13 @@ const ListAnItem: React.FC = () => {
               Searchability
             </Text>
             <View className=" flex-row justify-between mt-[15px] ">
-              <Text style={styles.switchContainerText}>Allow Local Pickup</Text>
+              <Text
+                style={styles.switchContainerText}
+                className={`${values.localPickup ? " text-[#42C1F0] " : ""}`}
+              >
+                Allow Local Pickup
+              </Text>
               <Switch
-                ios_backgroundColor="#C6C6C9"
                 trackColor={{ false: "#767577", true: Colors.primary }}
                 onValueChange={() =>
                   setValues((previousState) => ({
@@ -195,7 +223,10 @@ const ListAnItem: React.FC = () => {
               />
             </View>
             <View className=" mt-[15px] flex-row justify-between">
-              <Text style={styles.switchContainerText}>
+              <Text
+                style={styles.switchContainerText}
+                className={`${values.allCategories ? " text-primary" : ""}`}
+              >
                 Allow On All Categories
               </Text>
               <Switch
@@ -210,51 +241,88 @@ const ListAnItem: React.FC = () => {
               />
             </View>
 
-            <View className=" mt-[17px] flex-row justify-between">
-              <Text style={{ fontSize: hp(2.9) }} className=" ">
+            <View className=" mt-[17px] items-center flex-row justify-between">
+              <Text style={{ fontSize: hp(2.4) }} className=" ">
                 Maximum Distance
               </Text>
-              <Text>{values.maximumDistance}mi</Text>
+              <Text style={{ fontSize: hp(1.7) }} >{rangeValue} mi</Text>
             </View>
             <View className=" flex-row justify-center">
-              <MultiSlider
-                values={values.maximumDistance}
-                onValuesChange={(newValues) =>
-                  setValues((previousState) => ({
-                    ...previousState,
-                    maximumDistance: [newValues[0]],
-                  }))
-                }
-                min={0}
-                max={100}
-                step={1}
-                sliderLength={300}
-                selectedStyle={{
-                  backgroundColor: "#42BEED",
-                }}
-                unselectedStyle={{
-                  backgroundColor: "grey",
-                }}
-                markerStyle={{
-                  backgroundColor: "#42BEED",
-                  height: 20,
-                  width: 20,
-                }}
+              <Slider
+                style={styles.slider}
+                minimumValue={0}
+                maximumValue={100}
+                step={5}
+                value={rangeValue}
+                onValueChange={(value) => updateRange(value)}
+                minimumTrackTintColor="#3DCBFF"
+                thumbTintColor="#3FBFEF"
               />
             </View>
 
-            <Text style={{ fontSize: hp(2.9) }} className="  text-primary">
+            <Text style={{ fontSize: hp(2.9) }} className="my-4 text-primary">
               Condition
             </Text>
-            <View style={styles.condicationButtons}>
-              <Pressable style={styles.condicationButton}>
-                <Text>New</Text>
+            <View className=" flex-row    w-full gap-2">
+              <Pressable
+                onPress={() => setCondication("New")}
+                className=" active:scale-95 duration-300  flex-1"
+              >
+                <LinearGradient
+                  colors={
+                    condication == "New"
+                      ? ["#26BCF2", "#82DAF9"]
+                      : ["#d3d3d3", "#d3d3d3"]
+                  }
+                  className={`py-3  rounded-full bg-[#DBDBDB]  items-center`}
+                >
+                  <Text
+                    style={{ fontSize: hp(1.5) }}
+                    className=" font-semibold text-white"
+                  >
+                    New
+                  </Text>
+                </LinearGradient>
               </Pressable>
-              <Pressable style={styles.condicationButton}>
-                <Text>Used</Text>
+              <Pressable
+                onPress={() => setCondication("Used")}
+                className=" active:scale-95 duration-300  flex-1"
+              >
+                <LinearGradient
+                  colors={
+                    condication == "Used"
+                      ? ["#26BCF2", "#82DAF9"]
+                      : ["#d3d3d3", "#d3d3d3"]
+                  }
+                  className={`py-3 duration-500  rounded-full bg-[#DBDBDB]  items-center`}
+                >
+                  <Text
+                    style={{ fontSize: hp(1.5) }}
+                    className=" font-semibold text-white"
+                  >
+                    Used
+                  </Text>
+                </LinearGradient>
               </Pressable>
-              <Pressable style={styles.condicationButton}>
-                <Text>Not Specified</Text>
+              <Pressable
+                onPress={() => setCondication("Not Specified")}
+                className=" active:scale-95 duration-300  flex-1"
+              >
+                <LinearGradient
+                  colors={
+                    condication == "Not Specified"
+                      ? ["#26BCF2", "#82DAF9"]
+                      : ["#d3d3d3", "#d3d3d3"]
+                  }
+                  className={`py-3 duration-300 rounded-full bg-[#DBDBDB]  items-center`}
+                >
+                  <Text
+                    style={{ fontSize: hp(1.5) }}
+                    className="  font-semibold text-white"
+                  >
+                    Not Specified
+                  </Text>
+                </LinearGradient>
               </Pressable>
             </View>
           </View>
@@ -291,7 +359,6 @@ const ListAnItem: React.FC = () => {
             </View>
 
             <TextInput
-              value={""}
               style={styles.input}
               placeholder={"Tap here to add an asking price"}
               placeholderTextColor={"#3C3C4399"}
@@ -317,10 +384,10 @@ const ListAnItem: React.FC = () => {
               </Text>
             </View>
 
-            <Pressable onPress={() => {}}>
+            <Pressable className=" mt-4" onPress={() => {}}>
               <LinearGradient
                 colors={[Colors.primary, "#85DBF9"]}
-                style={styles.actionButton}
+                className="mx-auto p-3 rounded-xl w-[200px] items-center justify-center"
               >
                 <Text style={styles.actionButtonListItemText}>List item</Text>
               </LinearGradient>
@@ -352,9 +419,15 @@ const styles = StyleSheet.create({
     position: "relative",
     padding: 10,
   },
+
   heading: {
     flexDirection: "row",
     alignItems: "center",
+  },
+  slider: {
+    width: "95%",
+    height: 40,
+    borderRadius: 5,
   },
   title: {
     fontSize: 24,
@@ -383,7 +456,6 @@ const styles = StyleSheet.create({
   },
   switchContainerText: {
     fontSize: 20,
-    color: Colors.primary,
   },
   rangContainer: {
     flex: 1,

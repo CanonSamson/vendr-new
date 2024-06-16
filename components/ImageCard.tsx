@@ -27,9 +27,6 @@ const ImageCard: React.FC<ImageCardProps> = ({ uri, id, pickImage }) => {
         <Image
           source={{ uri }}
           style={styles.image}
-          className={`duration-700 object-cover ${
-            isLoading ? " bg-gray-300" : " bg-white"
-          }`}
           onLoadEnd={() => setIsLoading(false)}
           onLoadStart={() => setIsLoading(true)}
         />
@@ -65,9 +62,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     overflow: "hidden",
     margin: 5,
-    borderWidth: 4,
-    borderColor: Colors.primary,
-    borderStyle: "dashed",
   },
   placeholder: {
     justifyContent: "center",

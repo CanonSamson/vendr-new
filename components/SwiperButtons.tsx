@@ -10,6 +10,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
+import { TouchableOpacity } from "react-native";
 
 interface SwiperButtonsProps {
   handleFilter: () => void;
@@ -34,7 +35,7 @@ const SwiperButtons: React.FC<SwiperButtonsProps> = ({
         </View>
       </View>
       <View className=" w-full px-4 flex-row">
-        <Pressable
+        <TouchableOpacity
           onPress={() => {}}
           className=" relative active:scale-90 duration-700 -bottom-4 -right-4 flex-1 items-center justify-center"
         >
@@ -49,8 +50,8 @@ const SwiperButtons: React.FC<SwiperButtonsProps> = ({
               resizeMode="contain"
             />
           </View>
-        </Pressable>
-        <Pressable
+        </TouchableOpacity>
+        <TouchableOpacity
           onPress={() => onSwipeLeft()}
           className=" flex-1  active:scale-90 duration-900 items-center justify-center"
         >
@@ -65,14 +66,15 @@ const SwiperButtons: React.FC<SwiperButtonsProps> = ({
               resizeMode="contain"
             />
           </View>
-        </Pressable>
-        <Pressable
+        </TouchableOpacity>
+        <TouchableOpacity
           onPress={() => onSwipeRight()}
           className=" active:scale-90 duration-900 flex-1 items-center justify-center"
         >
-          <View 
-           style={{ width: hp(11) }}
-           className=" w-[90px] items-center justify-center">
+          <View
+            style={{ width: hp(11) }}
+            className=" w-[90px] items-center justify-center"
+          >
             <Image
               source={offer}
               width={200}
@@ -80,8 +82,8 @@ const SwiperButtons: React.FC<SwiperButtonsProps> = ({
               resizeMode="contain"
             />
           </View>
-        </Pressable>
-        <Pressable
+        </TouchableOpacity>
+        <TouchableOpacity
           onPress={() => handleFilter()}
           className=" relative -bottom-4 active:scale-90 duration-900 -left-4 flex-1 items-center justify-center"
         >
@@ -96,7 +98,7 @@ const SwiperButtons: React.FC<SwiperButtonsProps> = ({
               resizeMode="contain"
             />
           </View>
-        </Pressable>
+        </TouchableOpacity>
       </View>
     </View>
   );

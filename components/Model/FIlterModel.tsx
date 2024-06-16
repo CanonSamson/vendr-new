@@ -10,15 +10,14 @@ import {
   KeyboardAvoidingView,
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
+import MultiSlider from "@ptomasroos/react-native-multi-slider";
+import { LinearGradient } from "expo-linear-gradient";
+import { Platform } from "react-native";
 
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import CustomKeyBoardView from "../CustomKeyBoardView";
-import MultiSlider from "@ptomasroos/react-native-multi-slider";
-import { LinearGradient } from "expo-linear-gradient";
-import { Platform } from "react-native";
 
 interface FilterProductModalProps {
   modalVisible: boolean;
@@ -36,7 +35,7 @@ const FilterProductModal: React.FC<FilterProductModalProps> = ({
     allCategories: false,
     maximumDistance: [20, 50],
   });
-  const [condication, setCondication] = useState("Not Specified");
+  const [condition, setCondition] = useState("Not Specified");
 
   return (
     <Modal
@@ -94,10 +93,11 @@ const FilterProductModal: React.FC<FilterProductModalProps> = ({
                 <View className=" flex-1 border-2 items-center px-2 flex-row border-primary ">
                   <Text style={{ fontSize: hp(2.8) }}>$</Text>
                   <TextInput
-                    className=" h-[32px] flex-1 pl-2"
+                    className=" h-[20px] flex-1 pl-2"
                     placeholderTextColor={"#3C3C4399"}
                     style={{ fontSize: hp(3) }}
                     keyboardType="numeric"
+                    placeholder="MIN"
                   />
                 </View>
                 <Text style={{ fontSize: hp(2.8) }} className=" px-4">
@@ -106,10 +106,11 @@ const FilterProductModal: React.FC<FilterProductModalProps> = ({
                 <View className=" flex-1 border-2 items-center px-2 flex-row border-primary ">
                   <Text style={{ fontSize: hp(2.8) }}>$</Text>
                   <TextInput
-                    className=" h-[32px] flex-1 pl-2"
+                    className=" h-[20px] flex-1 pl-2"
                     placeholderTextColor={"#3C3C4399"}
                     style={{ fontSize: hp(3) }}
                     keyboardType="numeric"
+                    placeholder="MAX"
                   />
                 </View>
               </View>
@@ -158,12 +159,12 @@ const FilterProductModal: React.FC<FilterProductModalProps> = ({
               </Text>
               <View className=" flex-row   w-full gap-2">
                 <Pressable
-                  onPress={() => setCondication("New")}
+                  onPress={() => setCondition("New")}
                   className=" active:scale-95 duration-300  flex-1"
                 >
                   <LinearGradient
                     colors={
-                      condication == "New"
+                      condition == "New"
                         ? ["#26BCF2", "#82DAF9"]
                         : ["#d3d3d3", "#d3d3d3"]
                     }
@@ -178,12 +179,12 @@ const FilterProductModal: React.FC<FilterProductModalProps> = ({
                   </LinearGradient>
                 </Pressable>
                 <Pressable
-                  onPress={() => setCondication("Used")}
+                  onPress={() => setCondition("Used")}
                   className=" active:scale-95 duration-300  flex-1"
                 >
                   <LinearGradient
                     colors={
-                      condication == "Used"
+                      condition == "Used"
                         ? ["#26BCF2", "#82DAF9"]
                         : ["#d3d3d3", "#d3d3d3"]
                     }
@@ -198,12 +199,12 @@ const FilterProductModal: React.FC<FilterProductModalProps> = ({
                   </LinearGradient>
                 </Pressable>
                 <Pressable
-                  onPress={() => setCondication("Not Specified")}
+                  onPress={() => setCondition("Not Specified")}
                   className=" active:scale-95 duration-300  flex-1"
                 >
                   <LinearGradient
                     colors={
-                      condication == "Not Specified"
+                      condition == "Not Specified"
                         ? ["#26BCF2", "#82DAF9"]
                         : ["#d3d3d3", "#d3d3d3"]
                     }
