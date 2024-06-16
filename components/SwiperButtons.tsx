@@ -6,6 +6,10 @@ const undo = require("@/assets/icon/undo-button.png");
 const search = require("@/assets/icon/search-button.png");
 const offer = require("@/assets/icon/offer-button.png");
 const next = require("@/assets/icon/next-button.png");
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 interface SwiperButtonsProps {
   handleFilter: () => void;
@@ -34,7 +38,10 @@ const SwiperButtons: React.FC<SwiperButtonsProps> = ({
           onPress={() => {}}
           className=" relative active:scale-90 duration-700 -bottom-4 -right-4 flex-1 items-center justify-center"
         >
-          <View className=" w-[50px] items-center justify-center">
+          <View
+            style={{ width: hp(6) }}
+            className=" items-center justify-center"
+          >
             <Image
               source={undo}
               width={200}
@@ -47,7 +54,10 @@ const SwiperButtons: React.FC<SwiperButtonsProps> = ({
           onPress={() => onSwipeLeft()}
           className=" flex-1  active:scale-90 duration-900 items-center justify-center"
         >
-          <View className=" w-[70px] items-center justify-center">
+          <View
+            style={{ width: hp(8) }}
+            className="  items-center justify-center"
+          >
             <Image
               source={next}
               width={200}
@@ -60,7 +70,9 @@ const SwiperButtons: React.FC<SwiperButtonsProps> = ({
           onPress={() => onSwipeRight()}
           className=" active:scale-90 duration-900 flex-1 items-center justify-center"
         >
-          <View className=" w-[90px] items-center justify-center">
+          <View 
+           style={{ width: hp(11) }}
+           className=" w-[90px] items-center justify-center">
             <Image
               source={offer}
               width={200}
@@ -73,7 +85,10 @@ const SwiperButtons: React.FC<SwiperButtonsProps> = ({
           onPress={() => handleFilter()}
           className=" relative -bottom-4 active:scale-90 duration-900 -left-4 flex-1 items-center justify-center"
         >
-          <View className=" w-[50px] items-center justify-center">
+          <View
+            style={{ width: hp(6) }}
+            className=" items-center justify-center"
+          >
             <Image
               source={search}
               width={200}

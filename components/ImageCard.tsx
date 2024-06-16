@@ -1,12 +1,11 @@
-import {
-  View,
-  Pressable,
-  StyleSheet,
-  Image,
-} from "react-native";
-import React from "react";
+import { View, Pressable, StyleSheet, Image } from "react-native";
+import React, { useState } from "react";
 import Add from "../assets/svg/add.svg";
 import { Colors } from "../constants/Colors";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 interface ImageCardProps {
   uri: string | null;
@@ -15,20 +14,31 @@ interface ImageCardProps {
 }
 
 const ImageCard: React.FC<ImageCardProps> = ({ uri, id, pickImage }) => {
+  const [isLoading, setIsLoading] = useState(true);
   return (
     <Pressable
       style={styles.container}
       onPress={() => {
         pickImage(id);
       }}
+      className=" duration-700 active:opacity-75"
     >
       {uri ? (
-        <Image source={{ uri }} style={styles.image} />
+        <Image
+          source={{ uri }}
+          style={styles.image}
+          className={`duration-700 object-cover ${
+            isLoading ? " bg-gray-300" : " bg-white"
+          }`}
+          onLoadEnd={() => setIsLoading(false)}
+          onLoadStart={() => setIsLoading(true)}
+        />
       ) : (
         <View>
-          <View style={styles.placeholder}></View>
-          <View className="  absolute -bottom-[2px] -right-[2px]">
-            <Add width={28} height={28} color={Colors.primary} />
+          <View className="duration-700" style={styles.placeholder}>
+            <View className="  absolute  bottom-[2px] right-[2px]">
+              <Add width={28} height={28} color={Colors.primary} />
+            </View>
           </View>
         </View>
       )}
@@ -68,7 +78,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     overflow: "hidden",
     margin: 5,
-    borderWidth: 4,
+    borderWidth: 1.4,
     borderColor: Colors.primary,
     borderStyle: "dashed",
   },

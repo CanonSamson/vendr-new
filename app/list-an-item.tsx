@@ -103,12 +103,8 @@ const ListAnItem: React.FC = () => {
             </View>
             <View
               style={styles.grid}
-              className=" items-start justify-start mt-[10px]"
+              className=" duration-700 items-start justify-start mt-[10px]"
             >
-              {Object.keys(images).length < 6 && (
-                <ImageCard id={"1"} uri={null} pickImage={AddImage} />
-              )}
-
               {Object.values(images).map((item) => (
                 <ImageCard
                   key={item.id}
@@ -117,6 +113,9 @@ const ListAnItem: React.FC = () => {
                   pickImage={pickImage}
                 />
               ))}
+              {Object.keys(images).length < 6 && (
+                <ImageCard id={"1"} uri={null} pickImage={AddImage} />
+              )}
               {(Object.keys(images).length == 1 ||
                 Object.keys(images).length == 3) && (
                 <View className="  relative   opacity-0">
@@ -171,6 +170,7 @@ const ListAnItem: React.FC = () => {
               multiline
               placeholder={"Tap here to add a description"}
               placeholderTextColor={"gray"}
+              className=" mt-[10px]"
             />
           </View>
           <View style={styles.innercontainer}>
