@@ -23,16 +23,19 @@ import {
 } from "react-native-responsive-screen";
 
 import { convertDateFormat, getNameInitials } from "@/utils/functions";
+import { StatusBar } from "expo-status-bar";
 const UserProfile = () => {
   const [editProfile, setEditProfile] = useState(false);
   const { user } = useAuth();
 
   return (
     <>
+      <StatusBar style="dark" />
       <EditProfileModel
         modalVisible={editProfile}
         hideModal={() => setEditProfile(false)}
       />
+
       <View
         className="pt-14 pb-4  absolute top-0 w-full flex-row  justify-between px-4 right-0 z-20 items-center bg-white border-b-[2px] border-primary"
         style={styles.heading}

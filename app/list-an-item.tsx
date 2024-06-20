@@ -11,7 +11,6 @@ import {
 import * as ImagePicker from "expo-image-picker";
 import ImageCard from "../components/ImageCard";
 import { Colors } from "../constants/Colors";
-import MultiSlider from "@ptomasroos/react-native-multi-slider";
 import { LinearGradient } from "expo-linear-gradient";
 import CustomKeyBoardView from "@/components/CustomKeyBoardView";
 import { router } from "expo-router";
