@@ -36,6 +36,14 @@ interface CardData {
 
 const { width, height } = Dimensions.get("screen");
 
+// Scale factors based on current device vs. base design
+const widthScale = width / 390; // Using iPhone 13 Pro's width as base
+const heightScale = height / 844; // Using iPhone 13 Pro's height as base
+
+// Dynamic margin bottom to ensure consistent spacing
+const dynamicMarginBottom = heightScale === 1 ? 0 : heightScale * 13;
+const dynamicTabHeight = heightScale < 0.95 ? heightScale * 0.8 : 1;
+
 const Card: React.FC<CardData> = ({
   images,
   name,
@@ -204,7 +212,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: width * 0.95,
-    height: 526,
+    height: hp(61.6),
     borderRadius: 20,
   },
   gradient: {

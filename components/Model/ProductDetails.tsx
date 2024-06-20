@@ -97,50 +97,53 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
             </View>
           </LinearGradient>
         </View>
-        <View className="flex-1 p-4">
-          <View className=" p-5  bg-white rounded-xl" style={styles.container}>
+        <View className="flex-1 p-[10px]">
+          <View
+            className=" py-[10px] px-[20px]  bg-white rounded-xl"
+            style={styles.container}
+          >
             <Text className="text-black text-[26px] font-semibold">{name}</Text>
-            <Text className="text-black text-[17px] my-2 font-light">
+            <Text className="text-black text-[17px] mt-[5px] font-light">
               {price} or Best Offer
             </Text>
-            <Text className="text-black text-[17px] font-light mt-2">
+            <Text className="text-black text-[17px] font-light mt-[5px]">
               Condition: New
             </Text>
           </View>
           <View
-            className=" p-5 mt-5  bg-white  rounded-xl"
+            className="px-[20px] py-[10px] mt-[10px] bg-white rounded-xl "
             style={styles.container}
           >
             <Text className="text-black text-[26px] font-semibold">
               Description
             </Text>
 
-            <Text className="text-black text-[17px] font-light mt-2">
+            <Text className="text-black text-[17px] font-light mt-[5px]">
               Size 11 and brand new in box, never worn. I bought them from the
               adidas store. Local pick up or I can ship them out if for $15.
             </Text>
           </View>
 
           <View
-            className="p-5 mt-5 bg-white rounded-xl "
+            className="px-[20px] py-[10px] mt-[10px] bg-white rounded-xl "
             style={styles.container}
           >
             <Text className="text-black text-[26px] font-semibold">
               Seller Details
             </Text>
-            <Text className="text-black text-[17px] font-light mt-2">
+            <Text className="text-black text-[17px] font-light mt-[5px]">
               Seller: <Text className="text-primary underline">Kyle R</Text>
             </Text>
-            <Text className="text-black text-[17px] font-light mt-2">
+            <Text className="text-black text-[17px] font-light mt-[5px]">
               Rating: 5 Stars 99% Positive feedback
             </Text>
-            <Text className="text-black text-[17px] font-light mt-2">
+            <Text className="text-black text-[17px] font-light mt-[5px]">
               Location: Point Pleasant NJ, O8742
             </Text>
           </View>
 
           <View
-            className=" p-5 mt-5  bg-white   rounded-xl"
+            className="px-[20px] py-[10px] mt-[10px] bg-white rounded-xl "
             style={styles.container}
           >
             <Text className="text-[#EE393B] text-[26px]  font-semibold text-center">
@@ -149,8 +152,8 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
           </View>
         </View>
         <View className=" flex-1 w-full">
-          <View className=" w-full px-4 flex-row">
-            <Pressable className=" flex-1 items-end mr-10 justify-center">
+          <View className=" w-full px-[10px] flex-row">
+            <Pressable className=" flex-1 items-end mr-[20px] justify-center">
               <View className=" w-[80px] items-center justify-end">
                 <Image
                   source={next}
@@ -172,7 +175,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
             </Pressable>
           </View>
         </View>
-        <View className="  w-[50%] -top-6 relative  mx-auto ">
+        <View className="  w-[50%] -top-[20px] relative  mx-auto ">
           <Image
             source={line}
             width={200}
@@ -192,10 +195,10 @@ const styles = StyleSheet.create({
     // For iOS
     shadowColor: "gray",
     shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.5,
+    shadowOpacity: 1,
     shadowRadius: 3,
     // For Android
-    elevation: 5,
+    elevation: 6,
   },
   image: {
     width: width * 0.9,

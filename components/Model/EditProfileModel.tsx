@@ -80,7 +80,9 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
     >
       <StatusBar style="dark" />
       <View
-        className="pt-14 pb-4  absolute top-0 w-full flex-row  justify-between px-4 right-0 z-20 items-center bg-white border-b-[2px] border-primary"
+        className={` ${
+          Platform.OS === "ios" ? " pt-[60px]" : " pt-[30px]"
+        } pb-4  absolute top-0 w-full flex-row  justify-between px-4 right-0 z-20 items-center bg-white border-b-[2px] border-primary`}
         style={styles.heading}
       >
         <Pressable onPress={hideModal}>
@@ -253,23 +255,23 @@ export default EditProfileModel;
 const styles = StyleSheet.create({
   heading: {
     // For iOS
-    shadowColor: "gray",
+    shadowColor: "#000",
+    shadowOpacity: 0.1,
     shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.5,
     shadowRadius: 3,
     // For Android
-    elevation: 10,
+    elevation: 5,
   },
   container: {
-    shadowColor: "gray",
+    shadowColor: "#000",
+    shadowOpacity: 0.1,
     ...Platform.select({
       ios: {
-        shadowOpacity: 0.5,
         shadowOffset: { width: 0, height: 1 },
-        shadowRadius: 3,
+        shadowRadius: 10,
       },
       android: {
-        elevation: 40,
+        elevation: 5,
         backgroundColor: "white",
       },
     }),

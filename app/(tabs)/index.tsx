@@ -108,9 +108,9 @@ export default function HomeScreen() {
         colors={[Colors.primary, Colors.primary, "#85DBF9"]}
         className={`${
           confirmAnicationModal ? " opacity-0" : " opacity-100"
-        }  pt-14  px-4 items-center relative   pb-5`}
+        }  pt-[50px]  px-4 items-center relative   pb-[10px]`}
       >
-        <View className="  px-4 w-full justify-center items-center relative flex-row  ">
+        <View className="  px-[10px] w-full justify-center items-center relative flex-row  ">
           <Pressable
             onPress={() => router.push("user-profile")}
             className=" active:scale-90 duration-900  absolute left-0"

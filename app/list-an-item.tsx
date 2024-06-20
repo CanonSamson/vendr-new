@@ -102,7 +102,7 @@ const ListAnItem: React.FC = () => {
     <>
       <StatusBar style="dark" hidden={false} />
 
-      <View className="pt-14 pb-4 z-20 flex-row  justify-between items-center shadow-xl bg-white border-b-[2px] px-4 border-primary">
+      <View className="pt-[55px] pb-4 z-20 flex-row  justify-between items-center shadow-xl bg-white border-b-[2px] px-4 border-primary">
         <Pressable onPress={() => router.back()}>
           <Image className=" mx-3" source={CloseIcon} width={40} height={40} />
         </Pressable>
@@ -221,7 +221,7 @@ const ListAnItem: React.FC = () => {
                 value={values.localPickup}
               />
             </View>
-            <View className=" mt-[15px] flex-row justify-between">
+            <View className=" mt-[10px] flex-row justify-between">
               <Text
                 style={styles.switchContainerText}
                 className={`${values.allCategories ? " text-primary" : ""}`}
@@ -413,8 +413,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowOffset: { width: 0, height: 1 },
     shadowRadius: 5,
-    elevation: 2,
-    margin: 10,
+    elevation: 5,
+    margin: 4,
     position: "relative",
     padding: 10,
   },

@@ -161,15 +161,18 @@ const styles = StyleSheet.create({
     elevation: 10,
   },
   container: {
-    shadowColor: "gray",
+    shadowColor: "#000",
+    shadowOpacity: 0.1,
     ...Platform.select({
       ios: {
-        shadowOpacity: 0.5,
         shadowOffset: { width: 0, height: 1 },
         shadowRadius: 3,
+        backgroundColor: "white",
       },
+
       android: {
-        elevation: 40,
+        elevation: 5,
+        shadowRadius: 3,
         backgroundColor: "white",
       },
     }),

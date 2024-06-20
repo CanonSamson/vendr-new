@@ -9,15 +9,20 @@ import {
   Pressable,
   Alert,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { auth } from "@/firebase_config";
 import { useAuth } from "@/context/GlobalContext";
 import { router } from "expo-router";
+import { Colors } from "@/constants/Colors";
 const ArrowDown = require("@/assets/icon/arrow-down.png");
 
 const Settings = () => {
   const { logout } = useAuth();
+  const [itemOfferRequests, setItemOfferRequests] = useState(false);
+  const [messageReplies, setMessageReplies] = useState(false);
+  const [buyingNotifications, setBuyingNotifications] = useState(false);
+
   return (
     <>
       <View
@@ -39,21 +44,54 @@ const Settings = () => {
             className="  p-4 rounded-xl  bg-white "
           >
             <Text className=" text-[26px]">Notifications</Text>
-            <View className=" flex-row mt-2 items-center justify-between">
-              <Text className=" text-[19px] text-primary">
+            <View className=" flex-row  mt-[10px] items-center justify-between">
+              <Text
+                className={`${
+                  itemOfferRequests ? "text-primary" : ""
+                } text-[19px] `}
+              >
                 Item Offer Requests
               </Text>
-              <Switch />
+
+              <Switch
+                trackColor={{ false: "#767577", true: Colors.primary }}
+                onValueChange={() =>
+                  setItemOfferRequests((previousState) => !previousState)
+                }
+                value={itemOfferRequests}
+              />
             </View>
-            <View className=" mt-2 flex-row items-center justify-between">
-              <Text className=" text-[19px] text-primary">Message Replies</Text>
-              <Switch />
+            <View className="  mt-[10px] flex-row items-center justify-between">
+              <Text
+                className={`${
+                  messageReplies ? "text-primary" : ""
+                } text-[19px] `}
+              >
+                Message Replies
+              </Text>
+              <Switch
+                trackColor={{ false: "#767577", true: Colors.primary }}
+                onValueChange={() =>
+                  setMessageReplies((previousState) => !previousState)
+                }
+                value={messageReplies}
+              />
             </View>
-            <View className=" mt-2 flex-row items-center justify-between">
-              <Text className=" text-[19px] text-primary">
+            <View className=" mt-[10px] flex-row items-center justify-between">
+              <Text
+                className={`${
+                  buyingNotifications ? "text-primary" : "text-black"
+                } text-[19px] duration-300 `}
+              >
                 Buying Notifications
               </Text>
-              <Switch />
+              <Switch
+                trackColor={{ false: "#767577", true: Colors.primary }}
+                onValueChange={() =>
+                  setBuyingNotifications((previousState) => !previousState)
+                }
+                value={buyingNotifications}
+              />
             </View>
           </View>
 
@@ -64,7 +102,7 @@ const Settings = () => {
             <Text className=" text-[26px]">Account Information</Text>
             <Text>Verify private information to help secure your account.</Text>
 
-            <View className=" mt-2 flex-row items-center justify-between">
+            <View className="  mt-[10px] flex-row items-center justify-between">
               <Text className=" text-[19px]">Phone Number</Text>
               <View className=" flex-row gap-2 items-center">
                 <Text className=" text-primary">909-956-1534</Text>
@@ -75,7 +113,7 @@ const Settings = () => {
               </View>
             </View>
 
-            <View className=" mt-2 flex-row items-center justify-between">
+            <View className="  mt-[10px] flex-row items-center justify-between">
               <Text className=" text-[19px]">Email</Text>
               <View className=" flex-row gap-2 items-center">
                 <Text className=" text-primary">{auth.currentUser?.email}</Text>
@@ -86,7 +124,7 @@ const Settings = () => {
                 />
               </View>
             </View>
-            <View className=" mt-2 flex-row items-center justify-between">
+            <View className="  mt-[10px] flex-row items-center justify-between">
               <Text className=" text-[19px]">Connected Accounts</Text>
 
               <Image
@@ -102,7 +140,7 @@ const Settings = () => {
           >
             <Text className=" text-[26px]">Support</Text>
 
-            <View className=" mt-2 flex-row items-center justify-between">
+            <View className="  mt-[10px] flex-row items-center justify-between">
               <Text className=" text-[19px]">Terms and Services</Text>
 
               <Image
@@ -110,7 +148,7 @@ const Settings = () => {
                 className=" w-[14px] h-[14px] object-contain -rotate-90"
               />
             </View>
-            <View className=" mt-2 flex-row items-center justify-between">
+            <View className="  mt-[10px] flex-row items-center justify-between">
               <Text className=" text-[19px]">Contact and FAQ</Text>
 
               <Image
@@ -119,7 +157,7 @@ const Settings = () => {
               />
             </View>
 
-            <View className=" mt-2 flex-row items-center justify-between">
+            <View className="  mt-[10px] flex-row items-center justify-between">
               <Text className=" text-[19px]">Report Bugs</Text>
 
               <Image
@@ -135,7 +173,7 @@ const Settings = () => {
           >
             <Text className=" text-[26px]">App Settings</Text>
 
-            <View className=" mt-2 flex-row items-center justify-between">
+            <View className="  mt-[10px] flex-row items-center justify-between">
               <Text className=" text-[19px]">Privacy and Security</Text>
 
               <Image
@@ -143,7 +181,7 @@ const Settings = () => {
                 className=" w-[14px] h-[14px] object-contain -rotate-90"
               />
             </View>
-            <View className=" mt-2 flex-row items-center justify-between">
+            <View className="  mt-[10px] flex-row items-center justify-between">
               <Text className=" text-[19px]">Delete Account</Text>
 
               <Image
@@ -180,7 +218,7 @@ const Settings = () => {
               <Text className=" text-white text-[19px]">Logout</Text>
             </LinearGradient>
           </Pressable>
-          <Text className=" text-center mt-2">Version 0.6.01 Beta</Text>
+          <Text className=" text-center  mt-[10px]">Version 0.6.01 Beta</Text>
         </View>
       </ScrollView>
     </>

@@ -23,7 +23,7 @@ const SwiperButtons: React.FC<SwiperButtonsProps> = ({
   onSwipeRight,
 }) => {
   return (
-    <View className=" absolute w-full right-0  bottom-2">
+    <View style={{ top: hp(74) }} className=" absolute w-full  right-0  ">
       <View className=" absolute w-full -bottom-2  right-0 ">
         <View className=" flex-row max-w-[80%] justify-center mx-auto">
           <Image

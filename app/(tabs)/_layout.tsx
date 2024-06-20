@@ -15,7 +15,7 @@ const heightScale = height / 844; // Using iPhone 13 Pro's height as base
 
 // Dynamic margin bottom to ensure consistent spacing
 const dynamicMarginBottom = heightScale === 1 ? 0 : heightScale * 13;
-const dynamicTabHeight = heightScale < 0.95 ? heightScale * 0.95 : 1;
+const dynamicTabHeight = heightScale < 0.95 ? heightScale * 0.8 : 1.1;
 
 const TabsLayout = () => {
   return (
@@ -23,9 +23,7 @@ const TabsLayout = () => {
       screenOptions={{
         tabBarActiveTintColor: "#42BEED",
         tabBarInactiveTintColor: "#B3B4B5",
-        //tabBarActiveBackgroundColor: 'white',
-        //tabBarInactiveBackgroundColor: 'white',
-        //headerShadowVisible: true,
+
         tabBarStyle: {
           borderTopWidth: 2.75,
           elevation: 5,

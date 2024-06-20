@@ -92,10 +92,11 @@ const FilterProductModal: React.FC<FilterProductModalProps> = ({
               >
                 <View className=" flex-1 border-2 items-center px-2 flex-row border-primary ">
                   <Text style={{ fontSize: hp(2.8) }}>$</Text>
+
                   <TextInput
-                    className=" h-[20px] flex-1 pl-2"
+                    className=" h-full flex-1  pl-2"
                     placeholderTextColor={"#3C3C4399"}
-                    style={{ fontSize: hp(3) }}
+                    style={{ fontSize: hp(2.8) }}
                     keyboardType="numeric"
                     placeholder="MIN"
                   />
@@ -103,12 +104,12 @@ const FilterProductModal: React.FC<FilterProductModalProps> = ({
                 <Text style={{ fontSize: hp(2.8) }} className=" px-4">
                   to
                 </Text>
-                <View className=" flex-1 border-2 items-center px-2 flex-row border-primary ">
+                <View className=" flex-1 border-2 items-center pl-2 flex-row border-primary ">
                   <Text style={{ fontSize: hp(2.8) }}>$</Text>
                   <TextInput
-                    className=" h-[20px] flex-1 pl-2"
+                    className=" h-full flex-1  pl-2"
                     placeholderTextColor={"#3C3C4399"}
-                    style={{ fontSize: hp(3) }}
+                    style={{ fontSize: hp(2.8) }}
                     keyboardType="numeric"
                     placeholder="MAX"
                   />
