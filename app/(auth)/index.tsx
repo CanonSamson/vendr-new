@@ -16,6 +16,7 @@ const Index = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
+      router.push("email")
       setLoading(false);
     }, 100);
 
@@ -71,9 +72,11 @@ const Index = () => {
                 Login
               </Text>
             </Pressable>
+
+
             <View
               style={{ marginTop: hp(10) }}
-              className=" flex-row items-center "
+              className=" flex-row items-center pb-[10px]"
             >
               <Pressable
                 className=" flex-1  justify-center p-[10px] items-center"

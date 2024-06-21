@@ -42,7 +42,7 @@ const MainButton: React.FC<MainButtonProps> = ({
     >
       <LinearGradient
         colors={isDisabled ? ["#d3d3d3", "#d3d3d3"] : colors}
-        className={`w-full h-[50px] items-center justify-center rounded-[7px] ${pressableClassName} `}
+        className={`w-full h-[50px] items-center justify-center    rounded-[9px] border-[2px] ${isDisabled? "border-gray": "border-[#24BBF1]"} `}
       >
         {isLoading ? (
           <ActivityIndicator size="small" color="#fff" />

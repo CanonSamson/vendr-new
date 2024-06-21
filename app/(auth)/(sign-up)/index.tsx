@@ -56,14 +56,11 @@ const SignUp = () => {
       }}
     >
       <ScrollView
-        contentContainerStyle={{ flexGrow: 1 }}
-        className=" flex-1   mt-[100px]  py-4 pb-5"
+        contentContainerStyle={{ flexGrow: 1, paddingBottom: 5 }}
+        className=" flex-1  mt-[110px]  "
         bounces={false}
       >
-        <View
-          style={styles.container}
-          className=" flex-1 w-full  rounded-xl border-gray-200 bg-white"
-        >
+        <View style={styles.container} className=" flex-1 mx-2  bg-white">
           <View className="z-20 relative gap-2  p-4 flex-row justify-end ">
             <View
               className={`  bg-primary  border border-primary w-[20px] h-[20px] rounded-full`}
@@ -83,13 +80,13 @@ const SignUp = () => {
           </View>
 
           <Text
-          style={{ fontSize: hp(3.2) }}
-            className={`font-semibold  text-primary text-center  px-20 my-10`}
+            style={{ width: wp(60) }}
+            className={`font-bold leading-none text-[32px]  text-primary text-center mx-auto  my-10`}
           >
             Please provide your name
           </Text>
 
-          <View className="p-4">
+          <View style={{ width: wp(80) }} className=" mx-auto">
             <InputField
               value={values.firstname}
               onChangeText={handleChange("firstname")}
@@ -109,9 +106,12 @@ const SignUp = () => {
 
           <View className=" bottom-0 flex-1 justify-end items-end  relative w-full ">
             <View className=" p-4 flex-row justify-end items-end">
-              <Pressable onPress={() => handleSubmit()}>
+              <Pressable
+                style={styles.container}
+                onPress={() => handleSubmit()}
+              >
                 <LinearGradient
-                  style={{ width: hp(5), height: hp(5) }}
+                  style={{ width: hp(6), height: hp(5.5) }}
                   colors={[Colors.primary, "#85DBF9"]}
                   className="items-center justify-center rounded-lg relative"
                 >
@@ -129,26 +129,18 @@ const SignUp = () => {
 export default SignUp;
 
 const styles = StyleSheet.create({
-  heading: {
-    // For iOS
-    shadowColor: "gray",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.5,
-    shadowRadius: 3,
-    // For Android
-    elevation: 10,
-  },
   container: {
-    shadowColor: "gray",
+    borderRadius: 14,
     ...Platform.select({
       ios: {
-        shadowOpacity: 0.5,
-        shadowOffset: { width: 0, height: 1 },
-        shadowRadius: 3,
+        shadowColor: "black",
+        shadowOpacity: 0.2,
+        shadowOffset: { width: 0, height: 3 },
+        shadowRadius: 2,
       },
       android: {
-        elevation: 40,
-        backgroundColor: "white",
+        elevation: 5,
+        borderColor: "rgba(0, 0, 0, 0.1)",
       },
     }),
   },

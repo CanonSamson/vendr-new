@@ -51,7 +51,7 @@ const UserProfile = () => {
       </View>
 
       <ScrollView contentContainerStyle={{ flexGrow: 1, marginBottom: 20 }}>
-        <View className=" mt-[100px] py-4 justify-center px-4 ">
+        <View className=" mt-[100px]  justify-center p-[10px] ">
           <View style={styles.container} className="  p-5 bg-white rounded-xl">
             <View
               style={styles.container}
@@ -81,13 +81,13 @@ const UserProfile = () => {
               </Pressable>
             </View>
 
-            <Text className=" text-center mt-4 text-[24px] font-semibold">
+            <Text className=" text-center mt-[10px] text-[24px] font-bold">
               {auth.currentUser?.displayName}
             </Text>
-            <Text className=" text-center mt-5">
+            <Text className=" px-10 text-[16px] text-center mt-5">
               Check out my store I sell shoes and vintage clothing.
             </Text>
-            <Text className=" text-[20px] text-black text-center mt-10 pb-4">
+            <Text className=" px-5 text-[20px] text-black text-center mt-10 pb-4">
               Member since {convertDateFormat(user?.joinAt ?? "")} Based in{" "}
               {user?.address},{user?.zipcode}
             </Text>
@@ -95,21 +95,21 @@ const UserProfile = () => {
 
           <View
             style={styles.container}
-            className="  mt-4 p-5 bg-white rounded-xl"
+            className="  mt-[10px] p-5 bg-white rounded-xl"
           >
-            <Text className="  text-primary text-[20px] text-center ">
+            <Text className="  font-semibold text-primary text-[20px] text-center ">
               Feedback
             </Text>
-            <Text className=" text-primary text-[20px] text-center mt-2 ">
+            <Text className=" font-semibold text-primary text-[20px] text-center mt-2 ">
               Coming Soon
             </Text>
           </View>
 
           <View
             style={styles.container}
-            className="  mt-4 p-5 bg-white rounded-xl"
+            className="  mt-[10px] p-5 bg-white rounded-xl"
           >
-            <Text className="  text-primary text-[20px] text-center ">
+            <Text className=" font-semibold text-primary text-[20px] text-center ">
               Preview Profile
             </Text>
           </View>
@@ -126,7 +126,7 @@ const UserProfile = () => {
               >
                 <SettingsIcon width={35} />
               </View>
-              <Text className=" mt-2 text-[20px]">Settings</Text>
+              <Text className=" text-[#616161] mt-2 text-[20px]">Settings</Text>
             </Pressable>
             <Pressable
               onPress={() => router.push("/safety")}
@@ -139,7 +139,7 @@ const UserProfile = () => {
               >
                 <SafteyIcon width={35} />
               </View>
-              <Text className=" mt-2 text-[20px]">Saftey</Text>
+              <Text className=" text-[#616161] mt-2 text-[20px]">Saftey</Text>
             </Pressable>
           </View>
         </View>
@@ -160,20 +160,18 @@ const styles = StyleSheet.create({
     // For Android
     elevation: 10,
   },
+
   container: {
-    shadowColor: "#000",
-    shadowOpacity: 0.1,
     ...Platform.select({
       ios: {
-        shadowOffset: { width: 0, height: 1 },
-        shadowRadius: 3,
-        backgroundColor: "white",
+        shadowColor: "black",
+        shadowOpacity: 0.2,
+        shadowOffset: { width: 0, height: 3 },
+        shadowRadius: 2,
       },
-
       android: {
         elevation: 5,
-        shadowRadius: 3,
-        backgroundColor: "white",
+        borderColor: "rgba(0, 0, 0, 0.1)",
       },
     }),
   },

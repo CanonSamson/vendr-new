@@ -68,13 +68,13 @@ const SignUp = () => {
         }}
       >
         <ScrollView
-          contentContainerStyle={{ flexGrow: 1 }}
-          className=" flex-1  mt-[100px] py-4 pb-5"
+          contentContainerStyle={{ flexGrow: 1, paddingBottom: 5 }}
+          className=" flex-1  mt-[110px]  "
           bounces={false}
         >
           <View
             style={styles.container}
-            className=" flex-1 w-full rounded-xl  bg-white"
+            className=" flex-1 mx-2 rounded-xl  bg-white"
           >
             <View className="z-20 relative gap-2  p-4 flex-row justify-end ">
               <View
@@ -89,19 +89,19 @@ const SignUp = () => {
               <View
                 className={` border border-primary w-[20px] h-[20px] rounded-full`}
               />
-                          <View
+              <View
                 className={` border border-primary w-[20px] h-[20px] rounded-full`}
               />
             </View>
 
             <Text
-                style={{ fontSize: hp(3.2) }}
-              className={`font-semibold  text-primary text-center  px-20 my-10`}
+              style={{ width: wp(60) }}
+              className={`font-bold text-[32px] mx-auto text-primary text-center my-10`}
             >
               Please provide your address
             </Text>
 
-            <View className="p-4">
+            <View style={{ width: wp(80) }} className=" mx-auto">
               <InputField
                 value={values.address}
                 onChangeText={handleChange("address")}
@@ -110,7 +110,11 @@ const SignUp = () => {
                 style={""}
               />
               <View className=" flex-row items-center justify-between my-5">
-                <Text className=" text-[19px] text-primary">
+                <Text
+                  className={` text-[19px]  ${
+                    values.showAddressLine ? "text-primary" : ""
+                  }`}
+                >
                   Show Address Line on profile
                 </Text>
 
@@ -131,10 +135,10 @@ const SignUp = () => {
                 style={""}
               />
               <View
-                style={{ marginBottom: hp(2), marginTop: hp(2) }}
-                className="flex-row flex-wrap  -mx-2"
+                style={{ marginBottom: hp(2), marginTop: hp(3) }}
+                className="flex-row  w-full "
               >
-                <View className="w-1/2 px-2 mb-4">
+                <View className="flex-1 pr-2">
                   <InputField
                     value={values.state}
                     onChangeText={handleChange("state")}
@@ -142,7 +146,7 @@ const SignUp = () => {
                     error={touched.state && errors?.state}
                   />
                 </View>
-                <View className="w-1/2 px-2 mb-4">
+                <View className="flex-1 pl-2">
                   <InputField
                     value={values.zipcode}
                     onChangeText={handleChange("zipcode")}
@@ -169,11 +173,14 @@ const SignUp = () => {
                   </Text>
                 </Pressable>
 
-                <Pressable onPress={() => handleSubmit()}>
+                <Pressable
+                  style={styles.container}
+                  onPress={() => handleSubmit()}
+                >
                   <LinearGradient
+                    style={{ width: hp(6), height: hp(5.5) }}
                     colors={[Colors.primary, "#85DBF9"]}
-                    style={{ width: hp(5), height: hp(5) }}
-                    className="items-center justify-center rounded-lg  relative"
+                    className="items-center justify-center rounded-lg relative"
                   >
                     <ArrowRight height={"100%"} />
                   </LinearGradient>
@@ -190,26 +197,18 @@ const SignUp = () => {
 export default SignUp;
 
 const styles = StyleSheet.create({
-  heading: {
-    // For iOS
-    shadowColor: "gray",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.5,
-    shadowRadius: 3,
-    // For Android
-    elevation: 10,
-  },
   container: {
-    shadowColor: "gray",
+    borderRadius: 14,
     ...Platform.select({
       ios: {
-        shadowOpacity: 0.5,
-        shadowOffset: { width: 0, height: 1 },
-        shadowRadius: 3,
+        shadowColor: "black",
+        shadowOpacity: 0.2,
+        shadowOffset: { width: 0, height: 3 },
+        shadowRadius: 2,
       },
       android: {
-        elevation: 40,
-        backgroundColor: "white",
+        elevation: 5,
+        borderColor: "rgba(0, 0, 0, 0.1)",
       },
     }),
   },

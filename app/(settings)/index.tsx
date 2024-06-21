@@ -38,7 +38,7 @@ const Settings = () => {
       </View>
 
       <ScrollView contentContainerStyle={{ flexGrow: 1, marginBottom: 20 }}>
-        <View className=" mt-[100px] p-4">
+        <View className=" mt-[100px] p-[10px]">
           <View
             style={styles.container}
             className="  p-4 rounded-xl  bg-white "
@@ -97,7 +97,7 @@ const Settings = () => {
 
           <View
             style={styles.container}
-            className=" mt-4 p-4 rounded-xl  bg-white "
+            className="mt-[10px] p-4 rounded-xl  bg-white "
           >
             <Text className=" text-[26px]">Account Information</Text>
             <Text>Verify private information to help secure your account.</Text>
@@ -136,7 +136,7 @@ const Settings = () => {
 
           <View
             style={styles.container}
-            className=" mt-4 p-4 rounded-xl  bg-white "
+            className=" mt-[10px] p-4 rounded-xl  bg-white "
           >
             <Text className=" text-[26px]">Support</Text>
 
@@ -169,7 +169,7 @@ const Settings = () => {
 
           <View
             style={styles.container}
-            className=" mt-4 p-4 rounded-xl  bg-white "
+            className="mt-[10px] p-4 rounded-xl  bg-white "
           >
             <Text className=" text-[26px]">App Settings</Text>
 
@@ -218,7 +218,7 @@ const Settings = () => {
               <Text className=" text-white text-[19px]">Logout</Text>
             </LinearGradient>
           </Pressable>
-          <Text className=" text-center  mt-[10px]">Version 0.6.01 Beta</Text>
+          <Text className=" text-center mb-[20px] mt-[10px]">Version 0.6.01 Beta</Text>
         </View>
       </ScrollView>
     </>
@@ -238,16 +238,16 @@ const styles = StyleSheet.create({
     elevation: 10,
   },
   container: {
-    shadowColor: "gray",
     ...Platform.select({
       ios: {
-        shadowOpacity: 0.5,
-        shadowOffset: { width: 0, height: 1 },
-        shadowRadius: 3,
+        shadowColor: "black",
+        shadowOpacity: 0.2,
+        shadowOffset: { width: 0, height: 3 },
+        shadowRadius: 2,
       },
       android: {
-        elevation: 40,
-        backgroundColor: "white",
+        elevation: 5,
+        borderColor: "rgba(0, 0, 0, 0.1)",
       },
     }),
   },

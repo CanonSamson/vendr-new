@@ -83,11 +83,14 @@ const SignUp = () => {
         }}
       >
         <ScrollView
-          contentContainerStyle={{ flexGrow: 1 }}
-          className=" flex-1  mt-[100px] p-4"
+          contentContainerStyle={{ flexGrow: 1, paddingBottom: 5 }}
+          className=" flex-1  mt-[110px]  "
           bounces={false}
         >
-          <View className=" flex-1 w-full  rounded-xl border-gray-200 bg-white">
+          <View
+            style={styles.container}
+            className=" flex-1 mx-2 rounded-xl bg-white"
+          >
             <View className="z-20 relative gap-2  p-4 flex-row justify-end ">
               <View
                 className={` border border-primary w-[20px] h-[20px] rounded-full`}
@@ -113,7 +116,7 @@ const SignUp = () => {
               One Last thing, provide a photo
             </Text>
 
-            <View className="p-4">
+            <View style={{ width: wp(80) }} className=" mx-auto">
               {userAvatar ? (
                 <View
                   style={styles.container}
@@ -165,6 +168,7 @@ const SignUp = () => {
                 </Pressable>
 
                 <Pressable
+                  style={styles.container}
                   disabled={isLoading}
                   onPress={() => handleSaveAvatar()}
                 >
@@ -190,28 +194,19 @@ const SignUp = () => {
 };
 
 export default SignUp;
-
 const styles = StyleSheet.create({
-  heading: {
-    // For iOS
-    shadowColor: "gray",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.5,
-    shadowRadius: 3,
-    // For Android
-    elevation: 10,
-  },
   container: {
-    shadowColor: "gray",
+    borderRadius: 14,
     ...Platform.select({
       ios: {
-        shadowOpacity: 0.5,
-        shadowOffset: { width: 0, height: 1 },
-        shadowRadius: 3,
+        shadowColor: "black",
+        shadowOpacity: 0.2,
+        shadowOffset: { width: 0, height: 3 },
+        shadowRadius: 2,
       },
       android: {
-        elevation: 40,
-        backgroundColor: "white",
+        elevation: 5,
+        borderColor: "rgba(0, 0, 0, 0.1)",
       },
     }),
   },

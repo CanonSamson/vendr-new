@@ -27,8 +27,6 @@ const InputField: React.FC<InputFieldProps> = ({
   placeholder,
   ...inputProps
 }) => {
-  const [showPassword, setShowPassword] = useState(false);
-
   return (
     <View
       style={containerStyle}
@@ -54,10 +52,11 @@ const InputField: React.FC<InputFieldProps> = ({
         } border px-4 duration-500`}
         placeholderTextColor={"gray"}
         style={{ fontSize: hp(2) }}
+        autoCorrect={false}
       />
 
       {error && (
-        <Text className="absolute text-red-700 bottom-[-20px] text-[12px]">
+        <Text className="absolute text-red-700 top-[52px] text-[12px]">
           {error}
         </Text>
       )}

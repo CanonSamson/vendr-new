@@ -18,6 +18,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/firebase_config";
 import { Alert } from "react-native";
 import { useModal } from "@/context/ModalContext";
+import * as Linking from "expo-linking";
 
 interface LogInFormValues {
   email: string;
@@ -81,10 +82,16 @@ const LogIn = () => {
           >
             <View className=" ">
               <Text
-                style={{ fontSize: hp("2.0%") }}
-                className="mt-5 text-center  text-gray"
+                style={{ width: wp(80) }}
+                className="mt-5 mx-auto text-center text-[19px]  text-[#696969]"
               >
-                The Online Marketplace For Everyone... Check it out!
+                The Online Marketplace
+              </Text>
+              <Text
+                style={{ width: wp(80) }}
+                className="mb-5 mx-auto text-center text-[19px]  text-[#696969]"
+              >
+                For Everyone... Check it out!
               </Text>
               <View className=" w-[80%] mx-auto">
                 <MainButton
@@ -147,39 +154,36 @@ const LogIn = () => {
               </View>
             </View>
           </View>
-          <View className=" flex-row items-center max-w-[80%] mx-auto  mt-[10vh]">
+
+          <View
+            style={{ marginTop: hp(10) }}
+            className=" flex-row items-center pb-[10px]"
+          >
             <Pressable
-              className=" flex-1  justify-center p-2 items-center"
-              onPress={() => {}}
+              className=" flex-1  justify-center p-[10px] items-center"
+              onPress={() => {
+                Linking.openURL("https://www.vendr.com/legal/privacy-policy");
+              }}
             >
-              <Text
-                style={{ fontSize: hp(2) }}
-                className="  text-gray-500 font-medium "
-              >
+              <Text className=" text-xl text-gray-500 font-medium ">
                 Safety
               </Text>
             </Pressable>
             <Pressable
-              className=" flex-1  justify-center p-2 items-center"
-              onPress={() => {}}
+              className=" flex-1  justify-center p-[10px] items-center"
+              onPress={() => {
+                Linking.openURL("https://www.vendr.com/about");
+              }}
             >
-              <Text
-                style={{ fontSize: hp(2) }}
-                className=" text-gray-500 font-medium"
-              >
-                About
-              </Text>
+              <Text className=" text-xl text-gray-500 font-medium">About</Text>
             </Pressable>
             <Pressable
               className=" flex-1  justify-center p-2 items-center"
-              onPress={() => {}}
+              onPress={() => {
+                Linking.openURL("https://www.vendr.com/legal/terms-of-use");
+              }}
             >
-              <Text
-                style={{ fontSize: hp(2) }}
-                className="text-gray-500 font-medium "
-              >
-                Terms
-              </Text>
+              <Text className=" text-xl text-gray-500 font-medium ">Terms</Text>
             </Pressable>
           </View>
         </View>

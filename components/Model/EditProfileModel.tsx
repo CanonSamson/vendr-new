@@ -96,9 +96,11 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
       </View>
 
       <CustomKeyBoardView>
-        <View className=" px-4">
+        <View className=" px-[10px]">
           <View
-            className={` ${Platform.OS === "ios" ? " mt-[100px]" : " mt-[60px]"}  py-4`}
+            className={` ${
+              Platform.OS === "ios" ? " mt-[100px]" : " mt-[60px]"
+            }  py-4`}
           >
             <View
               style={styles.container}
@@ -114,7 +116,7 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
 
             <View
               style={styles.container}
-              className="  p-5 mt-4 rounded-xl  bg-white "
+              className="  p-5 mt-[20px] rounded-xl  bg-white "
             >
               <View className=" flex-row items-center">
                 <Text className=" text-[26px] mr-1 font-medium">Title</Text>
@@ -129,7 +131,7 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
 
             <View
               style={styles.container}
-              className="  p-4 mt-4 rounded-xl  bg-white "
+              className="  p-4 mt-[20px] rounded-xl  bg-white "
             >
               <View className=" flex-row items-center">
                 <Text className=" text-[26px] mr-1 font-medium">Address</Text>
@@ -141,7 +143,7 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
                 onChangeText={handleChange("address")}
                 placeholder="Address Line"
                 error={touched.address && errors?.address}
-                style={" mt-4"}
+                style={" mt-[20px]"}
               />
 
               <InputField
@@ -149,7 +151,7 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
                 onChangeText={handleChange("address")}
                 placeholder="City"
                 error={touched.address && errors?.address}
-                style={" mt-4"}
+                style={" mt-[20px]"}
               />
               <View className="flex-row flex-wrap mt-5 -mx-2">
                 <View className="w-1/2 px-2 mb-4">
@@ -175,12 +177,12 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
 
             <View
               style={styles.container}
-              className="  p-4 mt-4 rounded-xl  bg-white "
+              className="  p-4 mt-[20px] rounded-xl  bg-white "
             >
               <Text className=" text-[26px] font-medium">
                 Appearance Privacy
               </Text>
-              <View className=" flex-row mt-4 items-center justify-between">
+              <View className=" flex-row mt-[20px] items-center justify-between">
                 <Text
                   className={` text-[19px]  ${
                     phonenumberOnProfile ? "text-primary " : ""
@@ -232,11 +234,11 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
 
             <View
               style={styles.container}
-              className="  p-4 mt-4 rounded-xl  bg-white "
+              className=" p-4 mt-[20px] rounded-xl  bg-white "
             >
               <Text className=" text-[26px] font-medium">Confirm</Text>
 
-              <Pressable className=" mt-4" onPress={() => {}}>
+              <Pressable className=" mt-[20px]" onPress={() => {}}>
                 <LinearGradient
                   colors={[Colors.primary, "#85DBF9"]}
                   className="mx-auto p-3 rounded-lg w-[200px] items-center justify-center"
@@ -265,16 +267,16 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   container: {
-    shadowColor: "#000",
-    shadowOpacity: 0.1,
     ...Platform.select({
       ios: {
-        shadowOffset: { width: 0, height: 1 },
-        shadowRadius: 10,
+        shadowColor: "black",
+        shadowOpacity: 0.2,
+        shadowOffset: { width: 0, height: 3 },
+        shadowRadius: 2,
       },
       android: {
         elevation: 5,
-        backgroundColor: "white",
+        borderColor: "rgba(0, 0, 0, 0.1)",
       },
     }),
   },

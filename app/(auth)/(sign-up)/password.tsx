@@ -119,15 +119,15 @@ const SignUp = () => {
         }}
       >
         <ScrollView
-          contentContainerStyle={{ flexGrow: 1 }}
-          className={`flex-1  mt-[100px] py-4  pb-5 ${
+          className={`flex-1  mt-[110px]    ${
             confirmAnicationModal ? "opacity-0" : " opacity-100"
           }`}
+          contentContainerStyle={{ flexGrow: 1, paddingBottom: 5 }}
           bounces={false}
         >
           <View
             style={styles.container}
-            className=" flex-1 w-full  rounded-xl bg-white"
+            className=" flex-1 mx-2  rounded-xl bg-white"
           >
             <View className="z-20 relative gap-2  p-4 flex-row justify-end ">
               <View
@@ -148,13 +148,13 @@ const SignUp = () => {
             </View>
 
             <Text
-              style={{ fontSize: hp(3.2) }}
-              className={`   font-semibold text-primary text-center  px-20 my-2`}
+              style={{ width: wp(80) }}
+              className={` font-bold mx-auto my-10  text-[32px] text-primary text-center  `}
             >
               Create an Account
             </Text>
 
-            <View className="p-4">
+            <View style={{ width: wp(80) }} className=" mx-auto">
               <InputField
                 value={values.password}
                 onChangeText={handleChange("password")}
@@ -167,7 +167,7 @@ const SignUp = () => {
                 onChangeText={handleChange("confirmPassword")}
                 placeholder="Confirm Password"
                 error={touched.confirmPassword && errors?.confirmPassword}
-                containerStyle={{ marginTop: hp(4) }}
+                containerStyle={{ marginTop: hp(3) }}
                 secureTextEntry={hidePassword}
               />
             </View>
@@ -185,7 +185,8 @@ const SignUp = () => {
                   </Text>
                 </Pressable>
 
-                <Pressable disabled={isLoading} onPress={() => handleSubmit()}>
+                <Pressable 
+                 style={styles.container} disabled={isLoading} onPress={() => handleSubmit()}>
                   <LinearGradient
                     colors={[Colors.primary, "#85DBF9"]}
                     className="items-center flex-row text-[19[x]] justify-center rounded-lg px-4 py-2 relative"
@@ -210,26 +211,18 @@ const SignUp = () => {
 export default SignUp;
 
 const styles = StyleSheet.create({
-  heading: {
-    // For iOS
-    shadowColor: "gray",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.5,
-    shadowRadius: 3,
-    // For Android
-    elevation: 10,
-  },
   container: {
-    shadowColor: "gray",
+    borderRadius: 14,
     ...Platform.select({
       ios: {
-        shadowOpacity: 0.5,
-        shadowOffset: { width: 0, height: 1 },
-        shadowRadius: 3,
+        shadowColor: "black",
+        shadowOpacity: 0.2,
+        shadowOffset: { width: 0, height: 3 },
+        shadowRadius: 2,
       },
       android: {
-        elevation: 40,
-        backgroundColor: "white",
+        elevation: 5,
+        borderColor: "rgba(0, 0, 0, 0.1)",
       },
     }),
   },

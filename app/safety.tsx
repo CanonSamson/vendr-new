@@ -3,6 +3,8 @@ import React from "react";
 import { Pressable } from "react-native";
 import { router } from "expo-router";
 import { CloseIcon } from "@/constants/Icons";
+import { StyleSheet } from "react-native";
+import { Platform } from "react-native";
 
 const safety = () => {
   return (
@@ -24,9 +26,9 @@ const safety = () => {
           flexGrow: 1,
           paddingBottom: 100,
         }}
-        className=" w-full  "
+        className=" w-full  px-[10px]"
       >
-        <View className="rounded-xl mt-5   mb-20  shadow-xl shadow-gray-200 bg-white p-5">
+        <View style={styles.container} className="rounded-xl mt-2   mb-20   bg-white p-5">
           <Text className=" text-xl text-primary font-semibold">
             Pay using PayPal service fees:
           </Text>
@@ -87,3 +89,22 @@ const safety = () => {
 };
 
 export default safety;
+
+
+const styles = StyleSheet.create({
+
+  container: {
+    ...Platform.select({
+      ios: {
+        shadowColor: "black",
+        shadowOpacity: 0.2,
+        shadowOffset: { width: 0, height: 3 },
+        shadowRadius: 2,
+      },
+      android: {
+        elevation: 5,
+        borderColor: "rgba(0, 0, 0, 0.1)",
+      },
+    }),
+  },
+});

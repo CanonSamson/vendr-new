@@ -386,7 +386,7 @@ const ListAnItem: React.FC = () => {
             <Pressable className=" mt-4" onPress={() => {}}>
               <LinearGradient
                 colors={[Colors.primary, "#85DBF9"]}
-                className="mx-auto p-3 rounded-xl w-[200px] items-center justify-center"
+                className="mx-auto p-3 rounded-xl w-[200px] items-center  justify-center"
               >
                 <Text style={styles.actionButtonListItemText}>List item</Text>
               </LinearGradient>
@@ -404,10 +404,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#F3F3F3",
-    padding: 10,
+    padding: 4,
   },
   innercontainer: {
-    borderRadius: 8,
+    borderRadius: 14,
     backgroundColor: "#fff",
     shadowColor: "#000",
     shadowOpacity: 0.1,
