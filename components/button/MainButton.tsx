@@ -11,6 +11,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
+import { Colors } from "@/constants/Colors";
 
 interface MainButtonProps {
   title: string;
@@ -19,6 +20,8 @@ interface MainButtonProps {
   style?: any;
   isLoading?: boolean;
   isDisabled?: boolean;
+  className?: string;
+  pressableClassName?: string;
 }
 
 const MainButton: React.FC<MainButtonProps> = ({
@@ -28,33 +31,26 @@ const MainButton: React.FC<MainButtonProps> = ({
   style,
   isLoading,
   isDisabled,
+  className,
+  pressableClassName,
 }) => {
   return (
     <Pressable
       onPress={!isLoading && !isDisabled ? handlePress : undefined}
       disabled={isLoading || isDisabled}
-      style={({ pressed }) => [
-        {
-          opacity: pressed ? 0.8 : 1.0,
-          elevation: isDisabled ? 0 : 2,
-        },
-        isDisabled && styles.disabledButton,
-        styles.button,
-        style,
-      ]}
+      style={({ pressed }) => [styles.button, style]}
     >
       <LinearGradient
         colors={isDisabled ? ["#d3d3d3", "#d3d3d3"] : colors}
-        className={`w-full p-[15px] rounded-[7px] `}
+        className={`w-full h-[50px] items-center justify-center rounded-[7px] ${pressableClassName} `}
       >
         {isLoading ? (
           <ActivityIndicator size="small" color="#fff" />
         ) : (
           <Text
-            style={{ fontSize: hp(2.3) }}
             className={`bg-transparent  ${
               isDisabled ? " text-gray-500" : "text-white"
-            } font-bold  text-center`}
+            } font-bold text-[24px]  text-center`}
           >
             {title}
           </Text>
@@ -68,13 +64,14 @@ const styles = StyleSheet.create({
   button: {
     ...Platform.select({
       ios: {
-        shadowOpacity: 0.5,
-        shadowColor: "gray",
-        shadowOffset: { width: 0, height: 1 },
-        shadowRadius: 3,
+        shadowColor: "black",
+        shadowOpacity: 0.2,
+        shadowOffset: { width: 0, height: 3 },
+        shadowRadius: 2,
       },
       android: {
-        elevation: 2,
+        elevation: 5,
+        borderColor: "rgba(0, 0, 0, 0.1)",
       },
     }),
   },
