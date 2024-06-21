@@ -212,7 +212,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: width * 0.95,
-    height: hp(64),
+    height: hp(heightScale < 1.07 ? 64 : 70),
     borderRadius: 20,
   },
   gradient: {

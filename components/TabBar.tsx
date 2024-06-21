@@ -32,7 +32,7 @@ const TabBar: React.FC<BottomTabBarProps> = ({
   return (
     <View
       className={`flex-row  items-center justify-evenly bg-white border-t-[3px] border-primary ${
-        Platform.OS === "ios" ? " pb-[20px]  h-[80px]" : " h-[60px]"
+        Platform.OS === "ios" ? " pb-[20px]  h-[80px]" : " h-[72px]"
       }`}
     >
       {state.routes.map((route, index) => {

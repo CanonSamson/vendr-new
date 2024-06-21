@@ -1,6 +1,5 @@
-import { View, Text, Pressable, Image } from "react-native";
+import { View,  Image } from "react-native";
 import React from "react";
-import AnimatedPressable from "./AnimatedPressable";
 const line = require("@/assets/icon/line.png");
 const undo = require("@/assets/icon/undo-button.png");
 const search = require("@/assets/icon/search-button.png");
