@@ -20,6 +20,7 @@ import { PanResponderGestureState } from "react-native";
 import { router } from "expo-router";
 import FilterProductModal from "@/components/Model/FIlterModel";
 import { useModal } from "@/context/ModalContext";
+import { scale, verticalScale, moderateScale } from "react-native-size-matters";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -108,7 +109,8 @@ export default function HomeScreen() {
         colors={[Colors.primary, Colors.primary, "#85DBF9"]}
         className={`${
           confirmAnicationModal ? " opacity-0" : " opacity-100"
-        }  pt-[50px]  px-4 items-center relative   pb-[10px]`}
+        }  pt-[50px]  px-4 items-center relative pb-[10px]`}
+        style={{ height: verticalScale(85) }}
       >
         <View className="  px-[10px] w-full justify-center items-center relative flex-row  ">
           <Pressable
@@ -129,7 +131,7 @@ export default function HomeScreen() {
         </View>
       </LinearGradient>
 
-      <View className=" flex items-center justify-center">
+      <View className=" flex items-center  justify-center">
         {Object.values(productData).map((item, index) => {
           let isFirst =
             item.id ===

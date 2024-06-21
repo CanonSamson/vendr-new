@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Animated,
   Pressable,
+  Platform,
 } from "react-native";
 import React, { useCallback, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
@@ -16,6 +17,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
+import { scale, verticalScale, moderateScale } from "react-native-size-matters";
 
 interface CardData {
   name: string;
@@ -212,7 +214,13 @@ const styles = StyleSheet.create({
   },
   image: {
     width: width * 0.95,
-    height: hp(heightScale < 1.07 ? 64 : 70),
+    height:
+      height -
+      verticalScale(98) -
+      (Platform.OS === "ios" ? 80 : 75) -
+      60 -
+      verticalScale(Platform.OS === "ios" ? 45 : 55) -
+      (heightScale < 1.2 ? 2 : 3),
     borderRadius: 20,
   },
   gradient: {
