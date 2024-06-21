@@ -23,7 +23,10 @@ const SwiperButtons: React.FC<SwiperButtonsProps> = ({
   onSwipeRight,
 }) => {
   return (
-    <View style={{ top: hp(74) }} className=" absolute w-full  right-0  ">
+    <View
+      style={{ bottom: hp(1.5), height: hp(14) }}
+      className=" absolute  w-full  right-0  "
+    >
       <View className=" absolute w-full -bottom-2  right-0 ">
         <View className=" flex-row max-w-[80%] justify-center mx-auto">
           <Image
@@ -37,7 +40,7 @@ const SwiperButtons: React.FC<SwiperButtonsProps> = ({
       <View className=" w-full px-4 flex-row">
         <TouchableOpacity
           onPress={() => {}}
-          className=" relative active:scale-90 duration-700 -bottom-4 -right-4 flex-1 items-center justify-center"
+          className=" relative active:scale-90 duration-700 -bottom-[20px] -right-[20px] flex-1 items-center justify-center"
         >
           <View
             style={{ width: hp(6) }}
@@ -85,7 +88,7 @@ const SwiperButtons: React.FC<SwiperButtonsProps> = ({
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => handleFilter()}
-          className=" relative -bottom-4 active:scale-90 duration-900 -left-4 flex-1 items-center justify-center"
+          className=" relative -bottom-[20px] active:scale-90 duration-900 -left-[20px] flex-1 items-center justify-center"
         >
           <View
             style={{ width: hp(6) }}

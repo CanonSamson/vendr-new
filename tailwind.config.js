@@ -9,7 +9,7 @@ module.exports = {
           foreground: "",
         },
         gray: {
-          DEFAULT: "RB3B3B3",
+          DEFAULT: "#RB3B3B3",
         },
       },
       aspectRatio: {

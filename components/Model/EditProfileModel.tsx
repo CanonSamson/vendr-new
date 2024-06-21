@@ -81,7 +81,7 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
       <StatusBar style="dark" />
       <View
         className={` ${
-          Platform.OS === "ios" ? " pt-[60px]" : " pt-[30px]"
+          Platform.OS === "ios" ? " pt-[60px]" : " pt-[10px]"
         } pb-4  absolute top-0 w-full flex-row  justify-between px-4 right-0 z-20 items-center bg-white border-b-[2px] border-primary`}
         style={styles.heading}
       >
@@ -97,7 +97,9 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
 
       <CustomKeyBoardView>
         <View className=" px-4">
-          <View className=" mt-[100px] py-4">
+          <View
+            className={` ${Platform.OS === "ios" ? " mt-[100px]" : " mt-[60px]"}  py-4`}
+          >
             <View
               style={styles.container}
               className="  p-4 rounded-xl  bg-white "
