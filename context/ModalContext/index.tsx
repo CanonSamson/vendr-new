@@ -37,11 +37,17 @@ export function ModalProvider({ children }: ModalProviderProps) {
   useSocketConnection();
 
   useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+
     if (confirmAnicationModal) {
-      setTimeout(() => {
+      timeoutId = setTimeout(() => {
         setConfirmAnicationModal(false);
       }, 1900);
     }
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
   }, [confirmAnicationModal]);
 
   const value = {

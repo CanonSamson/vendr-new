@@ -109,7 +109,7 @@ export default function HomeScreen() {
         colors={[Colors.primary, Colors.primary, "#85DBF9"]}
         className={`${
           confirmAnicationModal ? " opacity-0" : " opacity-100"
-        }  pt-[50px]  px-4 items-center relative pb-[10px]`}
+        } z-40   pt-[50px]  px-4 items-center relative pb-[10px]`}
         style={{ height: verticalScale(85) }}
       >
         <View className="  px-[10px] w-full justify-center items-center relative flex-row  ">
@@ -131,7 +131,7 @@ export default function HomeScreen() {
         </View>
       </LinearGradient>
 
-      <View className=" flex items-center  justify-center">
+      <View className=" flex items-center relative z-50 justify-center">
         {Object.values(productData).map((item, index) => {
           let isFirst =
             item.id ===
