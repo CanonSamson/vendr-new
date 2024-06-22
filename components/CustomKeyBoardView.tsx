@@ -26,6 +26,7 @@ const CustomKeyBoardView: React.FC<CustomKeyBoardViewProps> = ({
         contentContainerStyle={styles.scrollViewContent}
         bounces={false}
         showsHorizontalScrollIndicator={false}
+        keyboardShouldPersistTaps='always'
       >
         {children}
       </ScrollView>

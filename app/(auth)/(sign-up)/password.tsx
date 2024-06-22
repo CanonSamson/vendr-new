@@ -124,6 +124,8 @@ const SignUp = () => {
           }`}
           contentContainerStyle={{ flexGrow: 1, paddingBottom: 5 }}
           bounces={false}
+        keyboardShouldPersistTaps='always'
+
         >
           <View
             style={styles.container}

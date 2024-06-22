@@ -59,6 +59,8 @@ const SignUp = () => {
         contentContainerStyle={{ flexGrow: 1, paddingBottom: 5 }}
         className=" flex-1  mt-[110px]  "
         bounces={false}
+        keyboardShouldPersistTaps='always'
+
       >
         <View style={styles.container} className=" flex-1 mx-1 mt-2  bg-white">
           <View className="z-20 relative gap-2  p-4 flex-row justify-end ">
