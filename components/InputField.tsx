@@ -16,6 +16,9 @@ interface InputFieldProps {
   keyboardType?: string;
   containerStyle?: any;
   secureTextEntry?: boolean;
+  returnKeyType?: string;
+  autoFocus?: boolean;
+  onSubmitEditing?: ()=> void
 }
 
 const InputField: React.FC<InputFieldProps> = ({
@@ -25,6 +28,7 @@ const InputField: React.FC<InputFieldProps> = ({
   containerStyle,
   error,
   placeholder,
+
   ...inputProps
 }) => {
   return (
@@ -56,7 +60,7 @@ const InputField: React.FC<InputFieldProps> = ({
       />
 
       {error && (
-        <Text className="absolute text-red-700 top-[52px] text-[12px]">
+        <Text className="absolute text-red-700 top-[55px] text-[14px]">
           {error}
         </Text>
       )}

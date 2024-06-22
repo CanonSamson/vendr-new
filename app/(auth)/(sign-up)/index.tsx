@@ -60,7 +60,7 @@ const SignUp = () => {
         className=" flex-1  mt-[110px]  "
         bounces={false}
       >
-        <View style={styles.container} className=" flex-1 mx-2 mt-2  bg-white">
+        <View style={styles.container} className=" flex-1 mx-1 mt-2  bg-white">
           <View className="z-20 relative gap-2  p-4 flex-row justify-end ">
             <View
               className={`  bg-primary  border border-primary w-[20px] h-[20px] rounded-full`}
@@ -80,10 +80,16 @@ const SignUp = () => {
           </View>
 
           <Text
-            style={{ width: wp(60) }}
-            className={`font-bold leading-none text-[32px]  text-primary text-center mx-auto  my-10`}
+            style={{ width: wp(80) }}
+            className={`font-bold leading-none text-[35px]  text-primary text-center mx-auto  mt-10`}
           >
-            Please provide your name
+            Please provide
+          </Text>
+          <Text
+            style={{ width: wp(80) }}
+            className={`font-bold leading-none text-[35px]  text-primary text-center mx-auto  mb-10`}
+          >
+            your name
           </Text>
 
           <View style={{ width: wp(80) }} className=" mx-auto">
@@ -94,6 +100,8 @@ const SignUp = () => {
               placeholder="First Name"
               error={touched.firstname && errors?.firstname}
               style={""}
+              returnKeyType="done" 
+              autoFocus={true} 
             />
             <InputField
               value={values.lastname}
@@ -101,6 +109,7 @@ const SignUp = () => {
               placeholder="Last Name"
               error={touched.lastname && errors?.lastname}
               containerStyle={{ marginTop: hp(3) }}
+              returnKeyType="done" 
             />
           </View>
 
@@ -111,7 +120,7 @@ const SignUp = () => {
                 onPress={() => handleSubmit()}
               >
                 <LinearGradient
-                  style={{ width: hp(6), height: hp(5.5) }}
+                  style={{ width: hp(6.5), height: hp(5.5) }}
                   colors={[Colors.primary, "#85DBF9"]}
                   className="items-center justify-center rounded-lg relative"
                 >

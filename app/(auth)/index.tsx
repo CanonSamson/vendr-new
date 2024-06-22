@@ -10,6 +10,9 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { StatusBar } from "expo-status-bar";
+import LottieView from "lottie-react-native";
+
+const LogoAnimation = require("@/assets/animation/MainLogoAnimated.json");
 
 const Index = () => {
   const [loading, setLoading] = useState<boolean>(true);
@@ -25,14 +28,19 @@ const Index = () => {
 
   return (
     <>
-    <StatusBar style="dark" />
+      <StatusBar style="dark" />
       <SafeAreaView className=" flex-1">
         <View
           style={{ width: wp(70) }}
           className="flex-1 relative items-center mx-auto justify-end"
         >
           <View style={{ height: hp(20) }} className=" w-full h-auto ">
-            <LogoV1 width={"100%"} height={"100%"} />
+            <LottieView
+              source={LogoAnimation}
+              autoPlay
+              loop={false}
+              style={{ width: "100%", height: "100%" }}
+            />
           </View>
           <Text
             style={{ marginTop: hp(-2) }}
@@ -72,7 +80,6 @@ const Index = () => {
                 Login
               </Text>
             </Pressable>
-
 
             <View
               style={{ marginTop: hp(10) }}

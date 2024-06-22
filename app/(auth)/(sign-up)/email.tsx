@@ -127,7 +127,7 @@ const SignUp = () => {
         >
           <View
             style={styles.container}
-            className=" flex-1 mx-2 mt-2 rounded-xl bg-white"
+            className=" flex-1 mx-1 mt-2 rounded-xl bg-white"
           >
             <View className="z-20 relative gap-2  p-4 flex-row justify-end ">
               <View
@@ -149,7 +149,7 @@ const SignUp = () => {
 
             <Text
               style={{ width: wp(80) }}
-              className={`   mt-10 font-bold mx-auto  text-[32px] text-primary text-center mb-2`}
+              className={`   mt-10 font-bold mx-auto  text-[35px] text-primary text-center mb-2`}
             >
               {!IsVerifyOtp
                 ? "What’s your email address?"
@@ -168,6 +168,9 @@ const SignUp = () => {
                   keyboardType="email-address"
                   placeholder="Email Address"
                   error={touched.email && errors?.email}
+                  returnKeyType="done"
+                  autoFocus={true}
+                  onSubmitEditing={() => handleSubmit()}
                 />
               ) : (
                 <>
@@ -187,9 +190,10 @@ const SignUp = () => {
                       pinCodeTextStyle: {},
                       containerStyle: {},
                     }}
+                    autoFocus={true}
                   />
 
-                  <Text className=" mt-4 text-md items-center text-start text-[#696969]">
+                  <Text className=" mt-4 text-md items-center text-start text-[#696969] font-semibold">
                     Didn’t receive a code?
                   </Text>
                 </>
@@ -197,16 +201,17 @@ const SignUp = () => {
             </View>
 
             <View className=" bottom-0 flex-1 justify-end items-end  relative w-full ">
-              <View className=" p-4 flex-row justify-between w-full items-center">
+              <View className=" p-3 flex-row justify-between w-full items-center">
                 <Pressable
                   onPress={() => {
                     if (IsVerifyOtp) return setIsVerifyOtp(false);
                     router.back();
                   }}
+                  className="relative z-40"
                 >
                   <Text
-                    style={{ fontSize: hp(2) }}
-                    className="text-[#B3B3B3] font-semibold"
+                    style={{ fontSize: hp(2.5) }}
+                    className="text-[#B3B3B3] font-semibold p-3"
                   >
                     Back
                   </Text>
@@ -219,7 +224,7 @@ const SignUp = () => {
                       onPress={() => verifyOtp(values, otp)}
                     >
                       <LinearGradient
-                        style={{ width: hp(6), height: hp(5.5) }}
+                        style={{ width: hp(6.5), height: hp(5.5) }}
                         colors={[Colors.primary, "#85DBF9"]}
                         className="items-center justify-center rounded-lg relative"
                       >
@@ -237,7 +242,7 @@ const SignUp = () => {
                     onPress={() => handleSubmit()}
                   >
                     <LinearGradient
-                      style={{ width: hp(6), height: hp(5.5) }}
+                      style={{ width: hp(6.5), height: hp(5.5) }}
                       colors={[Colors.primary, "#85DBF9"]}
                       className="items-center justify-center rounded-lg relative"
                     >

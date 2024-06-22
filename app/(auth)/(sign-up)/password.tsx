@@ -127,7 +127,7 @@ const SignUp = () => {
         >
           <View
             style={styles.container}
-            className=" flex-1 mx-2 mt-2  rounded-xl bg-white"
+            className=" flex-1 mx-1 mt-2  rounded-xl bg-white"
           >
             <View className="z-20 relative gap-2  p-4 flex-row justify-end ">
               <View
@@ -149,7 +149,7 @@ const SignUp = () => {
 
             <Text
               style={{ width: wp(80) }}
-              className={` font-bold mx-auto my-10  text-[32px] text-primary text-center  `}
+              className={` font-bold mx-auto my-10  text-[35px] text-primary text-center  `}
             >
               Create an Account
             </Text>
@@ -161,6 +161,8 @@ const SignUp = () => {
                 placeholder="Password"
                 error={touched.password && errors?.password}
                 secureTextEntry={hidePassword}
+                returnKeyType="done" 
+                autoFocus={true} 
               />
               <InputField
                 value={values.confirmPassword}
@@ -169,18 +171,20 @@ const SignUp = () => {
                 error={touched.confirmPassword && errors?.confirmPassword}
                 containerStyle={{ marginTop: hp(3) }}
                 secureTextEntry={hidePassword}
+                returnKeyType="done" 
               />
             </View>
 
             <View className=" bottom-0 flex-1 justify-end items-end  relative w-full ">
-              <View className=" p-4 flex-row justify-between w-full items-center">
+              <View className=" p-3 flex-row justify-between w-full items-center">
                 <Pressable
                   disabled={isLoading}
                   onPress={() => {
                     router.back();
                   }}
                 >
-                  <Text className=" text-xl text-[#B3B3B3] font-semibold">
+                  <Text style={{ fontSize: hp(2.5) }}
+                    className="text-[#B3B3B3] font-semibold p-3">
                     Back
                   </Text>
                 </Pressable>
@@ -191,7 +195,7 @@ const SignUp = () => {
                     colors={[Colors.primary, "#85DBF9"]}
                     className="items-center flex-row text-[19[x]] justify-center rounded-lg px-4 py-2 relative"
                   >
-                    <Text className=" text-xl text-gray font-semibold text-white">
+                    <Text className=" text-xl text-gray font-semibold text-white" style={{ fontSize: hp(2.5) }}>
                       Create Account
                     </Text>
                     {isLoading ? (

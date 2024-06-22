@@ -74,7 +74,7 @@ const SignUp = () => {
         >
           <View
             style={styles.container}
-            className=" flex-1 mx-2 mt-2 rounded-xl  bg-white"
+            className=" flex-1 mx-1 mt-2 rounded-xl  bg-white"
           >
             <View className="z-20 relative gap-2  p-4 flex-row justify-end ">
               <View
@@ -96,7 +96,7 @@ const SignUp = () => {
 
             <Text
               style={{ width: wp(60) }}
-              className={`font-bold text-[32px] mx-auto text-primary text-center my-10`}
+              className={`font-bold text-[35px] mx-auto text-primary text-center my-10`}
             >
               Please provide your address
             </Text>
@@ -159,15 +159,15 @@ const SignUp = () => {
             </View>
 
             <View className=" bottom-0 flex-1 justify-end items-end  relative w-full ">
-              <View className=" p-4 flex-row justify-between w-full items-center">
+              <View className=" p-3 flex-row justify-between w-full items-center">
                 <Pressable
                   onPress={() => {
                     router.back();
                   }}
                 >
                   <Text
-                    style={{ fontSize: hp(2) }}
-                    className=" text-[#B3B3B3] font-semibold"
+                    style={{ fontSize: hp(2.5) }}
+                    className=" text-[#B3B3B3] font-semibold p-3"
                   >
                     Back
                   </Text>
@@ -178,7 +178,7 @@ const SignUp = () => {
                   onPress={() => handleSubmit()}
                 >
                   <LinearGradient
-                    style={{ width: hp(6), height: hp(5.5) }}
+                    style={{ width: hp(6.5), height: hp(5.5) }}
                     colors={[Colors.primary, "#85DBF9"]}
                     className="items-center justify-center rounded-lg relative"
                   >

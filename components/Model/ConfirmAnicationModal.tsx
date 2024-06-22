@@ -24,7 +24,7 @@ const ConfirmAnicationModal: React.FC = () => {
       <View className=" flex-1 items-center justify-center bg-white ">
         <View
           style={{ height: hp(100) }}
-          className=" w-full border  flex-row items-center justify-center"
+          className=" w-full   flex-row items-center justify-center"
         >
           <LottieView
             source={animation}

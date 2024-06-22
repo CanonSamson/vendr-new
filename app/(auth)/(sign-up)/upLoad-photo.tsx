@@ -89,7 +89,7 @@ const SignUp = () => {
         >
           <View
             style={styles.container}
-            className=" flex-1 mx-2 mt-2 rounded-xl bg-white"
+            className=" flex-1 mx-1 mt-2 rounded-xl bg-white"
           >
             <View className="z-20 relative gap-2  p-4 flex-row justify-end ">
               <View
@@ -110,7 +110,8 @@ const SignUp = () => {
             </View>
 
             <Text
-              className={`font-bold text-[32px]  text-primary text-center mx-auto my-10`}
+              style={{ width: wp(60) }}
+              className={`font-bold text-[35px]  text-primary text-center mx-auto my-10`}
             >
               One Last thing, provide a photo
             </Text>
@@ -139,7 +140,7 @@ const SignUp = () => {
                     className={` h-[150px] w-full  items-center justify-center border border-primary`}
                   >
                     <View className="border border-primary max-w-[200px] px-10 py-4  bg-white shadow shadow-gray-300 inline-block">
-                      <Text className=" text-xl text-center">Add Photo</Text>
+                      <Text className=" text-xl text-center text-primary">Add Photo</Text>
                     </View>
                   </View>
                 </Pressable>
@@ -151,7 +152,7 @@ const SignUp = () => {
             </View>
 
             <View className=" bottom-0 flex-1 justify-end items-end  relative w-full ">
-              <View className=" p-4 flex-row justify-between w-full items-center">
+              <View className=" p-3 flex-row justify-between w-full items-center">
                 <Pressable
                   onPress={() => {
                     router.back();
@@ -159,8 +160,8 @@ const SignUp = () => {
                   disabled={isLoading}
                 >
                   <Text
-                    style={{ fontSize: hp(2) }}
-                    className="text-[#B3B3B3] font-semibold"
+                    style={{ fontSize: hp(2.5) }}
+                    className="text-[#B3B3B3] font-semibold p-3"
                   >
                     Back
                   </Text>
@@ -173,7 +174,7 @@ const SignUp = () => {
                 >
                   <LinearGradient
                     colors={[Colors.primary, "#85DBF9"]}
-                    style={{ width: hp(5), height: hp(5) }}
+                    style={{ width: hp(6.5), height: hp(5.5) }}
                     className="items-center justify-center rounded-lg  relative"
                   >
                     {isLoading ? (

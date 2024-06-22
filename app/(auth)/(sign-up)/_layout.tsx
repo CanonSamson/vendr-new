@@ -14,7 +14,7 @@ export default function RootLayout() {
         } pt-14 pb-4  absolute top-0 w-full right-0 z-20 items-center bg-white border-b-[3px] border-primary`}
         style={styles.heading}
       >
-        <Text className="text-[24px] text-black font-bold">Sign Up</Text>
+        <Text className="text-[26px] text-black font-bold">Sign Up</Text>
       </View>
 
       <Stack>

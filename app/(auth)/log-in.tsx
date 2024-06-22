@@ -62,138 +62,132 @@ const LogIn = () => {
 
   return (
     <>
-      <SafeAreaView className=" flex-1 w-full ">
-        <StatusBar style="dark" />
+      <StatusBar style="dark" />
 
-        <CustomKeyBoardView>
-          <View
-            style={{ paddingTop: hp(16), width: wp(95), flex: 1 }}
-            className={`${
-              confirmAnicationModal ? " opacity-0" : "opacity-100"
-            } items-center justify-between    mx-auto `}
-          >
-            <View className="">
-              <View
-                style={{ width: wp("50%"), height: hp(8) }}
-                className="flex-row mx-auto"
-              >
-                <LogoV1 width={"100%"} height={"100%"} />
-              </View>
-              <View
-                style={{ marginTop: hp(3) }}
-                className=" w-full p-5 justify-center border border-primary"
-              >
-                <View className=" ">
-                  <Text
-                    style={{ width: wp(80) }}
-                    className=" mx-auto text-center text-[19px]  text-[#696969]"
-                  >
-                    The Online Marketplace
-                  </Text>
-                  <Text
-                    style={{ width: wp(80) }}
-                    className=" mx-auto text-center text-[19px]  text-[#696969]"
-                  >
-                    For Everyone... Check it out!
-                  </Text>
-                  <View className=" w-[80%] mx-auto">
-                    <MainButton
-                      title="Sign up"
-                      handlePress={() => router.push("/(sign-up)")}
-                      style={{ marginTop: hp(3) }}
-                      colors={[Colors.primary, "#85DBF9"]}
-                      isDisabled={isLoading}
-                    />
-                  </View>
-                  <View
+      <CustomKeyBoardView>
+        <View
+          style={{ width: wp(95), flex: 1 }}
+          className={`${
+            confirmAnicationModal ? " opacity-0" : "opacity-100"
+          } items-center justify-between    mx-auto `}
+        >
+          <View style={{ paddingTop: hp(15) }} className="">
+            <View
+              style={{ width: wp("50%"), height: hp(8) }}
+              className="flex-row mx-auto"
+            >
+              <LogoV1 width={"100%"} height={"100%"} />
+            </View>
+            <View
+              style={{ marginTop: hp(3) }}
+              className=" w-full p-5 justify-center border border-primary"
+            >
+              <View className=" ">
+                <Text
+                  style={{ width: wp(80) }}
+                  className=" mx-auto text-center text-[19px]  text-[#696969]"
+                >
+                  The Online Marketplace
+                </Text>
+                <Text
+                  style={{ width: wp(80) }}
+                  className=" mx-auto text-center text-[19px]  text-[#696969]"
+                >
+                  For Everyone... Check it out!
+                </Text>
+                <View className=" w-[80%] mx-auto">
+                  <MainButton
+                    title="Sign up"
+                    handlePress={() => router.push("/(sign-up)")}
                     style={{ marginTop: hp(3) }}
-                    className=" flex-row items-center max-w-[80%] w-full  justify-center mx-auto"
-                  >
-                    <View className=" flex-1 h-[2px] bg-primary rounded-lg " />
-                    <Text className=" text-[19px] px-5 text-gray-500">or</Text>
-                    <View className=" flex-1 h-[2px] bg-primary rounded-lg " />
-                  </View>
+                    colors={[Colors.primary, "#85DBF9"]}
+                    isDisabled={isLoading}
+                  />
+                </View>
+                <View
+                  style={{ marginTop: hp(3) }}
+                  className=" flex-row items-center max-w-[80%] w-full  justify-center mx-auto"
+                >
+                  <View className=" flex-1 h-[2px] bg-primary rounded-lg " />
+                  <Text className=" text-[19px] px-5 text-gray-500">or</Text>
+                  <View className=" flex-1 h-[2px] bg-primary rounded-lg " />
+                </View>
 
-                  <View style={{ marginTop: hp(3) }} className=" pb-[10px]">
-                    <InputField
-                      value={values.email}
-                      onChangeText={handleChange("email")}
-                      keyboardType="email-address"
-                      placeholder="Email Address"
-                      error={touched.email && errors?.email}
-                      style={""}
-                    />
-                    <InputField
-                      value={values.password}
-                      onChangeText={handleChange("password")}
-                      keyboardType=""
-                      placeholder="Password"
-                      error={touched.password && errors?.password}
-                      containerStyle={{ marginTop: hp(3.5) }}
-                      secureTextEntry={true}
-                    />
+                <View style={{ marginTop: hp(3) }} className=" pb-[10px]">
+                  <InputField
+                    value={values.email}
+                    onChangeText={handleChange("email")}
+                    keyboardType="email-address"
+                    placeholder="Email Address"
+                    error={touched.email && errors?.email}
+                    style={""}
+                    returnKeyType="done"
+                    autoFocus={true}
+                  />
+                  <InputField
+                    value={values.password}
+                    onChangeText={handleChange("password")}
+                    keyboardType=""
+                    placeholder="Password"
+                    error={touched.password && errors?.password}
+                    containerStyle={{ marginTop: hp(3.5) }}
+                    secureTextEntry={true}
+                    returnKeyType="done"
+                  />
 
-                    <Pressable
-                      style={{ marginTop: hp(3) }}
-                      disabled={isLoading}
+                  <Pressable style={{ marginTop: hp(3) }} disabled={isLoading}>
+                    <Text
+                      style={{ fontSize: hp(2) }}
+                      className="  font-semibold text-primary"
                     >
-                      <Text
-                        style={{ fontSize: hp(2) }}
-                        className="  font-semibold text-primary"
-                      >
-                        Trouble logging in?
-                      </Text>
-                    </Pressable>
-                    <View style={{ marginTop: hp(3) }} className=" px-10 ">
-                      <MainButton
-                        title="Log In"
-                        handlePress={() => handleSubmit()}
-                        colors={[Colors.primary, "#85DBF9"]}
-                        isLoading={isLoading}
-                      />
-                    </View>
+                      Trouble logging in?
+                    </Text>
+                  </Pressable>
+                  <View style={{ marginTop: hp(3) }} className=" px-10 ">
+                    <MainButton
+                      title="Log In"
+                      handlePress={() => handleSubmit()}
+                      colors={[Colors.primary, "#85DBF9"]}
+                      isLoading={isLoading}
+                    />
                   </View>
                 </View>
               </View>
             </View>
-            <View
-              style={{ marginTop: hp(10) }}
-              className=" relative bottom-0 flex-row items-center "
-            >
-              <Pressable
-                className=" flex-1  justify-center p-[10px] items-center"
-                onPress={() => {
-                  Linking.openURL("https://www.vendr.com/legal/privacy-policy");
-                }}
-              >
-                <Text className=" text-xl text-gray-500 font-medium ">
-                  Safety
-                </Text>
-              </Pressable>
-              <Pressable
-                className=" flex-1  justify-center p-[10px] items-center"
-                onPress={() => {
-                  Linking.openURL("https://www.vendr.com/about");
-                }}
-              >
-                <Text className=" text-xl text-gray-500 font-medium">
-                  About
-                </Text>
-              </Pressable>
-              <Pressable
-                className=" flex-1  justify-center p-2 items-center"
-                onPress={() => {
-                  Linking.openURL("https://www.vendr.com/legal/terms-of-use");
-                }}
-              >
-                <Text className=" text-xl text-gray-500 font-medium ">
-                  Terms
-                </Text>
-              </Pressable>
-            </View>
           </View>
-        </CustomKeyBoardView>
-      </SafeAreaView>
+          <View
+            style={{ marginTop: hp(10),   width: wp(70) }}
+            className=" relative bottom-0 pb-[20px] flex-row items-center "
+          >
+            <Pressable
+              className=" flex-1  justify-center p-[10px] items-center"
+              onPress={() => {
+                Linking.openURL("https://www.vendr.com/legal/privacy-policy");
+              }}
+            >
+              <Text className=" text-xl text-gray-500 font-medium ">
+                Safety
+              </Text>
+            </Pressable>
+            <Pressable
+              className=" flex-1  justify-center p-[10px] items-center"
+              onPress={() => {
+                Linking.openURL("https://www.vendr.com/about");
+              }}
+            >
+              <Text className=" text-xl text-gray-500 font-medium">About</Text>
+            </Pressable>
+            <Pressable
+              className=" flex-1  justify-center p-2 items-center"
+              onPress={() => {
+                Linking.openURL("https://www.vendr.com/legal/terms-of-use");
+              }}
+            >
+              <Text className=" text-xl text-gray-500 font-medium ">Terms</Text>
+            </Pressable>
+          </View>
+        </View>
+      </CustomKeyBoardView>
     </>
   );
 };
