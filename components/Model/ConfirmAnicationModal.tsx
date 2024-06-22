@@ -7,6 +7,7 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { useModal } from "@/context/ModalContext";
+import { StatusBar } from "expo-status-bar";
 
 const animation = require("@/assets/animation/confirmed-animation.json");
 
@@ -17,13 +18,13 @@ const ConfirmAnicationModal: React.FC = () => {
     <Modal
       visible={confirmAnicationModal}
       onRequestClose={() => setConfirmAnicationModal(false)}
-      // animationType="fade"
       className="  flex-1 items-center justify-center bg-white "
     >
+      <StatusBar backgroundColor="white" style="dark" />
       <View className=" flex-1 items-center justify-center bg-white ">
         <View
-          style={{ width: hp(49), height: hp(49) }}
-          className="  flex-row items-center justify-center"
+          style={{ height: hp(100) }}
+          className=" w-full border  flex-row items-center justify-center"
         >
           <LottieView
             source={animation}

@@ -23,7 +23,7 @@ const CustomKeyBoardView: React.FC<CustomKeyBoardViewProps> = ({
       style={styles.container}
     >
       <ScrollView
-        style={styles.scrollView}
+        contentContainerStyle={styles.scrollViewContent}
         bounces={false}
         showsHorizontalScrollIndicator={false}
       >
@@ -36,9 +36,14 @@ const CustomKeyBoardView: React.FC<CustomKeyBoardViewProps> = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    width: "100%",
   },
   scrollView: {
-    flex: 1,
+    flexGrow: 1,
+    width: "100%",
+  },
+  scrollViewContent: {
+    flexGrow: 1,
   },
 });
 
