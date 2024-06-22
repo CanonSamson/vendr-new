@@ -16,7 +16,7 @@ const Index = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      router.push("email")
+      // router.push("email")
       setLoading(false);
     }, 100);
 
