@@ -26,9 +26,9 @@ const safety = () => {
           flexGrow: 1,
           paddingBottom: 100,
         }}
-        className=" w-full  px-[10px]"
+        className=" w-full "
       >
-        <View style={styles.container} className="rounded-xl mt-2   mb-20   bg-white p-5">
+        <View style={styles.container} className="rounded-[14px] mt-2  mx-[10px]   mb-20   bg-white p-5">
           <Text className=" text-xl text-primary font-semibold">
             Pay using PayPal service fees:
           </Text>

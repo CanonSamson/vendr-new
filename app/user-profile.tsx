@@ -54,9 +54,8 @@ const UserProfile = () => {
         <View className=" mt-[100px]  justify-center p-[10px] ">
           <View style={styles.container} className="  p-5 bg-white rounded-xl">
             <View
-              style={styles.container}
               className=" w-[221px] h-[218px]  relative border-4 justify-center
-                 p-2 mx-auto flex-row  items-center border-primary rounded-full"
+                 p-2 mx-auto flex-row bg-white  items-center border-primary rounded-full"
             >
               {user?.photoURL ? (
                 <Image
