@@ -89,7 +89,7 @@ const SignUp = () => {
         >
           <View
             style={styles.container}
-            className=" flex-1 mx-2 rounded-xl bg-white"
+            className=" flex-1 mx-2 mt-2 rounded-xl bg-white"
           >
             <View className="z-20 relative gap-2  p-4 flex-row justify-end ">
               <View
@@ -110,8 +110,7 @@ const SignUp = () => {
             </View>
 
             <Text
-              style={{ fontSize: hp(3.2) }}
-              className={`font-semibold  text-primary text-center  px-20 my-10`}
+              className={`font-bold text-[32px]  text-primary text-center mx-auto my-10`}
             >
               One Last thing, provide a photo
             </Text>

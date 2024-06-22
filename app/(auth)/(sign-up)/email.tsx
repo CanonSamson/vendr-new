@@ -127,7 +127,7 @@ const SignUp = () => {
         >
           <View
             style={styles.container}
-            className=" flex-1 mx-2  rounded-xl bg-white"
+            className=" flex-1 mx-2 mt-2 rounded-xl bg-white"
           >
             <View className="z-20 relative gap-2  p-4 flex-row justify-end ">
               <View

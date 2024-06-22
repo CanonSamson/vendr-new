@@ -60,7 +60,7 @@ const SignUp = () => {
         className=" flex-1  mt-[110px]  "
         bounces={false}
       >
-        <View style={styles.container} className=" flex-1 mx-2  bg-white">
+        <View style={styles.container} className=" flex-1 mx-2 mt-2  bg-white">
           <View className="z-20 relative gap-2  p-4 flex-row justify-end ">
             <View
               className={`  bg-primary  border border-primary w-[20px] h-[20px] rounded-full`}
