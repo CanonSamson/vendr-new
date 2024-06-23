@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { StyleSheet } from "react-native";
-import { ArrowRight } from "@/constants/Icons";
+import { ArrowRightWhite } from "@/constants/Icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { Colors } from "@/constants/Colors";
 import { StatusBar } from "expo-status-bar";
@@ -180,7 +180,7 @@ const SignUp = () => {
                     {isLoading ? (
                       <ActivityIndicator color="#fff" className="" />
                     ) : (
-                      <ArrowRight height={"100%"} />
+                      <ArrowRightWhite height={"100%"} />
                     )}
                   </LinearGradient>
                 </Pressable>

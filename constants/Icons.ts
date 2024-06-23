@@ -7,6 +7,7 @@ import ActiveSellingIcon from "../assets/svg/active-selling-icon.svg";
 import ActiveMessagesIcon from "../assets/svg/active-messages-icon.svg";
 import ActiveBuyingIcon from "../assets/svg/active-buying-icon.svg";
 import ArrowRightSvg from "../assets/icon/arrow-right.svg";
+import ArrowRightWhiteSvg from "../assets/icon/arrow-right-white.svg";
 import ActionIonSvg from "../assets/icon/action-icon.svg";
 import PersonIonSvg from "../assets/icon/person.svg";
 import PlusIonSvg from "../assets/icon/plus.svg";
@@ -18,6 +19,7 @@ const ClosePng = require("../assets/icon/close.png");
 
 
 
+export const ArrowRightWhite = ArrowRightWhiteSvg
 export const ArrowRight = ArrowRightSvg
 export const ActionIcon = ActionIonSvg
 export const ArrowDown = ArrowDownPng

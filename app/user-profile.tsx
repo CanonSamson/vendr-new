@@ -133,7 +133,7 @@ const UserProfile = () => {
           </Text>
         </View>
 
-        <View className=" pb-[100px] flex-row  items-center justify-around mt-5">
+        <View className=" pb-[100px] flex-row  items-center justify-around mt-[10px]">
           <Pressable
             onPress={() => router.push("/(settings)")}
             className=" items-center px-2"

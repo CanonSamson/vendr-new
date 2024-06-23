@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { StyleSheet } from "react-native";
-import { ArrowRight } from "@/constants/Icons";
+import { ArrowRightWhite } from "@/constants/Icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { Colors } from "@/constants/Colors";
 import InputField from "@/components/InputField";
@@ -235,7 +235,7 @@ const SignUp = () => {
                         {isLoading ? (
                           <ActivityIndicator size="small" color="#ffffff" />
                         ) : (
-                          <ArrowRight height={"100%"} />
+                          <ArrowRightWhite height={"100%"} />
                         )}
                       </LinearGradient>
                     </Pressable>
@@ -253,7 +253,7 @@ const SignUp = () => {
                       {isLoading ? (
                         <ActivityIndicator size="small" color="#ffffff" />
                       ) : (
-                        <ArrowRight height={"100%"} />
+                        <ArrowRightWhite height={"100%"} />
                       )}
                     </LinearGradient>
                   </Pressable>

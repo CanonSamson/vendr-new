@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import React, { useEffect } from "react";
 import { StyleSheet } from "react-native";
-import { ArrowRight } from "@/constants/Icons";
+import { ArrowRightWhite } from "@/constants/Icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { Colors } from "@/constants/Colors";
 import InputField from "@/components/InputField";
@@ -127,7 +127,7 @@ const SignUp = () => {
                   colors={[Colors.primary, "#85DBF9"]}
                   className="items-center justify-center rounded-lg relative"
                 >
-                  <ArrowRight height={"100%"} />
+                  <ArrowRightWhite height={"100%"} />
                 </LinearGradient>
               </Pressable>
             </View>

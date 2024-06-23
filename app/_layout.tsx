@@ -66,7 +66,7 @@ function AppRoutes() {
                 style={[styles.heading]}
               >
                 <Pressable onPress={() => router.back()}>
-                  <ArrowRight width={325} height={25} />
+                  <ArrowRight width={25} height={25} />
                 </Pressable>
 
                 <Text className="text-[26px] text-black font-bold">
@@ -88,7 +88,7 @@ function AppRoutes() {
                 style={styles.heading}
               >
                 <Pressable onPress={() => router.back()}>
-                  <CloseIconSvg width={325} height={25} />
+                  <CloseIconSvg width={25} height={25} />
                 </Pressable>
 
                 <Text className="text-[26px] text-black font-bold">
@@ -110,7 +110,7 @@ function AppRoutes() {
                 style={styles.heading}
               >
                 <Pressable onPress={() => router.back()}>
-                  <CloseIconSvg width={325} height={25} />
+                  <CloseIconSvg width={25} height={25} />
                 </Pressable>
 
                 <Text className="text-[26px] text-black font-bold">Safefy</Text>

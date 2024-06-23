@@ -89,7 +89,7 @@ const ListAnItem: React.FC = () => {
   const updateRange = (range: number) => {
     setRangeValue(range);
 
-    if (range < 5) {
+    if (range < 10) {
       setRightLabel("Local Pickup Only");
     } else if (range < maxDistance) {
       setRightLabel(`0-${range}mi.`);
@@ -147,7 +147,7 @@ const ListAnItem: React.FC = () => {
             <View className=" flex-row items-center">
               <Text
                 style={{ fontSize: hp(3.2) }}
-                className=" mr-2 font-medium "
+                className=" mr-2 font-semibold"
               >
                 Title
               </Text>
@@ -158,6 +158,7 @@ const ListAnItem: React.FC = () => {
               style={styles.input}
               placeholder={"Tap here to add a title"}
               placeholderTextColor={"gray"}
+              className=" text-[16px]"
             />
           </View>
           <View style={styles.innercontainer}>
@@ -180,14 +181,11 @@ const ListAnItem: React.FC = () => {
               multiline
               placeholder={"Tap here to add a description"}
               placeholderTextColor={"gray"}
-              className=" mt-[10px]"
+              className="text-[16px] mt-[10px]"
             />
           </View>
           <View style={styles.innercontainer}>
-            <Text
-              style={{ fontSize: hp(3.2) }}
-              className="  mr-2 font-medium "
-            >
+            <Text style={{ fontSize: hp(3.2) }} className="  mr-2 font-medium ">
               Searchability
             </Text>
             <View className=" flex-row justify-between mt-[15px] ">
@@ -231,7 +229,9 @@ const ListAnItem: React.FC = () => {
               <Text style={{ fontSize: hp(2.4) }} className="  text-primary ">
                 Maximum Distance
               </Text>
-              <Text style={{ fontSize: hp(1.7) }}  className=" text-[#949494]">{rangeValue} mi</Text>
+              <Text style={{ fontSize: hp(1.7) }} className=" text-[#949494]">
+                {rightLabel}
+              </Text>
             </View>
             <View className=" flex-row justify-center">
               <Slider
@@ -246,7 +246,7 @@ const ListAnItem: React.FC = () => {
               />
             </View>
 
-            <Text style={{ fontSize: hp(2.9) }} className="my-4  text-primary">
+            <Text className="my-4 text-[24px]   text-p font-mediumrimary">
               Condition
             </Text>
             <View className=" flex-row  w-full gap-2">
@@ -317,7 +317,7 @@ const ListAnItem: React.FC = () => {
             <View style={styles.heading}>
               <Text
                 style={{ fontSize: hp(3.2) }}
-                className="  mr-2 font-medium "
+                className=" mr-2 font-semibold "
               >
                 Categories
               </Text>
@@ -328,7 +328,7 @@ const ListAnItem: React.FC = () => {
               <TextInput
                 placeholder="Search for categories to add"
                 placeholderTextColor={"#3C3C4399"}
-                className=" flex-1 py-3"
+                className=" text-[16px] flex-1 py-3"
               />
             </View>
           </View>
@@ -348,6 +348,7 @@ const ListAnItem: React.FC = () => {
               style={styles.input}
               placeholder={"Tap here to add an asking price"}
               placeholderTextColor={"#3C3C4399"}
+              className="text-[16px]"
             />
           </View>
 
@@ -355,7 +356,7 @@ const ListAnItem: React.FC = () => {
             <View style={styles.confirmListing}>
               <Text
                 style={{ fontSize: hp(3.2) }}
-                className=" mr-2 font-medium "
+                className=" mr-2 font-semibold"
               >
                 Confirm Listing
               </Text>

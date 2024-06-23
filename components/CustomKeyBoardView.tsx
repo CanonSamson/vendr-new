@@ -6,6 +6,7 @@ import {
   ScrollView,
   Platform,
   StyleSheet,
+  Keyboard,
 } from "react-native";
 
 const ios = Platform.OS === "ios";
@@ -26,7 +27,8 @@ const CustomKeyBoardView: React.FC<CustomKeyBoardViewProps> = ({
         contentContainerStyle={styles.scrollViewContent}
         bounces={false}
         showsHorizontalScrollIndicator={false}
-        keyboardShouldPersistTaps='always'
+        keyboardShouldPersistTaps="always"
+        onScroll={() => Keyboard.dismiss()} // Dismiss keyboard on scroll
       >
         {children}
       </ScrollView>
@@ -37,10 +39,6 @@ const CustomKeyBoardView: React.FC<CustomKeyBoardViewProps> = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: "100%",
-  },
-  scrollView: {
-    flexGrow: 1,
     width: "100%",
   },
   scrollViewContent: {
