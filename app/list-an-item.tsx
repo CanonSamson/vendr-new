@@ -144,14 +144,14 @@ const ListAnItem: React.FC = () => {
           </View>
 
           <View style={styles.innercontainer}>
-            <View className=" flex-row items-center">
+            <View className=" flex-row items-center ">
               <Text
                 style={{ fontSize: hp(3.2) }}
-                className=" mr-2 font-semibold"
+                className="  mr-2 leading-none font-medium "
               >
                 Title
               </Text>
-              <Pen width={24} height={24} className=" border border-red-400" />
+              <Pen width={16} height={16} />
             </View>
 
             <TextInput
@@ -162,16 +162,15 @@ const ListAnItem: React.FC = () => {
             />
           </View>
           <View style={styles.innercontainer}>
-            <View style={styles.heading}>
+            <View className=" flex-row items-center ">
               <Text
                 style={{ fontSize: hp(3.2) }}
-                className="  mr-2 font-medium "
+                className="  mr-2 leading-none font-medium "
               >
                 Description
               </Text>
-              <Pen width={24} height={24} />
+              <Pen width={16} height={16} />
             </View>
-
             <TextInput
               style={[
                 styles.input,
@@ -334,14 +333,14 @@ const ListAnItem: React.FC = () => {
           </View>
 
           <View style={styles.innercontainer}>
-            <View style={styles.heading}>
+            <View className=" flex-row items-center ">
               <Text
                 style={{ fontSize: hp(3.2) }}
-                className="  mr-2 font-medium "
+                className="  mr-2 leading-none font-medium "
               >
                 Price
               </Text>
-              <Pen width={24} height={24} />
+              <Pen width={16} height={16} />
             </View>
 
             <TextInput
