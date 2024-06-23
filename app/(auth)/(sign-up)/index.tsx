@@ -59,8 +59,7 @@ const SignUp = () => {
         contentContainerStyle={{ flexGrow: 1, paddingBottom: 5 }}
         className=" flex-1  mt-[110px]  "
         bounces={false}
-        keyboardShouldPersistTaps='always'
-
+        keyboardShouldPersistTaps="always"
       >
         <View style={styles.container} className=" flex-1 mx-1 mt-2  bg-white">
           <View className="z-20 relative gap-2  p-4 flex-row justify-end ">
@@ -102,8 +101,9 @@ const SignUp = () => {
               placeholder="First Name"
               error={touched.firstname && errors?.firstname}
               style={""}
-              returnKeyType="done" 
-              autoFocus={true} 
+              returnKeyType="done"
+              autoFocus={true}
+              textContentType="none"
             />
             <InputField
               value={values.lastname}
@@ -111,7 +111,8 @@ const SignUp = () => {
               placeholder="Last Name"
               error={touched.lastname && errors?.lastname}
               containerStyle={{ marginTop: hp(3) }}
-              returnKeyType="done" 
+              returnKeyType="done"
+              textContentType="none"
             />
           </View>
 

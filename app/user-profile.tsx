@@ -16,6 +16,7 @@ import EditProfileModel from "@/components/Model/EditProfileModel";
 import { useAuth } from "@/context/GlobalContext";
 import { auth } from "@/firebase_config";
 const ArrowDown = require("@/assets/icon/arrow-down.png");
+import { ArrowRight } from "@/constants/Icons";
 
 import {
   widthPercentageToDP as wp,
@@ -30,119 +31,141 @@ const UserProfile = () => {
 
   return (
     <>
-      <StatusBar style="dark" />
+      <StatusBar backgroundColor="white" style="dark" />
       <EditProfileModel
         modalVisible={editProfile}
         hideModal={() => setEditProfile(false)}
       />
 
       <View
-        className="pt-14 pb-4  absolute top-0 w-full flex-row  justify-between px-4 right-0 z-20 items-center bg-white border-b-[2px] border-primary"
-        style={styles.heading}
+        style={{ marginTop: Platform.OS === "ios" ? hp(1) : hp(1.6) }}
+        className="  bg-[#F3F3F3] justify-center   px-1 pt-4  "
       >
-        <Pressable onPress={() => router.back()}>
-          <Image
-            source={ArrowDown}
-            className=" active:scale-90 duration-900  w-[24px] h-[24px] object-contain rotate-90"
-          />
-        </Pressable>
-        <Text className="text-xl text-black font-medium">Profile</Text>
-        <View className="  w-[24px] h-[24px] o rotate-90" />
-      </View>
-
-      <ScrollView contentContainerStyle={{ flexGrow: 1, marginBottom: 20 }}>
-        <View className=" mt-[100px]  justify-center p-[10px] ">
-          <View style={styles.container} className="  p-5 bg-white rounded-xl">
-            <View
-              className=" w-[221px] h-[218px]  relative border-4 justify-center
+        <View
+          style={styles.container}
+          className=" pt-[20px] pb-2 bg-white rounded-xl"
+        >
+          <View
+            style={[
+              {
+                ...Platform.select({
+                  ios: {
+                    shadowColor: "black",
+                    shadowOpacity: 0.4,
+                    shadowOffset: { width: 0, height: 4 },
+                    shadowRadius: 2,
+                  },
+                  android: {
+                    elevation: 10,
+                  },
+                }),
+              },
+              { height: hp(20), width: hp(20) },
+            ]}
+            className=" relative border-4 justify-center
                  p-2 mx-auto flex-row bg-white  items-center border-primary rounded-full"
-            >
-              {user?.photoURL ? (
-                <Image
-                  source={{ uri: user?.photoURL }}
-                  className=" rounded-full object-cover w-full h-full"
-                />
-              ) : (
-                <Text className=" text-primary" style={{ fontSize: hp(10) }}>
-                  {getNameInitials(
-                    auth.currentUser?.displayName
-                      ? auth.currentUser?.displayName
-                      : ""
-                  )}
-                </Text>
-              )}
-
-              <Pressable
-                onPress={() => setEditProfile(true)}
-                className=" absolute right-0 top-5"
-              >
-                <Pen width={40} />
-              </Pressable>
-            </View>
-
-            <Text className=" text-center mt-[10px] text-[24px] font-bold">
-              {auth.currentUser?.displayName}
-            </Text>
-            <Text className=" px-10 text-[16px] text-center mt-5">
-              Check out my store I sell shoes and vintage clothing.
-            </Text>
-            <Text className=" px-5 text-[20px] text-black text-center mt-10 pb-4">
-              Member since {convertDateFormat(user?.joinAt ?? "")} Based in{" "}
-              {user?.address},{user?.zipcode}
-            </Text>
-          </View>
-
-          <View
-            style={styles.container}
-            className="  mt-[10px] p-5 bg-white rounded-xl"
           >
-            <Text className="  font-semibold text-primary text-[20px] text-center ">
-              Feedback
-            </Text>
-            <Text className=" font-semibold text-primary text-[20px] text-center mt-2 ">
-              Coming Soon
-            </Text>
-          </View>
+            {user?.photoURL ? (
+              <Image
+                source={{ uri: user?.photoURL }}
+                className=" rounded-full object-cover w-full h-full"
+              />
+            ) : (
+              <Text className=" text-primary" style={{ fontSize: hp(10) }}>
+                {getNameInitials(
+                  auth.currentUser?.displayName
+                    ? auth.currentUser?.displayName
+                    : ""
+                )}
+              </Text>
+            )}
 
-          <View
-            style={styles.container}
-            className="  mt-[10px] p-5 bg-white rounded-xl"
-          >
-            <Text className=" font-semibold text-primary text-[20px] text-center ">
-              Preview Profile
-            </Text>
-          </View>
-
-          <View className=" pb-[100px] flex-row  items-center justify-around mt-5">
             <Pressable
-              onPress={() => router.push("/(settings)")}
-              className=" items-center px-2"
+              style={styles.container}
+              onPress={() => setEditProfile(true)}
+              className=" absolute -right-5 top-5"
             >
-              <View
-                style={styles.container}
-                className="  w-[69px] h-[69px]  items-center justify-center
-                 bg-white rounded-full"
-              >
-                <SettingsIcon width={35} />
-              </View>
-              <Text className=" text-[#616161] mt-2 text-[20px]">Settings</Text>
-            </Pressable>
-            <Pressable
-              onPress={() => router.push("/safety")}
-              className=" items-center px-2"
-            >
-              <View
-                style={styles.container}
-                className="  w-[69px] h-[69px]  items-center justify-center 
-                bg-white rounded-full"
-              >
-                <SafteyIcon width={35} />
-              </View>
-              <Text className=" text-[#616161] mt-2 text-[20px]">Saftey</Text>
+              <Pen width={40} />
             </Pressable>
           </View>
+
+          <Text className=" text-center mt-[10px] text-[30px] font-bold">
+            {auth.currentUser?.displayName}
+          </Text>
+          <Text
+            style={{ width: wp(75) }}
+            className="text-[18px] mx-auto text-center mt-4"
+          >
+            Check out my store I sell shoes and vintage clothing.
+          </Text>
+          <Text
+            style={{ width: wp(75) }}
+            className=" text-[20px] mx-auto text-black text-center mt-10"
+          >
+            Member since {convertDateFormat(user?.joinAt ?? "")}
+          </Text>
+          <Text
+            style={{ width: wp(75) }}
+            className=" text-[20px] mt-2 mx-auto text-black text-center  pb-4"
+          >
+            Based in {user?.address},{user?.zipcode}
+          </Text>
         </View>
-      </ScrollView>
+
+        <View
+          style={styles.container}
+          className="  mt-[10px] p-4 bg-white rounded-xl"
+        >
+          <Text className="  font-semibold text-primary text-[24px] text-center ">
+            Feedback
+          </Text>
+          <Text className=" font-semibold text-primary text-[25px] text-center mt-2 ">
+            Coming Soon
+          </Text>
+        </View>
+
+        <View
+          style={styles.container}
+          className="  mt-[10px] p-4 bg-white rounded-xl"
+        >
+          <Text className=" font-semibold text-primary text-[24px] text-center ">
+            Preview Profile
+          </Text>
+        </View>
+
+        <View className=" pb-[100px] flex-row  items-center justify-around mt-5">
+          <Pressable
+            onPress={() => router.push("/(settings)")}
+            className=" items-center px-2"
+          >
+            <View
+              style={styles.container}
+              className="  w-[69px] h-[69px]  items-center justify-center
+                 bg-white rounded-full"
+            >
+              <SettingsIcon width={35} />
+            </View>
+            <Text className=" text-[#616161] mt-2   font-semibold text-[20px]">
+              Settings
+            </Text>
+          </Pressable>
+          <Pressable
+            onPress={() => router.push("/safety")}
+            className=" items-center px-2"
+          >
+            <View
+              style={styles.container}
+              className="  w-[69px] h-[69px]  items-center justify-center 
+                bg-white rounded-full"
+            >
+              <SafteyIcon width={35} />
+            </View>
+            <Text className=" text-[#616161] font-semibold mt-2 text-[20px]">
+              Saftey
+            </Text>
+          </Pressable>
+        </View>
+      </View>
     </>
   );
 };
@@ -170,7 +193,6 @@ const styles = StyleSheet.create({
       },
       android: {
         elevation: 5,
-        borderColor: "rgba(0, 0, 0, 0.1)",
       },
     }),
   },

@@ -165,6 +165,8 @@ const SignUp = () => {
                 secureTextEntry={hidePassword}
                 returnKeyType="done" 
                 autoFocus={true} 
+                textContentType="none"
+
               />
               <InputField
                 value={values.confirmPassword}
@@ -174,6 +176,8 @@ const SignUp = () => {
                 containerStyle={{ marginTop: hp(3) }}
                 secureTextEntry={hidePassword}
                 returnKeyType="done" 
+                textContentType="none"
+
               />
             </View>
 

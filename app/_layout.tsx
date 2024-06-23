@@ -3,12 +3,14 @@ import { useFonts } from "expo-font";
 import { router, Stack, useRouter, useSegments } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import React, { useEffect } from "react";
-import { Pressable, StyleSheet } from "react-native";
+import { Platform, Pressable, StyleSheet, Text } from "react-native";
 import "react-native-reanimated";
 import { Colors } from "../constants/Colors";
 import { AuthProvider, useAuth } from "@/context/GlobalContext";
 import { ModalProvider, useModal } from "@/context/ModalContext";
 import ConfirmAnicationModal from "@/components/Model/ConfirmAnicationModal";
+import { View } from "react-native";
+import { ArrowRight, CloseIconSvg } from "@/constants/Icons";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -51,13 +53,70 @@ function AppRoutes() {
         />
         <Stack.Screen name="(auth)" options={{ headerShown: false }} />
         <Stack.Screen name="(settings)" options={{ headerShown: false }} />
-        <Stack.Screen name="user-profile" options={{ headerShown: false }} />
-        <Stack.Screen name="list-an-item" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="user-profile"
+          options={{
+            header: () => (
+              <View
+                className={`${
+                  Platform.OS === "ios" ? "pt-14 " : "pt-14"
+                } pb-4 w-full items-center 
+                  justify-between  px-3 flex-row
+                   bg-white border-b-[3px] border-b-primary`}
+                style={[styles.heading]}
+              >
+                <Pressable onPress={() => router.back()}>
+                  <ArrowRight width={30} height={30} />
+                </Pressable>
+
+                <Text className="text-[26px] text-black font-bold">
+                  Profile
+                </Text>
+                <View className="  w-[24px] h-[24px] o rotate-90" />
+              </View>
+            ),
+          }}
+        />
+
+        <Stack.Screen
+          name="list-an-item"
+          options={{
+            header: () => (
+              <View
+                className="pt-14 pb-4 z-20 flex-row  justify-between items-center 
+               bg-white  px-4  border-b-[3px] border-primary"
+                style={styles.heading}
+              >
+                <Pressable onPress={() => router.back()}>
+                  <CloseIconSvg width={30} height={30} />
+                </Pressable>
+
+                <Text className="text-[26px] text-black font-bold">
+                  List an Item
+                </Text>
+                <View className="w-[24px]" />
+              </View>
+            ),
+          }}
+        />
 
         <Stack.Screen
           name="safety"
           options={{
-            headerShown: false,
+            header: () => (
+              <View
+                className="pt-14 pb-4 z-20 flex-row  justify-between items-center 
+               bg-white  px-4  border-b-[3px] border-primary"
+                style={styles.heading}
+              >
+                <Pressable onPress={() => router.back()}>
+                  <CloseIconSvg width={30} height={30} />
+                </Pressable>
+
+                <Text className="text-[26px] text-black font-bold">Safefy</Text>
+                <View className="w-[24px]" />
+              </View>
+            ),
           }}
         />
         <Stack.Screen name="+not-found" />
@@ -89,6 +148,15 @@ export default function RootLayout() {
 }
 
 const styles = StyleSheet.create({
+  heading: {
+    // For iOS
+    shadowColor: "gray",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.5,
+    shadowRadius: 3,
+    // For Android
+    elevation: 10,
+  },
   headerStyle: {
     backgroundColor: "#f8f8f8",
     borderBottomWidth: 3,

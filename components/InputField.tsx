@@ -19,6 +19,7 @@ interface InputFieldProps {
   returnKeyType?: string;
   autoFocus?: boolean;
   onSubmitEditing?: ()=> void
+  textContentType?: string
 }
 
 const InputField: React.FC<InputFieldProps> = ({

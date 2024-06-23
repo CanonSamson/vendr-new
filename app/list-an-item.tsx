@@ -102,19 +102,6 @@ const ListAnItem: React.FC = () => {
     <>
       <StatusBar style="dark" hidden={false} />
 
-      <View className="pt-[55px] pb-4 z-20 flex-row  justify-between items-center shadow-xl bg-white border-b-[2px] px-4 border-primary">
-        <Pressable onPress={() => router.back()}>
-          <Image className=" mx-3" source={CloseIcon} width={40} height={40} />
-        </Pressable>
-
-        <View className="z-30 relative  ">
-          <Text className="text-xl  text-center text-black font-medium">
-            List an Item
-          </Text>
-        </View>
-        <View className="w-[40px]"></View>
-      </View>
-
       <CustomKeyBoardView>
         <View style={styles.container}>
           <View style={styles.innercontainer}>

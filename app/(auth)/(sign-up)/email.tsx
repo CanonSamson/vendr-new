@@ -173,6 +173,8 @@ const SignUp = () => {
                   returnKeyType="done"
                   autoFocus={true}
                   onSubmitEditing={() => handleSubmit()}
+                  textContentType="none"
+
                 />
               ) : (
                 <>

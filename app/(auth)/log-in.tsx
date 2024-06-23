@@ -123,6 +123,7 @@ const LogIn = () => {
                     style={""}
                     returnKeyType="done"
                     autoFocus={true}
+                    textContentType="none"
                   />
                   <InputField
                     value={values.password}
@@ -133,6 +134,8 @@ const LogIn = () => {
                     containerStyle={{ marginTop: hp(3.5) }}
                     secureTextEntry={true}
                     returnKeyType="done"
+                    textContentType="none"
+
                   />
 
                   <Pressable style={{ marginTop: hp(3) }} disabled={isLoading}>

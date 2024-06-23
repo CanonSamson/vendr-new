@@ -71,8 +71,7 @@ const SignUp = () => {
           contentContainerStyle={{ flexGrow: 1, paddingBottom: 5 }}
           className=" flex-1  mt-[110px]  "
           bounces={false}
-        keyboardShouldPersistTaps='always'
-
+          keyboardShouldPersistTaps="always"
         >
           <View
             style={styles.container}
@@ -110,6 +109,7 @@ const SignUp = () => {
                 placeholder="Address Line"
                 error={touched.address && errors?.address}
                 style={""}
+                textContentType="none"
               />
               <View className=" flex-row items-center justify-between my-5">
                 <Text
@@ -135,6 +135,7 @@ const SignUp = () => {
                 placeholder="City"
                 error={touched.city && errors?.city}
                 style={""}
+                textContentType="none"
               />
               <View
                 style={{ marginBottom: hp(2), marginTop: hp(3) }}
@@ -146,6 +147,7 @@ const SignUp = () => {
                     onChangeText={handleChange("state")}
                     placeholder="State "
                     error={touched.state && errors?.state}
+                    textContentType="none"
                   />
                 </View>
                 <View className="flex-1 pl-2">
@@ -155,6 +157,7 @@ const SignUp = () => {
                     placeholder="Zipcode"
                     error={touched.zipcode && errors?.zipcode}
                     style={""}
+                    textContentType="none"
                   />
                 </View>
               </View>

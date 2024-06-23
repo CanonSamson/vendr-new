@@ -10,9 +10,11 @@ import ArrowRightSvg from "../assets/icon/arrow-right.svg";
 import ActionIonSvg from "../assets/icon/action-icon.svg";
 import PersonIonSvg from "../assets/icon/person.svg";
 import PlusIonSvg from "../assets/icon/plus.svg";
+import CloseSvg from "../assets/icon/closeIcon.svg";
 const ArrowDownPng = require("../assets/icon/arrow-down.png");
 const FilterPng = require("../assets/icon/filter.png");
 const ClosePng = require("../assets/icon/close.png");
+
 
 
 
@@ -21,6 +23,7 @@ export const ActionIcon = ActionIonSvg
 export const ArrowDown = ArrowDownPng
 export const FilterIcon = FilterPng
 export const CloseIcon = ClosePng
+export const CloseIconSvg = CloseSvg
 export const PersonIon = PersonIonSvg
 export const PlusIon = PlusIonSvg
 

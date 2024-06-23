@@ -26,14 +26,14 @@ const Settings = () => {
   return (
     <>
       <View
-        className="pt-14 pb-4  absolute top-0 w-full flex-row justify-between px-4 right-0 z-20 items-center bg-white border-b-[2px] border-primary"
+        className="pt-14 pb-4  absolute top-0 w-full flex-row justify-between px-4 right-0 z-20 items-center bg-white border-b-[3px] border-primary"
         style={styles.heading}
       >
         <Text className=" text-[#007AFF] opacity-0 ">Back</Text>
 
-        <Text className="text-xl text-black font-medium">Settings</Text>
+        <Text className="text-[26px] text-black font-bold">Settings</Text>
         <Pressable onPress={() => router.back()}>
-          <Text className=" text-[#007AFF] ">Done</Text>
+          <Text className=" text-[#007AFF] text-[17px] ">Done</Text>
         </Pressable>
       </View>
 
@@ -218,7 +218,9 @@ const Settings = () => {
               <Text className=" text-white text-[19px]">Logout</Text>
             </LinearGradient>
           </Pressable>
-          <Text className=" text-center mb-[20px] mt-[10px]">Version 0.6.01 Beta</Text>
+          <Text className=" text-center mb-[20px] mt-[10px]">
+            Version 0.6.01 Beta
+          </Text>
         </View>
       </ScrollView>
     </>
