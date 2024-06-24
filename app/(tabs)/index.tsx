@@ -118,19 +118,20 @@ export default function HomeScreen() {
       >
         <View className="  px-[10px] w-full justify-center items-center relative flex-row  ">
           <Pressable
-            onPress={() => router.push("user-profile")}
-            className=" active:scale-90 duration-900  absolute left-0"
-          >
-            <PersonIon width={40} height={40} />
-          </Pressable>
-          <View className=" w-auto h-[45px] z-40 relative ">
-            <LogoV1White color={`#fff`} height={"100%"} />
-          </View>
-          <Pressable
             onPress={() => router.push("list-an-item")}
             className=" active:scale-90 duration-900  absolute right-0"
           >
             <PlusIon width={40} height={40} />
+          </Pressable>
+
+          <View className=" w-auto h-[45px] z-40 relative ">
+            <LogoV1White color={`#fff`} height={"100%"} />
+          </View>
+          <Pressable
+            onPress={() => router.push("user-profile")}
+            className=" active:scale-90 duration-900  absolute left-0"
+          >
+            <PersonIon width={40} height={40} />
           </Pressable>
         </View>
       </LinearGradient>
