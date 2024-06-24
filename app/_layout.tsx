@@ -48,6 +48,15 @@ function AppRoutes() {
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen
+          name="(product)"
+          options={{
+            headerShown: false,
+            animation: "slide_from_bottom",
+            gestureDirection: "vertical",
+            animationDuration: 250,
+          }}
+        />
+        <Stack.Screen
           name="(phone_number_verification)"
           options={{ headerShown: false }}
         />
@@ -130,7 +139,7 @@ function AppRoutes() {
                   <CloseIconSvg width={25} height={25} />
                 </Pressable>
 
-                <Text className="text-[26px] text-black font-bold">Safefy</Text>
+                <Text className="text-[26px] text-black font-bold">Safety</Text>
                 <View className="w-[25px]" />
               </View>
             ),

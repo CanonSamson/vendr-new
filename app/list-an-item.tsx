@@ -90,9 +90,9 @@ const ListAnItem: React.FC = () => {
   const updateRange = (range: number) => {
     setRangeValue(range);
 
-    if (range < 10) {
+    if (range <= 0) {
       setRightLabel("Local Pickup Only");
-    } else if (range < maxDistance) {
+    } else if (range < maxDistance || range < 50) {
       setRightLabel(`0-${range}mi.`);
     } else {
       setRightLabel("Global");

@@ -30,7 +30,8 @@ export const ProductData = [
         distance: "12",
         seller: {
             avatar: Seller2,
-            name: "canon"
+            name: "canon",
+            user_id: "2dvod"
         }
     },
     {
@@ -43,7 +44,8 @@ export const ProductData = [
         distance: "12",
         seller: {
             avatar: Seller2,
-            name: "canon"
+            name: "canon",
+            user_id: "v,do,2"
         }
     },
     {
@@ -56,7 +58,8 @@ export const ProductData = [
         distance: "12",
         seller: {
             avatar: Seller2,
-            name: "canon"
+            name: "canon",
+            user_id: "2vdv"
         }
     },
     {
@@ -67,7 +70,8 @@ export const ProductData = [
         distance: "12",
         seller: {
             avatar: Seller2,
-            name: "canon"
+            name: "canon",
+            user_id: "2vdf"
         }
     },
     {
@@ -78,7 +82,8 @@ export const ProductData = [
         distance: "12",
         seller: {
             avatar: Seller2,
-            name: "canon"
+            name: "canon",
+            user_id: "2vf"
         }
     },
     {
@@ -92,7 +97,8 @@ export const ProductData = [
 
         seller: {
             avatar: Seller2,
-            name: "canon"
+            name: "canon",
+            user_id: "2fef"
         }
     }
 ]
@@ -108,7 +114,8 @@ export let ProductObject = {
         distance: "12",
         seller: {
             avatar: Seller2,
-            name: "canon"
+            name: "canon",
+            user_id: "2fbfb"
         }
     },
     '2': {
@@ -119,7 +126,8 @@ export let ProductObject = {
         distance: "12",
         seller: {
             avatar: Seller2,
-            name: "canon"
+            name: "canon",
+            user_id: "2vf"
         }
     },
     '3': {
@@ -130,7 +138,8 @@ export let ProductObject = {
         distance: "12",
         seller: {
             avatar: Seller2,
-            name: "canon"
+            name: "canon",
+            user_id: "2ffb"
         }
     },
     '4': {
@@ -141,7 +150,8 @@ export let ProductObject = {
         distance: "12",
         seller: {
             avatar: Seller2,
-            name: "canon"
+            name: "canon",
+            user_id: "2g"
         }
     },
     '5': {
@@ -152,7 +162,8 @@ export let ProductObject = {
         distance: "12",
         seller: {
             avatar: Seller2,
-            name: "canon"
+            name: "canon",
+            user_id: "44"
         }
     },
     '6': {
@@ -163,7 +174,8 @@ export let ProductObject = {
         distance: "12",
         seller: {
             avatar: Seller2,
-            name: "canon"
+            name: "canon",
+            user_id: "6"
         }
     }
 };
@@ -178,6 +190,7 @@ export const SellersData = [
         id: "2",
         avatar: Seller2,
         name: "canon",
+        user_id: "2",
     },
     {
         id: "3",

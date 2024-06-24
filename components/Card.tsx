@@ -18,6 +18,7 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { scale, verticalScale, moderateScale } from "react-native-size-matters";
+import { router, useNavigation } from "expo-router";
 
 interface CardData {
   name: string;
@@ -28,11 +29,13 @@ interface CardData {
   seller: {
     name: string;
     avatar: { uri: string };
+    user_id: string;
   };
   price: string;
   titlSign: Animated.Value;
   swipe: Animated.ValueXY;
   viewProductDetails: any;
+  product_id: string;
   setViewProductDetails: React.Dispatch<React.SetStateAction<any>>;
 }
 
@@ -57,6 +60,7 @@ const Card: React.FC<CardData> = ({
   titlSign,
   swipe,
   viewProductDetails,
+  product_id,
   setViewProductDetails,
   ...rest
 }) => {
@@ -64,6 +68,8 @@ const Card: React.FC<CardData> = ({
     inputRange: [-100, 0, 100],
     outputRange: ["8deg", "0deg", "-8deg"],
   });
+
+  const navigation = useNavigation();
 
   const animatedCardStyle = {
     transform: [...swipe.getTranslateTransform(), { rotate }],
@@ -151,21 +157,25 @@ const Card: React.FC<CardData> = ({
           </View>
 
           <View className="absolute top-[27px] left-0 w-full flex-row">
-            <View className=" pl-[18px] w-full flex-row items-center">
-              <Image
-                source={seller.avatar}
-                className="w-[61px] h-[61px] rounded-full"
-                resizeMode="contain"
-              />
-              <View className="ml-4">
-                <Text className=" font-bold text-white  capitalize text-[21px]">
-                  {seller.name}
-                </Text>
-                <Text className="text-white text-[19px] font-light">
-                  {distance} miles away
-                </Text>
+            <Pressable
+              onPress={() => router.push(`/(product)/user/${product_id}`)}
+            >
+              <View className=" pl-[18px] w-full flex-row items-center">
+                <Image
+                  source={seller.avatar}
+                  className="w-[61px] h-[61px] rounded-full"
+                  resizeMode="contain"
+                />
+                <View className="ml-4">
+                  <Text className=" font-bold text-white  capitalize text-[21px]">
+                    {seller.name}
+                  </Text>
+                  <Text className="text-white text-[19px] font-light">
+                    {distance} miles away
+                  </Text>
+                </View>
               </View>
-            </View>
+            </Pressable>
           </View>
 
           <View className="absolute bottom-6 left-0 w-full flex-row">

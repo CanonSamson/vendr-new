@@ -8,10 +8,8 @@ import {
   Pressable,
 } from "react-native";
 import React, { useState } from "react";
-import Pen from "@/assets/svg/pen_blue.svg";
-import SettingsIcon from "@/assets/svg/Settings.svg";
-import SafteyIcon from "@/assets/svg/saftey.svg";
-import { router } from "expo-router";
+import ItemForSaleIcon from "@/assets/icon/ItemForSale.svg";
+import { router, useLocalSearchParams } from "expo-router";
 import EditProfileModel from "@/components/Model/EditProfileModel";
 import { useAuth } from "@/context/GlobalContext";
 import { auth } from "@/firebase_config";
@@ -25,9 +23,13 @@ import {
 
 import { convertDateFormat, getNameInitials } from "@/utils/functions";
 import { StatusBar } from "expo-status-bar";
+import { ProductObject } from "@/constants/testdata";
+
 const UserProfile = () => {
   const [editProfile, setEditProfile] = useState(false);
-  const { user } = useAuth();
+  const { product_id } = useLocalSearchParams();
+
+  const user = ProductObject[product_id].seller;
 
   return (
     <>
@@ -63,34 +65,16 @@ const UserProfile = () => {
               { height: hp(20), width: hp(20) },
             ]}
             className=" relative border-4 justify-center
-                 p-2 mx-auto flex-row bg-white  items-center border-primary rounded-full"
+           p-2 mx-auto flex-row bg-white  items-center border-primary rounded-full"
           >
-            {user?.photoURL ? (
-              <Image
-                source={{ uri: user?.photoURL }}
-                className=" rounded-full object-cover w-full h-full"
-              />
-            ) : (
-              <Text className=" text-primary" style={{ fontSize: hp(10) }}>
-                {getNameInitials(
-                  auth.currentUser?.displayName
-                    ? auth.currentUser?.displayName
-                    : ""
-                )}
-              </Text>
-            )}
-
-            <Pressable
-              style={styles.container}
-              onPress={() => setEditProfile(true)}
-              className=" absolute -right-5 top-5"
-            >
-              <Pen width={40} />
-            </Pressable>
+            <Image
+              source={user?.avatar}
+              className=" rounded-full object-cover w-full h-full"
+            />
           </View>
 
-          <Text className=" text-center mt-[7px] text-[30px] font-bold">
-            {auth.currentUser?.displayName}
+          <Text className=" text-center capitalize mt-[7px] text-[30px] font-bold">
+            {user.name}
           </Text>
           <Text
             style={{ width: wp(75) }}
@@ -102,13 +86,19 @@ const UserProfile = () => {
             style={{ width: wp(75) }}
             className=" text-[20px] mx-auto text-black text-center mt-10"
           >
-            Member since {convertDateFormat(user?.joinAt ?? "")}
+            Member since Jan 25, 2023
+          </Text>
+          <Text
+            style={{ width: wp(75) }}
+            className=" text-[20px] mt-2 mx-auto text-black text-center  "
+          >
+            Based in Point Pleasant NJ, 08742
           </Text>
           <Text
             style={{ width: wp(75) }}
             className=" text-[20px] mt-2 mx-auto text-black text-center  pb-4"
           >
-            Based in {user?.address},{user?.zipcode}
+            99% Positive Feedback
           </Text>
         </View>
 
@@ -118,10 +108,7 @@ const UserProfile = () => {
             className="  mt-[7px] p-4 bg-white rounded-xl"
           >
             <Text className="  font-semibold text-primary text-[24px] text-center ">
-              Feedback
-            </Text>
-            <Text className=" font-semibold text-primary text-[25px] text-center mt-2 ">
-              Coming Soon
+              Favorite Seller
             </Text>
           </View>
         </Pressable>
@@ -131,28 +118,13 @@ const UserProfile = () => {
             style={styles.container}
             className="  mt-[7px] p-4 bg-white rounded-xl"
           >
-            <Text className=" font-semibold text-primary text-[24px] text-center ">
-              Preview Profile
+            <Text className=" font-semibold text-red-600 text-[24px] text-center ">
+              Report Kyle
             </Text>
           </View>
         </Pressable>
 
-        <View className=" pb-[100px] flex-row  items-center justify-around mt-[7px]">
-          <Pressable
-            onPress={() => router.push("/(settings)")}
-            className=" items-center px-2"
-          >
-            <View
-              style={styles.container}
-              className="  w-[69px] h-[69px]  items-center justify-center
-                 bg-white rounded-full"
-            >
-              <SettingsIcon width={35} />
-            </View>
-            <Text className=" text-[#616161] mt-2   font-semibold text-[20px]">
-              Settings
-            </Text>
-          </Pressable>
+        <View className=" pb-[100px] flex-row  items-center justify-center mt-[7px]">
           <Pressable
             onPress={() => router.push("/safety")}
             className=" items-center px-2"
@@ -160,12 +132,12 @@ const UserProfile = () => {
             <View
               style={styles.container}
               className="  w-[69px] h-[69px]  items-center justify-center 
-                bg-white rounded-full"
+                      bg-white rounded-full"
             >
-              <SafteyIcon width={35} />
+              <ItemForSaleIcon width={35} />
             </View>
             <Text className=" text-[#616161] font-semibold mt-2 text-[20px]">
-              Safety
+              Items for Sale
             </Text>
           </Pressable>
         </View>
