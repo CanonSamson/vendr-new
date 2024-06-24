@@ -34,107 +34,101 @@ const UserProfile = () => {
   return (
     <>
       <StatusBar backgroundColor="white" style="dark" />
-      <EditProfileModel
-        modalVisible={editProfile}
-        hideModal={() => setEditProfile(false)}
-      />
 
       <View
         style={{ marginTop: Platform.OS === "ios" ? hp(1) : hp(1.6) }}
-        className="  bg-[#F3F3F3] justify-center   px-1 pt-3"
+        className="    justify-between flex-1 bg-[#F3F3F3]  px-1 "
       >
-        <View
-          style={styles.container}
-          className=" pt-[20px] pb-2 bg-white rounded-xl"
-        >
+        <View className=" ">
           <View
-            style={[
-              {
-                ...Platform.select({
-                  ios: {
-                    shadowColor: "black",
-                    shadowOpacity: 0.4,
-                    shadowOffset: { width: 0, height: 4 },
-                    shadowRadius: 2,
-                  },
-                  android: {
-                    elevation: 10,
-                  },
-                }),
-              },
-              { height: hp(20), width: hp(20) },
-            ]}
-            className=" relative border-4 justify-center
+            style={styles.container}
+            className=" pt-[20px] pb-2 bg-white rounded-xl"
+          >
+            <View
+              style={[
+                {
+                  ...Platform.select({
+                    ios: {
+                      shadowColor: "black",
+                      shadowOpacity: 0.4,
+                      shadowOffset: { width: 0, height: 4 },
+                      shadowRadius: 2,
+                    },
+                    android: {
+                      elevation: 10,
+                    },
+                  }),
+                },
+                { height: hp(20), width: hp(20) },
+              ]}
+              className=" relative border-4 justify-center
            p-2 mx-auto flex-row bg-white  items-center border-primary rounded-full"
-          >
-            <Image
-              source={user?.avatar}
-              className=" rounded-full object-cover w-full h-full"
-            />
+            >
+              <Image
+                source={user?.avatar}
+                className=" rounded-full object-cover w-full h-full"
+              />
+            </View>
+
+            <Text className=" capitalize text-center  mt-[7px] text-[30px] font-bold">
+              {user.name}
+            </Text>
+            <Text
+              style={{ width: wp(75) }}
+              className="text-[18px] mx-auto text-center mt-4"
+            >
+              Check out my store I sell shoes and vintage clothing.
+            </Text>
+            <Text
+              style={{ width: wp(75) }}
+              className=" text-[20px] mx-auto text-black text-center mt-10"
+            >
+              Member since Jan 25, 2023
+            </Text>
+            <Text
+              style={{ width: wp(75) }}
+              className=" text-[20px] mt-2 mx-auto text-black text-center  "
+            >
+              Based in Point Pleasant NJ, 08742
+            </Text>
+            <Text
+              style={{ width: wp(75) }}
+              className=" text-[20px] mt-2 mx-auto text-black text-center  pb-4"
+            >
+              99% Positive Feedback
+            </Text>
           </View>
 
-          <Text className=" text-center capitalize mt-[7px] text-[30px] font-bold">
-            {user.name}
-          </Text>
-          <Text
-            style={{ width: wp(75) }}
-            className="text-[18px] mx-auto text-center mt-4"
-          >
-            Check out my store I sell shoes and vintage clothing.
-          </Text>
-          <Text
-            style={{ width: wp(75) }}
-            className=" text-[20px] mx-auto text-black text-center mt-10"
-          >
-            Member since Jan 25, 2023
-          </Text>
-          <Text
-            style={{ width: wp(75) }}
-            className=" text-[20px] mt-2 mx-auto text-black text-center  "
-          >
-            Based in Point Pleasant NJ, 08742
-          </Text>
-          <Text
-            style={{ width: wp(75) }}
-            className=" text-[20px] mt-2 mx-auto text-black text-center  pb-4"
-          >
-            99% Positive Feedback
-          </Text>
+          <Pressable onPress={() => {}}>
+            <View
+              style={styles.container}
+              className="  mt-[7px] p-4 bg-white rounded-xl"
+            >
+              <Text className="  font-semibold text-primary text-[24px] text-center ">
+                Favorite Seller
+              </Text>
+            </View>
+          </Pressable>
+
+          <Pressable onPress={() => {}}>
+            <View
+              style={styles.container}
+              className="  mt-[7px] p-4 bg-white rounded-xl"
+            >
+              <Text className=" capitalize font-semibold text-red-600 text-[24px] text-center ">
+                Report {user.name}
+              </Text>
+            </View>
+          </Pressable>
         </View>
-
-        <Pressable onPress={() => {}}>
-          <View
-            style={styles.container}
-            className="  mt-[7px] p-4 bg-white rounded-xl"
-          >
-            <Text className="  font-semibold text-primary text-[24px] text-center ">
-              Favorite Seller
-            </Text>
-          </View>
-        </Pressable>
-
-        <Pressable onPress={() => {}}>
-          <View
-            style={styles.container}
-            className="  mt-[7px] p-4 bg-white rounded-xl"
-          >
-            <Text className=" font-semibold text-red-600 text-[24px] text-center ">
-              Report Kyle
-            </Text>
-          </View>
-        </Pressable>
-
-        <View className=" pb-[100px] flex-row  items-center justify-center mt-[7px]">
-          <Pressable
-            onPress={() => router.push("/safety")}
-            className=" items-center px-2"
-          >
+        <View className=" pb-[30px] flex-row  items-center justify-center mt-[7px]">
+          <Pressable onPress={() => {}} className=" items-center px-2">
             <View
               style={styles.container}
               className="  w-[69px] h-[69px]  items-center justify-center 
                       bg-white rounded-full"
             >
-              <ItemForSaleIcon width={35} />
+              <ItemForSaleIcon width={46} height={46} />
             </View>
             <Text className=" text-[#616161] font-semibold mt-2 text-[20px]">
               Items for Sale
