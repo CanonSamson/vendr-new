@@ -23,9 +23,18 @@ import { Colors } from "@/constants/Colors";
 import Pen from "@/assets/icon/pen.svg";
 import { StatusBar } from "expo-status-bar";
 import CustomKeyBoardView from "../CustomKeyBoardView";
-import { ArrowRight } from "@/constants/Icons";
+import { CloseIconSvg } from "@/constants/Icons";
+import { useAuth } from "@/context/GlobalContext";
+import { getNameInitials } from "@/utils/functions";
 
 const ArrowDown = require("@/assets/icon/arrow-down.png");
+import PenBlue from "@/assets/svg/pen_blue.svg";
+
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
+import { auth } from "@/firebase_config";
 
 interface EditProfileModelProps {
   modalVisible: boolean;
@@ -43,6 +52,7 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
   hideModal,
 }) => {
   const [userAvatar, setUserAvatar] = useState<string | null>();
+  const { user } = useAuth();
 
   const pickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -60,7 +70,7 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
   const [phonenumberOnProfile, setPhonenumberOnProfile] = useState(false);
   const [addresOnProfile, setAddressOnProile] = useState(false);
   const [linkedAccountOnProfile, setLinkedAccountOnProfile] = useState(false);
-  const onSubmit = async (values: SignUpFormValues) => { };
+  const onSubmit = async (values: SignUpFormValues) => {};
 
   const { errors, touched, handleChange, values, handleSubmit } =
     useFormik<SignUpFormValues>({
@@ -81,12 +91,13 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
     >
       <StatusBar style="dark" />
       <View
-        className={` ${Platform.OS === "ios" ? " pt-[60px]" : " pt-[10px]"
-          } pb-4  absolute top-0 w-full flex-row  justify-between px-4 right-0 z-20 items-center bg-white border-b-[3px] border-primary`}
+        className={` ${
+          Platform.OS === "ios" ? " pt-[60px]" : " pt-[10px]"
+        } pb-4  absolute top-0 w-full flex-row  justify-between px-4 right-0 z-20 items-center bg-white border-b-[3px] border-primary`}
         style={styles.heading}
       >
         <Pressable onPress={hideModal}>
-          <ArrowRight width={25} height={25} />
+          <CloseIconSvg width={25} height={25} />
         </Pressable>
         <Text className="text-[26px] text-black font-bold">Edit Profile</Text>
         <View className="  w-[24px] h-[24px] o rotate-90" />
@@ -95,19 +106,64 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
       <CustomKeyBoardView>
         <View className=" px-1 bg-[#F3F3F3]">
           <View
-            className={` ${Platform.OS === "ios" ? " mt-[100px]" : " mt-[60px]"
-              }  py-4`}
+            className={` ${
+              Platform.OS === "ios" ? " mt-[100px]" : " mt-[60px]"
+            }  py-4`}
           >
             <View
               style={styles.container}
               className="  p-4 rounded-xl  bg-white "
             >
-              <Text className=" text-[26px] font-medium">Photos</Text>
-              <ImageCard
-                id={"1"}
-                uri={userAvatar ? userAvatar.toString() : null}
-                pickImage={pickImage}
-              />
+              <Text className=" text-[26px] font-semibold">Profile Photo</Text>
+
+              <View
+                style={[
+                  {
+                    ...Platform.select({
+                      ios: {
+                        shadowColor: "black",
+                        shadowOpacity: 0.4,
+                        shadowOffset: { width: 0, height: 4 },
+                        shadowRadius: 2,
+                      },
+                      android: {
+                        elevation: 10,
+                      },
+                    }),
+                  },
+                  { height: 200, width: 200 },
+                ]}
+                className=" relative border-4 justify-center
+                 p-2 mx-auto flex-row bg-white  items-center border-primary rounded-full"
+              >
+                {userAvatar ? (
+                  <Image
+                    source={{ uri: userAvatar.toString() }}
+                    className=" rounded-full object-cover w-full h-full"
+                  />
+                ) : user?.photoURL ? (
+                  <Image
+                    source={{ uri: user?.photoURL }}
+                    className=" rounded-full object-cover w-full h-full"
+                  />
+                ) : (
+                  <Text className=" text-primary" style={{ fontSize: hp(10) }}>
+                    {getNameInitials(
+                      auth.currentUser?.displayName
+                        ? auth.currentUser?.displayName
+                        : ""
+                    )}
+                  </Text>
+                )}
+
+                <Pressable
+                  style={styles.container}
+                  onPress={() => pickImage()}
+                  className=" absolute -right-5 top-5"
+                >
+                  <PenBlue width={40} />
+                </Pressable>
+              </View>
             </View>
 
             <View
@@ -180,8 +236,9 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
               </Text>
               <View className=" flex-row mt-[7px] items-center justify-between">
                 <Text
-                  className={` text-[19px]  ${phonenumberOnProfile ? "text-primary " : ""
-                    }`}
+                  className={` text-[19px]  ${
+                    phonenumberOnProfile ? "text-primary " : ""
+                  }`}
                 >
                   Show phone number on profile
                 </Text>
@@ -195,8 +252,9 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
               </View>
               <View className=" flex-row mt-2 items-center justify-between">
                 <Text
-                  className={` text-[19px]  ${addresOnProfile ? "text-primary " : ""
-                    }`}
+                  className={` text-[19px]  ${
+                    addresOnProfile ? "text-primary " : ""
+                  }`}
                 >
                   Show address on profile
                 </Text>
@@ -210,8 +268,9 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
               </View>
               <View className=" flex-row mt-2 items-center justify-between">
                 <Text
-                  className={` text-[19px]  ${linkedAccountOnProfile ? "text-primary " : ""
-                    }`}
+                  className={` text-[19px]  ${
+                    linkedAccountOnProfile ? "text-primary " : ""
+                  }`}
                 >
                   Show linked accounts on profile
                 </Text>
@@ -231,12 +290,14 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
             >
               <Text className=" text-[26px] font-medium">Confirm</Text>
 
-              <Pressable className=" mt-[7px]" onPress={() => { }}>
+              <Pressable className=" mt-[7px]" onPress={() => {}}>
                 <LinearGradient
                   colors={[Colors.primary, "#85DBF9"]}
                   className="mx-auto p-2 rounded-lg w-[200px] items-center justify-center"
                 >
-                  <Text className=" text-white text-[26px] font-bold">Save Changes</Text>
+                  <Text className=" text-white text-[26px] font-bold">
+                    Save Changes
+                  </Text>
                 </LinearGradient>
               </Pressable>
             </View>

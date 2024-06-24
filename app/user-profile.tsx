@@ -60,7 +60,7 @@ const UserProfile = () => {
                   },
                 }),
               },
-              { height: hp(25), width: hp(26) },
+              { height: 200, width: 200 },
             ]}
             className=" relative border-4 justify-center
                  p-2 mx-auto flex-row bg-white  items-center border-primary rounded-full"
