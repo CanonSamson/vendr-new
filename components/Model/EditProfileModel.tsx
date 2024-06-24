@@ -23,6 +23,7 @@ import { Colors } from "@/constants/Colors";
 import Pen from "@/assets/icon/pen.svg";
 import { StatusBar } from "expo-status-bar";
 import CustomKeyBoardView from "../CustomKeyBoardView";
+import { ArrowRight } from "@/constants/Icons";
 
 const ArrowDown = require("@/assets/icon/arrow-down.png");
 
@@ -59,7 +60,7 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
   const [phonenumberOnProfile, setPhonenumberOnProfile] = useState(false);
   const [addresOnProfile, setAddressOnProile] = useState(false);
   const [linkedAccountOnProfile, setLinkedAccountOnProfile] = useState(false);
-  const onSubmit = async (values: SignUpFormValues) => {};
+  const onSubmit = async (values: SignUpFormValues) => { };
 
   const { errors, touched, handleChange, values, handleSubmit } =
     useFormik<SignUpFormValues>({
@@ -80,27 +81,22 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
     >
       <StatusBar style="dark" />
       <View
-        className={` ${
-          Platform.OS === "ios" ? " pt-[60px]" : " pt-[10px]"
-        } pb-4  absolute top-0 w-full flex-row  justify-between px-4 right-0 z-20 items-center bg-white border-b-[2px] border-primary`}
+        className={` ${Platform.OS === "ios" ? " pt-[60px]" : " pt-[10px]"
+          } pb-4  absolute top-0 w-full flex-row  justify-between px-4 right-0 z-20 items-center bg-white border-b-[2px] border-primary`}
         style={styles.heading}
       >
         <Pressable onPress={hideModal}>
-          <Image
-            source={ArrowDown}
-            className=" w-[24px] h-[24px] object-contain rotate-90"
-          />
+          <ArrowRight width={25} height={25} />
         </Pressable>
-        <Text className="text-xl text-black font-medium">Edit Profile</Text>
+        <Text className="text-[26px] text-black font-bold">Edit Profile</Text>
         <View className="  w-[24px] h-[24px] o rotate-90" />
       </View>
 
       <CustomKeyBoardView>
         <View className=" px-[10px]">
           <View
-            className={` ${
-              Platform.OS === "ios" ? " mt-[100px]" : " mt-[60px]"
-            }  py-4`}
+            className={` ${Platform.OS === "ios" ? " mt-[100px]" : " mt-[60px]"
+              }  py-4`}
           >
             <View
               style={styles.container}
@@ -119,11 +115,11 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
               className="  p-5 mt-[20px] rounded-xl  bg-white "
             >
               <View className=" flex-row items-center">
-                <Text className=" text-[26px] mr-1 font-medium">Title</Text>
-                <Pen width={24} height={24} />
+                <Text className=" text-[26px] mr-1 font-medium">Bio</Text>
+                <Pen width={16} height={16} />
               </View>
               <TextInput
-                className=" py-2"
+                className=" py-2 text-[18px]"
                 placeholder={"Tap here to add a store bio."}
                 placeholderTextColor={"gray"}
               />
@@ -135,7 +131,7 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
             >
               <View className=" flex-row items-center">
                 <Text className=" text-[26px] mr-1 font-medium">Address</Text>
-                <Pen width={24} height={24} />
+                <Pen width={16} height={16} />
               </View>
 
               <InputField
@@ -184,9 +180,8 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
               </Text>
               <View className=" flex-row mt-[20px] items-center justify-between">
                 <Text
-                  className={` text-[19px]  ${
-                    phonenumberOnProfile ? "text-primary " : ""
-                  }`}
+                  className={` text-[19px]  ${phonenumberOnProfile ? "text-primary " : ""
+                    }`}
                 >
                   Show phone number on profile
                 </Text>
@@ -200,9 +195,8 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
               </View>
               <View className=" flex-row mt-2 items-center justify-between">
                 <Text
-                  className={` text-[19px]  ${
-                    addresOnProfile ? "text-primary " : ""
-                  }`}
+                  className={` text-[19px]  ${addresOnProfile ? "text-primary " : ""
+                    }`}
                 >
                   Show address on profile
                 </Text>
@@ -216,9 +210,8 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
               </View>
               <View className=" flex-row mt-2 items-center justify-between">
                 <Text
-                  className={` text-[19px]  ${
-                    linkedAccountOnProfile ? "text-primary " : ""
-                  }`}
+                  className={` text-[19px]  ${linkedAccountOnProfile ? "text-primary " : ""
+                    }`}
                 >
                   Show linked accounts on profile
                 </Text>
@@ -238,12 +231,12 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
             >
               <Text className=" text-[26px] font-medium">Confirm</Text>
 
-              <Pressable className=" mt-[20px]" onPress={() => {}}>
+              <Pressable className=" mt-[20px]" onPress={() => { }}>
                 <LinearGradient
                   colors={[Colors.primary, "#85DBF9"]}
-                  className="mx-auto p-3 rounded-lg w-[200px] items-center justify-center"
+                  className="mx-auto p-2 rounded-lg w-[200px] items-center justify-center"
                 >
-                  <Text className=" text-white text-[26px]">List item</Text>
+                  <Text className=" text-white text-[26px] font-bold">Save Changes</Text>
                 </LinearGradient>
               </Pressable>
             </View>

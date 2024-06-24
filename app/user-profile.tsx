@@ -39,7 +39,7 @@ const UserProfile = () => {
 
       <View
         style={{ marginTop: Platform.OS === "ios" ? hp(1) : hp(1.6) }}
-        className="  bg-[#F3F3F3] justify-center   px-1 pt-2  "
+        className="  bg-[#F3F3F3] justify-center   px-1 pt-3"
       >
         <View
           style={styles.container}
