@@ -36,7 +36,7 @@ const UserProfile = () => {
       <StatusBar backgroundColor="white" style="dark" />
 
       <View
-        style={{ marginTop: Platform.OS === "ios" ? hp(1) : hp(1.6) }}
+        style={{ marginTop:hp(1) }}
         className="    justify-between flex-1 bg-[#F3F3F3]  px-1 "
       >
         <View className=" ">

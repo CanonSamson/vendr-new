@@ -66,7 +66,7 @@ function AppRoutes() {
           options={{
             animation: "slide_from_bottom",
             gestureDirection: "vertical",
-            animationDuration: 250,
+            animationDuration: 175,
             headerShown: false,
           }}
         />
@@ -75,7 +75,7 @@ function AppRoutes() {
           options={{
             animation: "slide_from_bottom",
             gestureDirection: "vertical",
-            animationDuration: 250,
+            animationDuration: 175,
             header: () => (
               <View
                 className={`${
@@ -103,7 +103,7 @@ function AppRoutes() {
           options={{
             animation: "slide_from_bottom",
             gestureDirection: "vertical",
-            animationDuration: 250,
+            animationDuration: 175,
             header: () => (
               <View
                 className="pt-14 pb-4 z-20 flex-row  justify-between items-center 
@@ -128,7 +128,7 @@ function AppRoutes() {
           options={{
             animation: "slide_from_bottom",
             gestureDirection: "vertical",
-            animationDuration: 250,
+            animationDuration: 175,
             header: () => (
               <View
                 className="pt-14 pb-4 z-20 flex-row  justify-between items-center 

@@ -39,7 +39,7 @@ const UserProfile = () => {
 
       <View
         style={{ marginTop: Platform.OS === "ios" ? hp(1) : hp(1.6) }}
-        className="  bg-[#F3F3F3] justify-center   px-1 pt-3"
+        className="  bg-[#F3F3F3] justify-center   px-1 pt-5"
       >
         <View
           style={styles.container}
@@ -60,7 +60,7 @@ const UserProfile = () => {
                   },
                 }),
               },
-              { height: hp(20), width: hp(20) },
+              { height: hp(25), width: hp(26) },
             ]}
             className=" relative border-4 justify-center
                  p-2 mx-auto flex-row bg-white  items-center border-primary rounded-full"
@@ -100,13 +100,13 @@ const UserProfile = () => {
           </Text>
           <Text
             style={{ width: wp(75) }}
-            className=" text-[20px] mx-auto text-black text-center mt-10"
+            className=" text-[21px] mx-auto text-black text-center mt-10"
           >
             Member since {convertDateFormat(user?.joinAt ?? "")}
           </Text>
           <Text
             style={{ width: wp(75) }}
-            className=" text-[20px] mt-2 mx-auto text-black text-center  pb-4"
+            className=" text-[21px] mt-2 mx-auto text-black text-center  pb-4"
           >
             Based in {user?.address},{user?.zipcode}
           </Text>
@@ -137,7 +137,7 @@ const UserProfile = () => {
           </View>
         </Pressable>
 
-        <View className=" pb-[100px] flex-row  items-center justify-around mt-[7px]">
+        <View className=" pb-[100px] flex-row  items-center justify-around mt-[13px]">
           <Pressable
             onPress={() => router.push("/(settings)")}
             className=" items-center px-2"
