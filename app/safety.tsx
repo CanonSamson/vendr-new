@@ -11,7 +11,7 @@ const safety = () => {
       <ScrollView contentContainerStyle={{}} className=" flex-1 w-full  ">
         <View
           style={styles.container}
-          className="rounded-[14px] mt-2   mx-1 bg-white p-5"
+          className="rounded-[14px] mt-1   mx-1 bg-white p-5"
         >
           <Text className=" text-[26px] text-primary font-semibold">
             Pay using PayPal service fees:
