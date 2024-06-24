@@ -73,10 +73,29 @@ function AppRoutes() {
         <Stack.Screen
           name="user-profile"
           options={{
+            animation: "slide_from_bottom",
+            gestureDirection: "vertical",
             animationDuration: 175,
             header: () => (
               <Header
                 title="User Profile"
+                Left={<ArrowRight width={25} height={25} />}
+                hendleLeft={() => router.back()}
+                hendleRight={() => {}}
+                Right={<View className="w-[25px] h-[25px] o rotate-90" />}
+              />
+            ),
+          }}
+        />
+        <Stack.Screen
+          name="edit-user-profile"
+          options={{
+            animation: "slide_from_bottom",
+            gestureDirection: "vertical",
+            animationDuration: 175,
+            header: () => (
+              <Header
+                title="Edit Profile"
                 Left={<ArrowRight width={25} height={25} />}
                 hendleLeft={() => router.back()}
                 hendleRight={() => {}}
@@ -146,23 +165,3 @@ export default function RootLayout() {
     </AuthProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  heading: {
-    // For iOS
-    shadowColor: "gray",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.5,
-    shadowRadius: 3,
-    // For Android
-    elevation: 10,
-  },
-  headerStyle: {
-    backgroundColor: "#f8f8f8",
-    borderBottomWidth: 3,
-    borderBottomColor: Colors.primary,
-  },
-  headerTitleStyle: {
-    fontWeight: "bold",
-  },
-});

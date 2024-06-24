@@ -4,7 +4,6 @@ import {
   Modal,
   Platform,
   Pressable,
-  ScrollView,
   StyleSheet,
   Switch,
   Text,
@@ -12,17 +11,14 @@ import {
   View,
 } from "react-native";
 import React, { useState } from "react";
-import ImageCard from "../ImageCard";
 import * as ImagePicker from "expo-image-picker";
 
-import InputField from "../InputField";
 import { useFormik } from "formik";
 import { signinSchema } from "@/validation/auth";
 import { LinearGradient } from "expo-linear-gradient";
 import { Colors } from "@/constants/Colors";
 import Pen from "@/assets/icon/pen.svg";
 import { StatusBar } from "expo-status-bar";
-import CustomKeyBoardView from "../CustomKeyBoardView";
 import { CloseIconSvg } from "@/constants/Icons";
 import { useAuth } from "@/context/GlobalContext";
 import { getNameInitials } from "@/utils/functions";
@@ -35,7 +31,9 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { auth } from "@/firebase_config";
-import Header from "../layout/Header";
+import CustomKeyBoardView from "@/components/CustomKeyBoardView";
+import InputField from "@/components/InputField";
+import Header from "@/components/layout/Header";
 
 interface EditProfileModelProps {
   modalVisible: boolean;
@@ -85,21 +83,10 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
     });
 
   return (
-    <Modal
-      visible={modalVisible}
-      onRequestClose={hideModal}
-      animationType="slide"
-    >
+    <>
       <StatusBar style="dark" />
-      <Header
-        Left={<CloseIconSvg width={25} height={25} />}
-        hendleLeft={hideModal}
-        hendleRight={() => {}}
-        Right={<View className=" w-[24px] h-[24px] o rotate-90" />}
-        title="Edit Profile"
-      />
 
-      <CustomKeyBoardView>
+    <CustomKeyBoardView>
         <View className=" px-1 bg-[#F3F3F3]">
           <View className={` mt-2`}>
             <View
@@ -127,7 +114,7 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
                   { height: 200, width: 200 },
                 ]}
                 className=" relative border-4 justify-center
-                 p-2 mx-auto flex-row bg-white  items-center border-primary rounded-full"
+                   p-2 mx-auto flex-row bg-white  items-center border-primary rounded-full"
               >
                 {userAvatar ? (
                   <Image
@@ -297,22 +284,13 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
           </View>
         </View>
       </CustomKeyBoardView>
-    </Modal>
+    </>
   );
 };
 
 export default EditProfileModel;
 
 const styles = StyleSheet.create({
-  heading: {
-    // For iOS
-    shadowColor: "#000",
-    shadowOpacity: 0.1,
-    shadowOffset: { width: 0, height: 1 },
-    shadowRadius: 3,
-    // For Android
-    elevation: 5,
-  },
   container: {
     ...Platform.select({
       ios: {
@@ -323,7 +301,6 @@ const styles = StyleSheet.create({
       },
       android: {
         elevation: 5,
-        borderColor: "rgba(0, 0, 0, 0.1)",
       },
     }),
   },

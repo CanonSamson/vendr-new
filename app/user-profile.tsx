@@ -12,7 +12,6 @@ import Pen from "@/assets/svg/pen_blue.svg";
 import SettingsIcon from "@/assets/svg/Settings.svg";
 import SafteyIcon from "@/assets/svg/saftey.svg";
 import { router } from "expo-router";
-import EditProfileModel from "@/components/Model/EditProfileModel";
 import { useAuth } from "@/context/GlobalContext";
 import { auth } from "@/firebase_config";
 const ArrowDown = require("@/assets/icon/arrow-down.png");
@@ -26,16 +25,11 @@ import {
 import { convertDateFormat, getNameInitials } from "@/utils/functions";
 import { StatusBar } from "expo-status-bar";
 const UserProfile = () => {
-  const [editProfile, setEditProfile] = useState(false);
   const { user } = useAuth();
 
   return (
     <>
       <StatusBar backgroundColor="white" style="dark" />
-      <EditProfileModel
-        modalVisible={editProfile}
-        hideModal={() => setEditProfile(false)}
-      />
 
       <View
         style={{ marginTop: Platform.OS === "ios" ? hp(1) : hp(1.6) }}
@@ -82,7 +76,7 @@ const UserProfile = () => {
 
             <Pressable
               style={styles.container}
-              onPress={() => setEditProfile(true)}
+              onPress={() => router.push(`edit-user-profile`)}
               className=" absolute -right-5 top-5"
             >
               <Pen width={40} />
