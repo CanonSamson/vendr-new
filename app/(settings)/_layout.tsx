@@ -10,10 +10,21 @@ export default function RootLayout() {
         <Stack.Screen
           name="index"
           options={{
+            animation: "slide_from_bottom",
+            gestureDirection: "vertical",
+            animationDuration: 250,
             headerShown: false,
           }}
         />
-        <Stack.Screen name="privacy" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="privacy"
+          options={{
+            animation: "slide_from_bottom",
+            gestureDirection: "vertical",
+            animationDuration: 250,
+            headerShown: false,
+          }}
+        />
       </Stack>
     </>
   );

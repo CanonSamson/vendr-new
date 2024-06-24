@@ -47,7 +47,7 @@ export default function HomeScreen() {
   const [productData, setProductData] = useState<ProductDataMap>(ProductObject);
   const [viewProductDetails, setViewProductDetails] = useState<ProductData>();
   const [filterProduct, setFilterProduct] = useState(false);
-  const { confirmAnicationModal, setConfirmAnicationModal } = useModal();
+  const { confirmAnicationModal, setConfirmAnicationModal, setListAnItemModal } = useModal();
 
   const triggerSwipe = (direction: number) => {
     Animated.timing(swipe, {

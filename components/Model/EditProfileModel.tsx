@@ -82,7 +82,7 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
       <StatusBar style="dark" />
       <View
         className={` ${Platform.OS === "ios" ? " pt-[60px]" : " pt-[10px]"
-          } pb-4  absolute top-0 w-full flex-row  justify-between px-4 right-0 z-20 items-center bg-white border-b-[2px] border-primary`}
+          } pb-4  absolute top-0 w-full flex-row  justify-between px-4 right-0 z-20 items-center bg-white border-b-[3px] border-primary`}
         style={styles.heading}
       >
         <Pressable onPress={hideModal}>
@@ -93,7 +93,7 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
       </View>
 
       <CustomKeyBoardView>
-        <View className=" px-[10px]">
+        <View className=" px-1 bg-[#F3F3F3]">
           <View
             className={` ${Platform.OS === "ios" ? " mt-[100px]" : " mt-[60px]"
               }  py-4`}
@@ -112,7 +112,7 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
 
             <View
               style={styles.container}
-              className="  p-5 mt-[20px] rounded-xl  bg-white "
+              className="  p-5 mt-[7px] rounded-xl  bg-white "
             >
               <View className=" flex-row items-center">
                 <Text className=" text-[26px] mr-1 font-medium">Bio</Text>
@@ -127,7 +127,7 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
 
             <View
               style={styles.container}
-              className="  p-4 mt-[20px] rounded-xl  bg-white "
+              className="  p-4 mt-[7px] rounded-xl  bg-white "
             >
               <View className=" flex-row items-center">
                 <Text className=" text-[26px] mr-1 font-medium">Address</Text>
@@ -139,7 +139,7 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
                 onChangeText={handleChange("address")}
                 placeholder="Address Line"
                 error={touched.address && errors?.address}
-                style={" mt-[20px]"}
+                style={" mt-[7px]"}
               />
 
               <InputField
@@ -147,7 +147,7 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
                 onChangeText={handleChange("address")}
                 placeholder="City"
                 error={touched.address && errors?.address}
-                style={" mt-[20px]"}
+                style={" mt-[7px]"}
               />
               <View className="flex-row flex-wrap mt-5 -mx-2">
                 <View className="w-1/2 px-2 mb-4">
@@ -173,12 +173,12 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
 
             <View
               style={styles.container}
-              className="  p-4 mt-[20px] rounded-xl  bg-white "
+              className="  p-4 mt-[7px] rounded-xl  bg-white "
             >
               <Text className=" text-[26px] font-medium">
                 Appearance Privacy
               </Text>
-              <View className=" flex-row mt-[20px] items-center justify-between">
+              <View className=" flex-row mt-[7px] items-center justify-between">
                 <Text
                   className={` text-[19px]  ${phonenumberOnProfile ? "text-primary " : ""
                     }`}
@@ -227,11 +227,11 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
 
             <View
               style={styles.container}
-              className=" p-4 mt-[20px] rounded-xl  bg-white "
+              className=" p-4 mt-[7px] rounded-xl  bg-white "
             >
               <Text className=" text-[26px] font-medium">Confirm</Text>
 
-              <Pressable className=" mt-[20px]" onPress={() => { }}>
+              <Pressable className=" mt-[7px]" onPress={() => { }}>
                 <LinearGradient
                   colors={[Colors.primary, "#85DBF9"]}
                   className="mx-auto p-2 rounded-lg w-[200px] items-center justify-center"

@@ -7,6 +7,7 @@ import {
   TextInput,
   Pressable,
   Image,
+  Platform,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import ImageCard from "../components/ImageCard";
@@ -103,7 +104,7 @@ const ListAnItem: React.FC = () => {
       <StatusBar style="dark" hidden={false} />
 
       <CustomKeyBoardView>
-        <View style={styles.container}>
+        <View style={styles.container} className="bg-[#F3F3F3]">
           <View style={styles.innercontainer}>
             <View style={styles.heading}>
               <Text
@@ -184,7 +185,10 @@ const ListAnItem: React.FC = () => {
             />
           </View>
           <View style={styles.innercontainer}>
-            <Text style={{ fontSize: hp(3.2) }} className="  mr-2 font-semibold ">
+            <Text
+              style={{ fontSize: hp(3.2) }}
+              className="  mr-2 font-semibold "
+            >
               Search
             </Text>
             <View className=" flex-row justify-between mt-[15px] ">
@@ -245,7 +249,7 @@ const ListAnItem: React.FC = () => {
               />
             </View>
 
-            <Text className="my-4 text-[24px]  text-primary text-p font-mediumrimary">
+            <Text className="my-4 text-[24px]  text-primary text-p ">
               Condition
             </Text>
             <View className=" flex-row  w-full gap-2">
@@ -375,7 +379,12 @@ const ListAnItem: React.FC = () => {
                 colors={[Colors.primary, "#85DBF9"]}
                 className="mx-auto p-3 rounded-xl w-[200px] items-center  justify-center"
               >
-                <Text style={styles.actionButtonListItemText} className="font-semibold">List item</Text>
+                <Text
+                  style={styles.actionButtonListItemText}
+                  className="font-semibold"
+                >
+                  List item
+                </Text>
               </LinearGradient>
             </Pressable>
           </View>
@@ -390,22 +399,28 @@ export default ListAnItem;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F3F3F3",
+
     padding: 0,
-    paddingTop:2,
-    paddingBottom:2
+    paddingTop: 2,
+    paddingBottom: 2,
   },
   innercontainer: {
     borderRadius: 14,
     backgroundColor: "#fff",
-    shadowColor: "#000",
-    shadowOpacity: 0.1,
-    shadowOffset: { width: 0, height: 1 },
-    shadowRadius: 5,
-    elevation: 5,
     margin: 4,
     position: "relative",
     padding: 10,
+    ...Platform.select({
+      ios: {
+        shadowColor: "black",
+        shadowOpacity: 0.2,
+        shadowOffset: { width: 0, height: 3 },
+        shadowRadius: 2,
+      },
+      android: {
+        elevation: 5,
+      },
+    }),
   },
 
   heading: {

@@ -52,10 +52,21 @@ function AppRoutes() {
           options={{ headerShown: false }}
         />
         <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-        <Stack.Screen name="(settings)" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="(settings)"
+          options={{
+            animation: "slide_from_bottom",
+            gestureDirection: "vertical",
+            animationDuration: 250,
+            headerShown: false,
+          }}
+        />
         <Stack.Screen
           name="user-profile"
           options={{
+            animation: "slide_from_bottom",
+            gestureDirection: "vertical",
+            animationDuration: 250,
             header: () => (
               <View
                 className={`${
@@ -81,6 +92,9 @@ function AppRoutes() {
         <Stack.Screen
           name="list-an-item"
           options={{
+            animation: "slide_from_bottom",
+            gestureDirection: "vertical",
+            animationDuration: 250,
             header: () => (
               <View
                 className="pt-14 pb-4 z-20 flex-row  justify-between items-center 
@@ -103,6 +117,9 @@ function AppRoutes() {
         <Stack.Screen
           name="safety"
           options={{
+            animation: "slide_from_bottom",
+            gestureDirection: "vertical",
+            animationDuration: 250,
             header: () => (
               <View
                 className="pt-14 pb-4 z-20 flex-row  justify-between items-center 
