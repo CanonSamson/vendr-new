@@ -44,29 +44,3 @@ const Buying: React.FC = () => {
 };
 
 export default Buying;
-
-const styles = StyleSheet.create({
-  heading: {
-    // For iOS
-    shadowColor: "gray",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.5,
-    shadowRadius: 3,
-    // For Android
-    elevation: 10,
-  },
-  container: {
-    shadowColor: "gray",
-    ...Platform.select({
-      ios: {
-        shadowOpacity: 0.5,
-        shadowOffset: { width: 0, height: 1 },
-        shadowRadius: 3,
-      },
-      android: {
-        elevation: 40,
-        backgroundColor: "white",
-      },
-    }),
-  },
-});

@@ -177,16 +177,6 @@ const UserProfile = () => {
 export default UserProfile;
 
 const styles = StyleSheet.create({
-  heading: {
-    // For iOS
-    shadowColor: "gray",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.5,
-    shadowRadius: 3,
-    // For Android
-    elevation: 10,
-  },
-
   container: {
     ...Platform.select({
       ios: {

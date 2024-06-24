@@ -4,16 +4,13 @@ import { ActionIcon, ArrowDown, FilterIcon } from "@/constants/Icons";
 import { LogoV1White } from "@/constants/Vector";
 import { Colors } from "@/constants/Colors";
 import { LinearGradient } from "expo-linear-gradient";
-import { FlatList } from "react-native";
-import { chatData } from "@/constants/testdata";
-import MessageCard from "@/components/MessageCard";
 import { router } from "expo-router";
 
 const Messages = () => {
   return (
     <>
       <LinearGradient
-        colors={[Colors.primary, Colors.primary, "#85DBF9"]}
+        colors={["#00A3FF", "#85DBF9"]}
         className=" pt-14  px-4 items-center relative rounded-md  pb-5"
       >
         <View className="  px-4 w-full justify-center items-center relative flex-row  ">

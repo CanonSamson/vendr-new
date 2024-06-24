@@ -1,16 +1,16 @@
+import React, { useEffect } from "react";
+import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useFonts } from "expo-font";
 import { router, Stack, useRouter, useSegments } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-import React, { useEffect } from "react";
-import { Platform, Pressable, StyleSheet, Text } from "react-native";
 import "react-native-reanimated";
 import { Colors } from "../constants/Colors";
 import { AuthProvider, useAuth } from "@/context/GlobalContext";
 import { ModalProvider, useModal } from "@/context/ModalContext";
 import ConfirmAnicationModal from "@/components/Model/ConfirmAnicationModal";
-import { View } from "react-native";
 import { ArrowRight, CloseIconSvg } from "@/constants/Icons";
+import Header from "@/components/layout/Header";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -21,7 +21,7 @@ function AppRoutes() {
   const { setConfirmAnicationModal } = useModal();
 
   useEffect(() => {
-    //check  if you is  isAuthenticated
+    //check if you is isAuthenticated
     if (typeof isAuthenticated == "undefined") return;
     const inApp =
       segments[0] ==
@@ -75,27 +75,16 @@ function AppRoutes() {
           options={{
             animationDuration: 175,
             header: () => (
-              <View
-                className={`${
-                  Platform.OS === "ios" ? "pt-14 " : "pt-14"
-                } pb-4 w-full items-center 
-                  justify-between  px-3 flex-row
-                   bg-white border-b-[3px] border-b-primary`}
-                style={[styles.heading]}
-              >
-                <Pressable onPress={() => router.back()}>
-                  <ArrowRight width={25} height={25} />
-                </Pressable>
-
-                <Text className="text-[26px] text-black font-bold">
-                  Profile
-                </Text>
-                <View className="  w-[25px] h-[25px] o rotate-90" />
-              </View>
+              <Header
+                title="User Profile"
+                Left={<ArrowRight width={25} height={25} />}
+                hendleLeft={() => router.back()}
+                hendleRight={() => {}}
+                Right={<View className="w-[25px] h-[25px] o rotate-90" />}
+              />
             ),
           }}
         />
-
         <Stack.Screen
           name="list-an-item"
           options={{
@@ -103,24 +92,16 @@ function AppRoutes() {
             gestureDirection: "vertical",
             animationDuration: 175,
             header: () => (
-              <View
-                className="pt-14 pb-4 z-20 flex-row  justify-between items-center 
-               bg-white  px-4  border-b-[3px] border-primary"
-                style={styles.heading}
-              >
-                <Pressable onPress={() => router.back()}>
-                  <CloseIconSvg width={25} height={25} />
-                </Pressable>
-
-                <Text className="text-[26px] text-black font-bold">
-                  List an Item
-                </Text>
-                <View className="w-[25px]" />
-              </View>
+              <Header
+                title="List An Item"
+                Left={<CloseIconSvg width={25} height={25} />}
+                hendleLeft={() => router.back()}
+                hendleRight={() => {}}
+                Right={<View className="w-[25px]" />}
+              />
             ),
           }}
         />
-
         <Stack.Screen
           name="safety"
           options={{
@@ -128,18 +109,13 @@ function AppRoutes() {
             gestureDirection: "vertical",
             animationDuration: 175,
             header: () => (
-              <View
-                className="pt-14 pb-4 z-20 flex-row  justify-between items-center 
-               bg-white  px-4  border-b-[3px] border-primary"
-                style={styles.heading}
-              >
-                <Pressable onPress={() => router.back()}>
-                  <CloseIconSvg width={25} height={25} />
-                </Pressable>
-
-                <Text className="text-[26px] text-black font-bold">Safety</Text>
-                <View className="w-[25px]" />
-              </View>
+              <Header
+                title="Safety"
+                Left={<CloseIconSvg width={25} height={25} />}
+                hendleLeft={() => router.back()}
+                hendleRight={() => {}}
+                Right={<View className="w-[25px]" />}
+              />
             ),
           }}
         />

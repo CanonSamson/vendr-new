@@ -35,6 +35,7 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { auth } from "@/firebase_config";
+import Header from "../layout/Header";
 
 interface EditProfileModelProps {
   modalVisible: boolean;
@@ -90,33 +91,25 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
       animationType="slide"
     >
       <StatusBar style="dark" />
-      <View
-        className={` ${
-          Platform.OS === "ios" ? " pt-[60px]" : " pt-[10px]"
-        } pb-4  absolute top-0 w-full flex-row  justify-between px-4 right-0 z-20 items-center bg-white border-b-[3px] border-primary`}
-        style={styles.heading}
-      >
-        <Pressable onPress={hideModal}>
-          <CloseIconSvg width={25} height={25} />
-        </Pressable>
-        <Text className="text-[26px] text-black font-bold">Edit Profile</Text>
-        <View className="  w-[24px] h-[24px] o rotate-90" />
-      </View>
+      <Header
+        Left={<CloseIconSvg width={25} height={25} />}
+        hendleLeft={hideModal}
+        hendleRight={() => {}}
+        Right={<View className=" w-[24px] h-[24px] o rotate-90" />}
+        title="Edit Profile"
+      />
 
       <CustomKeyBoardView>
         <View className=" px-1 bg-[#F3F3F3]">
-          <View
-            className={` ${
-              Platform.OS === "ios" ? " mt-[100px]" : " mt-[60px]"
-            }  py-4`}
-          >
+          <View className={` mt-2`}>
             <View
               style={styles.container}
               className="  p-4 rounded-xl  bg-white "
             >
               <Text className=" text-[26px] font-semibold">Profile Photo</Text>
 
-              <View
+              <Pressable
+                onPress={() => pickImage()}
                 style={[
                   {
                     ...Platform.select({
@@ -163,7 +156,7 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
                 >
                   <PenBlue width={40} />
                 </Pressable>
-              </View>
+              </Pressable>
             </View>
 
             <View
@@ -286,7 +279,7 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
 
             <View
               style={styles.container}
-              className=" p-4 mt-[7px] rounded-xl  bg-white "
+              className=" p-4 mt-[7px] rounded-xl  pb-10 bg-white "
             >
               <Text className=" text-[26px] font-medium">Confirm</Text>
 

@@ -110,7 +110,7 @@ export default function HomeScreen() {
     <>
       <StatusBar style="light" hidden={false} />
       <LinearGradient
-        colors={[Colors.primary, Colors.primary, "#85DBF9"]}
+        colors={["#00A3FF", "#85DBF9"]}
         className={`${
           confirmAnicationModal ? " opacity-0" : " opacity-100"
         } z-40   pt-[50px]  px-4 items-center relative pb-[10px]`}

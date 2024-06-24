@@ -15,6 +15,7 @@ import { auth } from "@/firebase_config";
 import { useAuth } from "@/context/GlobalContext";
 import { router } from "expo-router";
 import { Colors } from "@/constants/Colors";
+import Header from "@/components/layout/Header";
 const ArrowDown = require("@/assets/icon/arrow-down.png");
 
 const Settings = () => {
@@ -25,20 +26,16 @@ const Settings = () => {
 
   return (
     <>
-      <View
-        className="pt-14 pb-4  absolute top-0 w-full flex-row justify-between px-4 right-0 z-20 items-center bg-white border-b-[3px] border-primary"
-        style={styles.heading}
-      >
-        <Text className=" text-[#007AFF] opacity-0 ">Back</Text>
-
-        <Text className="text-[26px] text-black font-bold">Settings</Text>
-        <Pressable onPress={() => router.back()}>
-          <Text className=" text-[#007AFF] text-[17px] ">Done</Text>
-        </Pressable>
-      </View>
+      <Header
+        Left={<Text className=" text-[#007AFF] opacity-0">Back</Text>}
+        hendleLeft={() => {}}
+        hendleRight={() => router.back()}
+        Right={<Text className=" text-[#007AFF] text-[17px]">Done</Text>}
+        title="Settings"
+      />
 
       <ScrollView contentContainerStyle={{ flexGrow: 1, marginBottom: 20 }}>
-        <View className=" mt-[100px] p-[10px]">
+        <View className=" p-[7px]">
           <View
             style={styles.container}
             className="  p-4 rounded-xl  bg-white "

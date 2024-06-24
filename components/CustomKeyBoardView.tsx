@@ -28,7 +28,8 @@ const CustomKeyBoardView: React.FC<CustomKeyBoardViewProps> = ({
         bounces={false}
         showsHorizontalScrollIndicator={false}
         keyboardShouldPersistTaps="always"
-        onScroll={() => Keyboard.dismiss()} // Dismiss keyboard on scroll
+        // onScroll={() => Keyboard.dismiss()} 
+        
       >
         {children}
       </ScrollView>

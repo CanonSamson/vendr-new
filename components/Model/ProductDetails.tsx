@@ -46,7 +46,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
     >
       <ScrollView style={{ flex: 1 }}>
         <LinearGradient
-          colors={[Colors.primary, Colors.primary, "#85DBF9"]}
+          colors={["#00A3FF", "#85DBF9"]}
           className=" pt-14  px-4 items-center relative rounded-md pb-5"
         >
           <View className="  px-4 w-full justify-center items-center relative flex-row  ">

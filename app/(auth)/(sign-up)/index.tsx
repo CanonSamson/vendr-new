@@ -20,6 +20,7 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Keyboard } from "react-native";
 
 interface SignUpFormValues {
   lastname: string;
@@ -57,11 +58,12 @@ const SignUp = () => {
     >
       <ScrollView
         contentContainerStyle={{ flexGrow: 1, paddingBottom: 5 }}
-        className=" flex-1  mt-[110px]  "
+        className=" flex-1  mt-1  "
         bounces={false}
         keyboardShouldPersistTaps="always"
+        onScroll={() => Keyboard.dismiss()}
       >
-        <View style={styles.container} className=" flex-1 mx-1 mt-2  bg-white">
+        <View style={styles.container} className=" flex-1 mx-1 mt-[110px]  bg-white">
           <View className="z-20 relative gap-2  p-4 flex-row justify-end ">
             <View
               className={`  bg-primary  border border-primary w-[20px] h-[20px] rounded-full`}
