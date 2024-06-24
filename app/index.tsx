@@ -30,7 +30,6 @@ const Index = () => {
         >
           <ActivityIndicator size="large" color="#42BEED" />
         </View>
-
       </View>
     </>
   );

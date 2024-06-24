@@ -20,14 +20,18 @@ const Header: React.FC<HeaderProps> = ({
 }) => {
   return (
     <View
-      className={` ${Platform.OS === "ios" ? " pt-14" : "  pt-14"} pb-4  ${
+      className={` ${Platform.OS === "ios" ? " pt-14" : "  pt-14"}   ${
         absolute && "absolute"
-      }  top-0 w-full flex-row  justify-between px-4 right-0 z-20 items-center bg-white border-b-[3px] border-primary`}
+      }  top-0 w-full flex-row   justify-between  right-0 z-20 items-center bg-white border-b-[3px] border-primary`}
       style={styles.heading}
     >
-      <Pressable onPress={hendleLeft}>{Left}</Pressable>
+      <Pressable onPress={hendleLeft} className="p-4 px-7   ">
+        {Left}
+      </Pressable>
       <Text className="text-[26px] text-black font-bold">{title}</Text>
-      <Pressable onPress={hendleRight}>{Right}</Pressable>
+      <Pressable onPress={hendleRight} className="p-4 px-7  ">
+        {Right}
+      </Pressable>
     </View>
   );
 };

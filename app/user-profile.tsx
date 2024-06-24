@@ -78,7 +78,7 @@ const UserProfile = () => {
             <Pressable
               style={styles.container}
               onPress={() => router.push(`edit-user-profile`)}
-              className=" absolute -right-5 top-5"
+              className=" active:scale-95 duration-300 absolute -right-5 top-5"
             >
               <Pen width={40} />
             </Pressable>

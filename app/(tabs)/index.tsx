@@ -1,5 +1,4 @@
 import Card from "@/components/Card";
-import { Colors } from "@/constants/Colors";
 import { PersonIon, PlusIon } from "@/constants/Icons";
 import { ProductData, ProductObject } from "@/constants/testdata";
 import { LogoV1White } from "@/constants/Vector";
@@ -15,8 +14,6 @@ import {
 import SwiperButtons from "@/components/SwiperButtons";
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useRef, useState } from "react";
-import { GestureResponderEvent } from "react-native";
-import { PanResponderGestureState } from "react-native";
 import { router } from "expo-router";
 import FilterProductModal from "@/components/Model/FIlterModel";
 import { useModal } from "@/context/ModalContext";

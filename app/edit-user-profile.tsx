@@ -86,7 +86,7 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
     <>
       <StatusBar style="dark" />
 
-    <CustomKeyBoardView>
+      <CustomKeyBoardView>
         <View className=" px-1 bg-[#F3F3F3]">
           <View className={` mt-2`}>
             <View
@@ -139,7 +139,7 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
                 <Pressable
                   style={styles.container}
                   onPress={() => pickImage()}
-                  className=" absolute -right-5 top-5"
+                  className=" absolute active:scale-95 duration-300 -right-5 top-5"
                 >
                   <PenBlue width={40} />
                 </Pressable>
@@ -270,10 +270,13 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
             >
               <Text className=" text-[26px] font-medium">Confirm</Text>
 
-              <Pressable className=" mt-[7px]" onPress={() => {}}>
+              <Pressable
+                className="active:scale-95 active:opacity-80 duration-300 mt-[7px]"
+                onPress={() => {}}
+              >
                 <LinearGradient
                   colors={[Colors.primary, "#85DBF9"]}
-                  className="mx-auto p-2 rounded-lg w-[200px] items-center justify-center"
+                  className="mx-auto  p-2 rounded-lg w-[200px] items-center justify-center"
                 >
                   <Text className=" text-white text-[26px] font-bold">
                     Save Changes

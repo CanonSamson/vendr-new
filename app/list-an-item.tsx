@@ -374,7 +374,7 @@ const ListAnItem: React.FC = () => {
               </Text>
             </View>
 
-            <Pressable className=" mt-4" onPress={() => {}}>
+            <Pressable className=" active:scale-95 active:opacity-80 mt-4" onPress={() => {}}>
               <LinearGradient
                 colors={[Colors.primary, "#85DBF9"]}
                 className="mx-auto p-3 rounded-xl w-[200px] items-center  justify-center"
