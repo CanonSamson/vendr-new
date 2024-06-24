@@ -89,7 +89,7 @@ const UserProfile = () => {
             </Pressable>
           </View>
 
-          <Text className=" text-center mt-[10px] text-[30px] font-bold">
+          <Text className=" text-center mt-[7px] text-[30px] font-bold">
             {auth.currentUser?.displayName}
           </Text>
           <Text
@@ -112,28 +112,32 @@ const UserProfile = () => {
           </Text>
         </View>
 
-        <View
-          style={styles.container}
-          className="  mt-[10px] p-4 bg-white rounded-xl"
-        >
-          <Text className="  font-semibold text-primary text-[24px] text-center ">
-            Feedback
-          </Text>
-          <Text className=" font-semibold text-primary text-[25px] text-center mt-2 ">
-            Coming Soon
-          </Text>
-        </View>
+        <Pressable onPress={() => {}}>
+          <View
+            style={styles.container}
+            className="  mt-[7px] p-4 bg-white rounded-xl"
+          >
+            <Text className="  font-semibold text-primary text-[24px] text-center ">
+              Feedback
+            </Text>
+            <Text className=" font-semibold text-primary text-[25px] text-center mt-2 ">
+              Coming Soon
+            </Text>
+          </View>
+        </Pressable>
 
-        <View
-          style={styles.container}
-          className="  mt-[10px] p-4 bg-white rounded-xl"
-        >
-          <Text className=" font-semibold text-primary text-[24px] text-center ">
-            Preview Profile
-          </Text>
-        </View>
+        <Pressable onPress={() => {}}>
+          <View
+            style={styles.container}
+            className="  mt-[7px] p-4 bg-white rounded-xl"
+          >
+            <Text className=" font-semibold text-primary text-[24px] text-center ">
+              Preview Profile
+            </Text>
+          </View>
+        </Pressable>
 
-        <View className=" pb-[100px] flex-row  items-center justify-around mt-[10px]">
+        <View className=" pb-[100px] flex-row  items-center justify-around mt-[7px]">
           <Pressable
             onPress={() => router.push("/(settings)")}
             className=" items-center px-2"
