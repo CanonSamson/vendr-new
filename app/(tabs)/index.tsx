@@ -135,6 +135,7 @@ export default function HomeScreen() {
           </Pressable>
         </View>
       </LinearGradient>
+
       <View className=" flex items-center relative z-50 justify-center">
         {Object.values(productData).map((item, index) => {
           let isFirst =

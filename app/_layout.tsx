@@ -73,8 +73,6 @@ function AppRoutes() {
         <Stack.Screen
           name="user-profile"
           options={{
-            animation: "slide_from_bottom",
-            gestureDirection: "vertical",
             animationDuration: 175,
             header: () => (
               <Header

@@ -31,8 +31,8 @@ const TabBar: React.FC<BottomTabBarProps> = ({
 }) => {
   return (
     <View
-      style={{ height: Platform.OS === "ios" ? 80 : 75 }}
-      className={`flex-row  items-center justify-evenly bg-white border-t-[3px] border-primary ${
+      style={{ height: Platform.OS === "ios" ? 95 : 75 }}
+      className={`flex-row  items-center justify-evenly bg-white border-t-[2.5px] border-primary ${
         Platform.OS === "ios" ? " pb-[20px] " : " "
       }`}
     >
@@ -89,14 +89,14 @@ const TabBar: React.FC<BottomTabBarProps> = ({
           >
             {IconComponent && (
               <IconComponent
-                width={hp(4)}
-                height={hp(4)}
+                width={hp(4.3)}
+                height={hp(4.3)}
                 color={isFocused ? "#42BEED" : "#B3B3B3"}
               />
             )}
             {typeof label === "string" ? (
               <Text
-                className={`font-bold ${
+                className={`font-bold mt-1 ${
                   isFocused ? "text-primary" : " text-[#B3B3B3]"
                 }`}
               >

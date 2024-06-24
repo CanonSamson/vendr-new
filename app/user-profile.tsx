@@ -6,6 +6,7 @@ import {
   Image,
   ScrollView,
   Pressable,
+  TouchableOpacity
 } from "react-native";
 import React, { useState } from "react";
 import Pen from "@/assets/svg/pen_blue.svg";
@@ -32,7 +33,7 @@ const UserProfile = () => {
       <StatusBar backgroundColor="white" style="dark" />
 
       <View
-        style={{ marginTop: Platform.OS === "ios" ? hp(1) : hp(1.6) }}
+        style={{ marginTop: Platform.OS === "ios" ? hp(2) : hp(1.6) }}
         className="  bg-[#F3F3F3] justify-center   px-1 pt-5"
       >
         <View
@@ -54,7 +55,7 @@ const UserProfile = () => {
                   },
                 }),
               },
-              { height: 200, width: 200 },
+              { height: hp(25), width: hp(26) },
             ]}
             className=" relative border-4 justify-center
                  p-2 mx-auto flex-row bg-white  items-center border-primary rounded-full"
@@ -106,7 +107,7 @@ const UserProfile = () => {
           </Text>
         </View>
 
-        <Pressable onPress={() => {}}>
+        <TouchableOpacity onPress={() => {}}>
           <View
             style={styles.container}
             className="  mt-[7px] p-4 bg-white rounded-xl"
@@ -118,9 +119,9 @@ const UserProfile = () => {
               Coming Soon
             </Text>
           </View>
-        </Pressable>
+        </TouchableOpacity>
 
-        <Pressable onPress={() => {}}>
+        <TouchableOpacity onPress={() => {}}>
           <View
             style={styles.container}
             className="  mt-[7px] p-4 bg-white rounded-xl"
@@ -129,10 +130,10 @@ const UserProfile = () => {
               Preview Profile
             </Text>
           </View>
-        </Pressable>
+        </TouchableOpacity>
 
         <View className=" pb-[100px] flex-row  items-center justify-around mt-[13px]">
-          <Pressable
+          <TouchableOpacity
             onPress={() => router.push("/(settings)")}
             className=" items-center px-2"
           >
@@ -146,8 +147,8 @@ const UserProfile = () => {
             <Text className=" text-[#616161] mt-2   font-semibold text-[20px]">
               Settings
             </Text>
-          </Pressable>
-          <Pressable
+          </TouchableOpacity>
+          <TouchableOpacity
             onPress={() => router.push("/safety")}
             className=" items-center px-2"
           >
@@ -161,7 +162,7 @@ const UserProfile = () => {
             <Text className=" text-[#616161] font-semibold mt-2 text-[20px]">
               Safety
             </Text>
-          </Pressable>
+          </TouchableOpacity>
         </View>
       </View>
     </>

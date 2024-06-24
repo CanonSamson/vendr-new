@@ -6,6 +6,7 @@ import {
   Image,
   ScrollView,
   Pressable,
+  TouchableOpacity
 } from "react-native";
 import React, { useState } from "react";
 import ItemForSaleIcon from "@/assets/icon/ItemForSale.svg";
@@ -59,7 +60,7 @@ const UserProfile = () => {
                     },
                   }),
                 },
-                { height: hp(20), width: hp(20) },
+                { height: hp(25), width: hp(25) },
               ]}
               className=" relative border-4 justify-center
            p-2 mx-auto flex-row bg-white  items-center border-primary rounded-full"
@@ -81,7 +82,7 @@ const UserProfile = () => {
             </Text>
             <Text
               style={{ width: wp(75) }}
-              className=" text-[20px] mx-auto text-black text-center mt-10"
+              className=" text-[20px] mx-auto text-black text-center mt-7"
             >
               Member since Jan 25, 2023
             </Text>
@@ -99,7 +100,7 @@ const UserProfile = () => {
             </Text>
           </View>
 
-          <Pressable onPress={() => {}}>
+          <TouchableOpacity onPress={() => {}}>
             <View
               style={styles.container}
               className="  mt-[7px] p-4 bg-white rounded-xl"
@@ -108,9 +109,9 @@ const UserProfile = () => {
                 Favorite Seller
               </Text>
             </View>
-          </Pressable>
+          </TouchableOpacity>
 
-          <Pressable onPress={() => {}}>
+          <TouchableOpacity onPress={() => {}}>
             <View
               style={styles.container}
               className="  mt-[7px] p-4 bg-white rounded-xl"
@@ -119,10 +120,10 @@ const UserProfile = () => {
                 Report {user.name}
               </Text>
             </View>
-          </Pressable>
+          </TouchableOpacity>
         </View>
-        <View className=" pb-[30px] flex-row  items-center justify-center mt-[7px]">
-          <Pressable onPress={() => {}} className=" items-center px-2">
+        <View className=" pb-[30px] flex-row  items-center justify-center mt-[12px]">
+          <TouchableOpacity onPress={() => {}} className=" items-center px-2">
             <View
               style={styles.container}
               className="  w-[69px] h-[69px]  items-center justify-center 
@@ -133,7 +134,7 @@ const UserProfile = () => {
             <Text className=" text-[#616161] font-semibold mt-2 text-[20px]">
               Items for Sale
             </Text>
-          </Pressable>
+          </TouchableOpacity>
         </View>
       </View>
     </>
