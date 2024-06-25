@@ -1,14 +1,14 @@
 import React from 'react';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, StyleSheet,  } from 'react-native';
 import NopeBtn2 from "@/assets/icon/CardButtons/NopeBtn2";
 
 const CardButtons = () => {
     return (
-        <TouchableOpacity style={styles.outerCircle}>
+        <View style={styles.outerCircle}>
             <View style={styles.innerCircle}>
                 <NopeBtn2 width={115} height={115} style={styles.icon} />
             </View>
-        </TouchableOpacity>
+        </View>
     );
 };
 

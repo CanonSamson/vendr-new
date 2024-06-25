@@ -1,21 +1,12 @@
-import { verticalScale } from "react-native-size-matters";
-import { View, Image, StyleSheet, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import React from "react";
-const line = require("@/assets/icon/line.png");
-const undo = require("@/assets/icon/undo-button.png");
-const search = require("@/assets/icon/search-button.png");
-const offer = require("@/assets/icon/offer-button.png");
-const next = require("@/assets/icon/next-button.png");
+
 import UndoBtn from "@/assets/icon/CardButtons/3DUndoBtn";
 import NopeBtn from "@/assets/icon/CardButtons/3DNopeBtn";
 import LikeBtn from "@/assets/icon/CardButtons/3DLikeBtn";
 import SearchBtn from "@/assets/icon/CardButtons/3DSearchBtn";
 import UnderLine from "@/assets/icon/CardButtons/UnderLine";
 
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
 interface SwiperButtonsProps {
   handleFilter: () => void;
   onSwipeLeft: () => void;
@@ -27,46 +18,26 @@ const SwiperButtons: React.FC<SwiperButtonsProps> = ({
   onSwipeRight,
 }) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.actionRow}>
-        <TouchableOpacity style={styles.smallBtn}>
+    <View className="  relative  justify-end  ">
+      <View className=" flex-row justify-evenly pb-[2px], px-[30px]">
+        <TouchableOpacity className=" pt-[20px] " onPress={() => {}}>
           <UndoBtn />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={onSwipeLeft}>
           <NopeBtn />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={onSwipeRight} className=" ">
           <LikeBtn />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.smallBtn}>
+        <TouchableOpacity className=" pt-[20px]" onPress={handleFilter}>
           <SearchBtn />
         </TouchableOpacity>
       </View>
-      <View style={styles.actionRow}>
+      <View className=" flex-row justify-evenly pb-[2px], px-[30px]">
         <UnderLine />
       </View>
-
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    // backgroundColor: 'grey',
-    // flex: 1,
-    height: 110,
-    justifyContent: 'flex-end',
-  },
-  actionRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-    paddingBottom: 2,
-    paddingHorizontal: 30,
-  },
-  smallBtn: {
-    paddingTop: 20,
-  }
-});
 
 export default SwiperButtons;

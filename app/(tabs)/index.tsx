@@ -157,7 +157,7 @@ export default function HomeScreen() {
           style={{ height: !productModalVisible ? imageH + 20 : "auto" }}
           className={`  ${
             productModalVisible ? "bg-[#F3F3F3] " : "   "
-          } items-center   flex-1  relative z-50 justify-center `}
+          } items-center   flex-1  relative z-40 justify-center `}
         >
           {Object.values(productData).map((item, index) => {
             let isFirst =
