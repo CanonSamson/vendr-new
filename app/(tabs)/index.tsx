@@ -134,14 +134,17 @@ export default function HomeScreen() {
           className={`${
             confirmAnicationModal ? " opacity-0" : " opacity-100"
           } z-40 px-4 items-center relative pb-[10px]`}
-          style={{ height: verticalScale(85), paddingTop: statusBarHeight }}
+          style={{
+            height: verticalScale(85),
+            paddingTop: statusBarHeight + 10,
+          }}
         >
-          <View className="  px-[10px] w-full justify-center items-center relative flex-row  ">
+          <View className="  w-full justify-between items-center relative flex-row  ">
             <Pressable
               onPress={() => router.push("list-an-item")}
               className={` ${
                 productModalVisible ? " opacity-0" : " opacity-100"
-              } active:scale-90 duration-900  absolute left-0`}
+              } active:scale-90 duration-900   `}
             >
               <PlusIon width={40} height={40} />
             </Pressable>
@@ -153,7 +156,7 @@ export default function HomeScreen() {
               onPress={() => router.push("user-profile")}
               className={` ${
                 productModalVisible ? " opacity-0" : " opacity-100"
-              } active:scale-90 duration-900  absolute right-0`}
+              } active:scale-90 duration-900   `}
             >
               <PersonIon width={40} height={40} />
             </Pressable>

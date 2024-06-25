@@ -19,6 +19,7 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { StatusBar } from "expo-status-bar";
 
 interface FilterProductModalProps {
   modalVisible: boolean;
@@ -55,10 +56,10 @@ const FilterProductModal: React.FC<FilterProductModalProps> = ({
           bounces={false}
           showsHorizontalScrollIndicator={false}
         >
-          <View className="flex-1 justify-end mb-auto h-screen items-center bg-black/20">
+          <View className="flex-1 justify-end h-screen items-end bg-black/20">
             <View
               style={{ paddingBottom: insets.bottom + 20 }}
-              className="w-full bg-white rounded-lg p-5 shadow-lg"
+              className="w-full h-auto  mt-auto bg-white rounded-lg px-5 pt-5 shadow-lg"
             >
               <Pressable onPress={hideModal}>
                 <Text
