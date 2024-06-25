@@ -20,4 +20,5 @@ const SvgComponent = (props: SvgProps) => (
     />
   </Svg>
 )
+
 export default SvgComponent

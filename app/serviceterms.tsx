@@ -13,7 +13,6 @@ const serviceterms = () => {
           style={styles.container}
           className="rounded-[14px] mt-2   mx-1 bg-white p-5"
         >
-
           <Text className=" text-[36px] text-primary font-bold">
             Terms of Service & Use
           </Text>
@@ -68,8 +67,6 @@ const serviceterms = () => {
           <Text className=" text-[16px] my-3 leading-[24px]">
             &#x2022; You have not been convicted of or pled no contest to a felony, a sex crime, or any crime involving violence, nor are you required to register as a sex offender..
           </Text>
-
-
           <Text className=" text-[28px] text-primary font-semibold">
             3. Your Account
           </Text>
@@ -140,7 +137,6 @@ const serviceterms = () => {
           <Text className=" text-[28px] text-primary font-semibold">
             7. Rights You Grant Vendr
           </Text>
-
           <Text className=" text-[16px] my-4 leading-[24px]">
             By creating an account, you grant Vendr a worldwide, transferable, sublicensable, royalty-free 
             license to use, copy, display, and distribute any content you post or transmit on the Service. 

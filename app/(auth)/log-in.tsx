@@ -2,7 +2,7 @@ import MainButton from "@/components/button/MainButton";
 import { Vectors } from "@/constants/Vector";
 import { Colors } from "@/constants/Colors";
 import React, { useEffect, useState } from "react";
-import { View, Text, SafeAreaView, Pressable } from "react-native";
+import { View, Text, SafeAreaView, Pressable, TouchableOpacity } from "react-native";
 import LogoV1 from "@/assets/vector/logo-v1.svg";
 import { Link, router } from "expo-router";
 import { useFormik } from "formik";
@@ -67,9 +67,8 @@ const LogIn = () => {
       <CustomKeyBoardView>
         <View
           style={{ width: wp(95), flex: 1 }}
-          className={`${
-            confirmAnicationModal ? " opacity-0" : "opacity-100"
-          } items-center justify-between    mx-auto `}
+          className={`${confirmAnicationModal ? " opacity-0" : "opacity-100"
+            } items-center justify-between    mx-auto `}
         >
           <View style={{ paddingTop: hp(15) }} className="">
             <View
@@ -159,19 +158,17 @@ const LogIn = () => {
             </View>
           </View>
           <View
-            style={{ marginTop: hp(10),   width: wp(70) }}
+            style={{ marginTop: hp(10), width: wp(70) }}
             className=" relative bottom-0 pb-[20px] flex-row items-center "
           >
-            <Pressable
+            <TouchableOpacity
               className=" flex-1  justify-center p-[10px] items-center"
-              onPress={() => {
-                Linking.openURL("https://www.vendr.com/legal/privacy-policy");
-              }}
+              onPress={() => router.push("safety")}
             >
               <Text className=" text-xl text-gray-500 font-medium ">
                 Safety
               </Text>
-            </Pressable>
+            </TouchableOpacity>
             <Pressable
               className=" flex-1  justify-center p-[10px] items-center"
               onPress={() => {
@@ -180,14 +177,12 @@ const LogIn = () => {
             >
               <Text className=" text-xl text-gray-500 font-medium">About</Text>
             </Pressable>
-            <Pressable
+            <TouchableOpacity
               className=" flex-1  justify-center p-2 items-center"
-              onPress={() => {
-                Linking.openURL("https://www.vendr.com/legal/terms-of-use");
-              }}
+              onPress={() => router.push("serviceterms")}
             >
               <Text className=" text-xl text-gray-500 font-medium ">Terms</Text>
-            </Pressable>
+            </TouchableOpacity>
           </View>
         </View>
       </CustomKeyBoardView>

@@ -87,9 +87,7 @@ const Index = () => {
             >
               <TouchableOpacity
                 className=" flex-1  justify-center p-[10px] items-center"
-                onPress={() => {
-                  Linking.openURL("https://www.vendr.com/legal/privacy-policy");
-                }}
+                onPress={() => router.push("safety")}
               >
                 <Text className=" text-xl text-gray-500 font-medium ">
                   Safety
@@ -107,9 +105,7 @@ const Index = () => {
               </TouchableOpacity>
               <TouchableOpacity
                 className=" flex-1  justify-center p-2 items-center"
-                onPress={() => {
-                  Linking.openURL("https://www.vendr.com/legal/terms-of-use");
-                }}
+                onPress={() => router.push("serviceterms")}
               >
                 <Text className=" text-xl text-gray-500 font-medium ">
                   Terms

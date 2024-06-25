@@ -21,14 +21,6 @@ import DownIcon from "@/assets/icon/down-arrow.svg";
 const line = require("@/assets/icon/line.png");
 const offer = require("@/assets/icon/offer-button.png");
 const next = require("@/assets/icon/next-button.png");
-
-
-import UndoBtn from "@/assets/icon/CardButtons/3DUndoBtn";
-import NopeBtn from "@/assets/icon/CardButtons/3DNopeBtn";
-import LikeBtn from "@/assets/icon/CardButtons/3DLikeBtn";
-import SearchBtn from "@/assets/icon/CardButtons/3DSearchBtn";
-import UnderLine from "@/assets/icon/CardButtons/UnderLine";
-
 import Reanimated, {
   useAnimatedStyle,
   useSharedValue,
@@ -187,7 +179,7 @@ const Card: React.FC<CardData> = ({
     <>
       <Reanimated.View
         style={{ top: top }}
-        className={` absolute z-50 top-0 right-0 w-full items-center justify-center`}
+        className={` absolute z-30 top-0   right-0 w-full items-center justify-center`}
       >
         <Animated.View
           style={[isFirst && !modalVisible ? animatedCardStyle : null]}
@@ -353,17 +345,26 @@ const Card: React.FC<CardData> = ({
             </Text>
           </View>
 
-          <View className=" mt-[20px] flex-1 w-full">
+          <View className=" flex-1 w-full">
             <View className=" w-full px-[10px] flex-row">
               <Pressable className=" flex-1 items-end mr-[20px] justify-center">
                 <View className=" w-[80px] items-center justify-end">
-                <NopeBtn />
-
+                  <Image
+                    source={next}
+                    width={200}
+                    className=" w-full "
+                    resizeMode="contain"
+                  />
                 </View>
               </Pressable>
               <Pressable className=" flex-1 items-start justify-center">
                 <View className=" w-[100px] items-center justify-center">
-                 <LikeBtn />
+                  <Image
+                    source={offer}
+                    width={200}
+                    className=" w-full "
+                    resizeMode="contain"
+                  />
                 </View>
               </Pressable>
             </View>

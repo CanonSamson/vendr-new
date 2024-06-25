@@ -33,4 +33,5 @@ const SvgComponent = (props: SvgProps) => (
     </G>
   </Svg>
 )
+
 export default SvgComponent

@@ -8,6 +8,7 @@ import {
   ScrollView,
   Pressable,
   Alert,
+  TouchableOpacity
 } from "react-native";
 import React, { useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
@@ -28,14 +29,14 @@ const Settings = () => {
     <>
       <Header
         Left={<Text className=" text-[#007AFF] opacity-0">Back</Text>}
-        hendleLeft={() => {}}
+        hendleLeft={() => { }}
         hendleRight={() => router.back()}
         Right={<Text className=" text-[#007AFF] text-[17px]">Done</Text>}
         title="Settings"
       />
 
       <ScrollView contentContainerStyle={{ flexGrow: 1, marginBottom: 20 }}>
-        <View className=" p-[7px]">
+        <View className=" p-[7px] pl-1 pr-1">
           <View
             style={styles.container}
             className="  p-4 rounded-xl  bg-white "
@@ -43,9 +44,8 @@ const Settings = () => {
             <Text className=" text-[26px]  font-bold">Notifications</Text>
             <View className=" flex-row  mt-[4px] items-center justify-between">
               <Text
-                className={`${
-                  itemOfferRequests ? "text-primary" : ""
-                } text-[19px] leading-none font-semibold `}
+                className={`${itemOfferRequests ? "text-primary" : ""
+                  } text-[19px] leading-none font-semibold `}
               >
                 Item Offer Requests
               </Text>
@@ -60,9 +60,8 @@ const Settings = () => {
             </View>
             <View className="   flex-row items-center justify-between">
               <Text
-                className={`${
-                  messageReplies ? "text-primary" : ""
-                } text-[19px] leading-none font-semibold `}
+                className={`${messageReplies ? "text-primary" : ""
+                  } text-[19px] leading-none font-semibold `}
               >
                 Message Replies
               </Text>
@@ -76,9 +75,8 @@ const Settings = () => {
             </View>
             <View className=" leading-none flex-row items-center justify-between">
               <Text
-                className={`${
-                  buyingNotifications ? "text-primary" : "text-black"
-                } text-[19px] font-semibold duration-300 `}
+                className={`${buyingNotifications ? "text-primary" : "text-black"
+                  } text-[19px] font-semibold duration-300 `}
               >
                 Buying Notifications
               </Text>
@@ -99,36 +97,42 @@ const Settings = () => {
             <Text className=" text-[26px]  font-bold">Account Information</Text>
             <Text>Verify private information to help secure your account.</Text>
 
-            <View className="  mt-[10px] flex-row items-center justify-between">
-              <Text className=" text-[19px] font-semibold">Phone Number</Text>
-              <View className=" flex-row gap-2 items-center">
-                <Text className=" text-primary">909-956-1534</Text>
+            <TouchableOpacity>
+              <View className="  mt-[10px] flex-row items-center justify-between">
+                <Text className=" text-[19px] font-semibold">Phone Number</Text>
+                <View className=" flex-row gap-2 items-center">
+                  <Text className=" text-primary">909-956-1534</Text>
+                  <Image
+                    source={ArrowDown}
+                    className=" w-[14px] h-[14px] object-contain -rotate-90"
+                  />
+                </View>
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity>
+              <View className="  mt-[10px] flex-row items-center justify-between">
+                <Text className=" text-[19px] font-semibold">Email</Text>
+                <View className=" flex-row gap-2 items-center">
+                  <Text className=" text-primary">{auth.currentUser?.email}</Text>
+
+                  <Image
+                    source={ArrowDown}
+                    className=" w-[14px] h-[14px] object-contain -rotate-90"
+                  />
+                </View>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <View className="  mt-[10px] flex-row items-center justify-between">
+                <Text className=" text-[19px] font-semibold">Connected Accounts</Text>
+
                 <Image
                   source={ArrowDown}
                   className=" w-[14px] h-[14px] object-contain -rotate-90"
                 />
               </View>
-            </View>
-
-            <View className="  mt-[10px] flex-row items-center justify-between">
-              <Text className=" text-[19px] font-semibold">Email</Text>
-              <View className=" flex-row gap-2 items-center">
-                <Text className=" text-primary">{auth.currentUser?.email}</Text>
-
-                <Image
-                  source={ArrowDown}
-                  className=" w-[14px] h-[14px] object-contain -rotate-90"
-                />
-              </View>
-            </View>
-            <View className="  mt-[10px] flex-row items-center justify-between">
-              <Text className=" text-[19px] font-semibold">Connected Accounts</Text>
-
-              <Image
-                source={ArrowDown}
-                className=" w-[14px] h-[14px] object-contain -rotate-90"
-              />
-            </View>
+            </TouchableOpacity>
           </View>
 
           <View
@@ -137,31 +141,37 @@ const Settings = () => {
           >
             <Text className=" text-[26px]  font-bold">Support</Text>
 
-            <View className="  mt-[10px] flex-row items-center justify-between">
-              <Text className=" text-[19px] font-semibold">Terms and Services</Text>
+            <TouchableOpacity>
+              <View className="  mt-[10px] flex-row items-center justify-between">
+                <Text className=" text-[19px] font-semibold">Terms and Services</Text>
 
-              <Image
-                source={ArrowDown}
-                className=" w-[14px] h-[14px] object-contain -rotate-90"
-              />
-            </View>
-            <View className="  mt-[10px] flex-row items-center justify-between">
-              <Text className=" text-[19px] font-semibold">Contact and FAQ</Text>
+                <Image
+                  source={ArrowDown}
+                  className=" w-[14px] h-[14px] object-contain -rotate-90"
+                />
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <View className="  mt-[10px] flex-row items-center justify-between">
+                <Text className=" text-[19px] font-semibold">Contact and FAQ</Text>
 
-              <Image
-                source={ArrowDown}
-                className=" w-[14px] h-[14px] object-contain -rotate-90"
-              />
-            </View>
+                <Image
+                  source={ArrowDown}
+                  className=" w-[14px] h-[14px] object-contain -rotate-90"
+                />
+              </View>
+            </TouchableOpacity>
 
-            <View className="  mt-[10px] flex-row items-center justify-between">
-              <Text className=" text-[19px] font-semibold">Report Bugs</Text>
+            <TouchableOpacity>
+              <View className="  mt-[10px] flex-row items-center justify-between">
+                <Text className=" text-[19px] font-semibold">Report Bugs</Text>
 
-              <Image
-                source={ArrowDown}
-                className=" w-[14px] h-[14px] object-contain -rotate-90"
-              />
-            </View>
+                <Image
+                  source={ArrowDown}
+                  className=" w-[14px] h-[14px] object-contain -rotate-90"
+                />
+              </View>
+            </TouchableOpacity>
           </View>
 
           <View
@@ -170,25 +180,29 @@ const Settings = () => {
           >
             <Text className=" text-[26px]  font-bold">App Settings</Text>
 
-            <View className="  mt-[10px] flex-row items-center justify-between">
-              <Text className=" text-[19px] font-semibold">Privacy and Security</Text>
+            <TouchableOpacity>
+              <View className="  mt-[10px] flex-row items-center justify-between">
+                <Text className=" text-[19px] font-semibold">Privacy and Security</Text>
 
-              <Image
-                source={ArrowDown}
-                className=" w-[14px] h-[14px] object-contain -rotate-90"
-              />
-            </View>
-            <View className="  mt-[10px] flex-row items-center justify-between">
-              <Text className=" text-[19px] font-semibold">Delete Account</Text>
+                <Image
+                  source={ArrowDown}
+                  className=" w-[14px] h-[14px] object-contain -rotate-90"
+                />
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <View className="  mt-[10px] flex-row items-center justify-between">
+                <Text className=" text-[19px] font-semibold">Delete Account</Text>
 
-              <Image
-                source={ArrowDown}
-                className=" w-[14px] h-[14px] object-contain -rotate-90"
-              />
-            </View>
+                <Image
+                  source={ArrowDown}
+                  className=" w-[14px] h-[14px] object-contain -rotate-90"
+                />
+              </View>
+            </TouchableOpacity>
           </View>
 
-          <Pressable
+          <TouchableOpacity
             onPress={() => {
               Alert.alert(
                 "Are you sure you want to logout?",
@@ -214,9 +228,9 @@ const Settings = () => {
             >
               <Text className=" text-white text-[19px] font-semibold">Logout</Text>
             </LinearGradient>
-          </Pressable>
+          </TouchableOpacity>
           <Text className=" text-center mb-[20px] mt-[10px]">
-            Version 0.6.01 Beta
+            Version Pre Alpha
           </Text>
         </View>
       </ScrollView>
