@@ -13,6 +13,8 @@ interface ModalContextType {
   setConfirmAnicationModal: React.Dispatch<React.SetStateAction<boolean>>;
   listAnItemModal: boolean;
   setListAnItemModal: React.Dispatch<React.SetStateAction<boolean>>;
+  productModalVisible: boolean;
+  setProductModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 // Create the context with an undefined initial value
@@ -36,6 +38,7 @@ interface ModalProviderProps {
 export function ModalProvider({ children }: ModalProviderProps) {
   const [confirmAnicationModal, setConfirmAnicationModal] = useState(true);
   const [listAnItemModal, setListAnItemModal] = useState(true);
+  const [productModalVisible, setProductModalVisible] = useState(false);
 
   useSocketConnection();
 
@@ -58,6 +61,8 @@ export function ModalProvider({ children }: ModalProviderProps) {
     setConfirmAnicationModal,
     listAnItemModal,
     setListAnItemModal,
+    productModalVisible,
+    setProductModalVisible,
   };
 
   return (

@@ -9,6 +9,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
+import { useModal } from "@/context/ModalContext";
 
 // Define the keys of the icons object
 type IconNames = "Home" | "Buying" | "Selling" | "Messages";
@@ -29,12 +30,13 @@ const TabBar: React.FC<BottomTabBarProps> = ({
   navigation,
   insets,
 }) => {
+  const { productModalVisible } = useModal();
   return (
     <View
       style={{ height: Platform.OS === "ios" ? 95 : 75 }}
       className={`flex-row  items-center justify-evenly bg-white border-t-[2.5px] border-primary ${
         Platform.OS === "ios" ? " pb-[20px] " : " "
-      }`}
+      } ${productModalVisible ? "hidden" : ""}`}
     >
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];

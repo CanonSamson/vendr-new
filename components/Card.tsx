@@ -7,18 +7,25 @@ import {
   Animated,
   Pressable,
   Platform,
+  Alert,
 } from "react-native";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import InfoIcon from "../assets/icon/info.svg";
 import Choice from "./Choice";
-import ProductDetails from "./Model/ProductDetails";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
-import { scale, verticalScale, moderateScale } from "react-native-size-matters";
-import { router, useNavigation } from "expo-router";
+import { scale, verticalScale } from "react-native-size-matters";
+import { router } from "expo-router";
+import { useModal } from "@/context/ModalContext";
+import DownIcon from "@/assets/icon/down-arrow.svg";
+
+const line = require("@/assets/icon/line.png");
+const offer = require("@/assets/icon/offer-button.png");
+const next = require("@/assets/icon/next-button.png");
+import Reanimated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
 
 interface CardData {
   name: string;
@@ -41,13 +48,7 @@ interface CardData {
 
 const { width, height } = Dimensions.get("screen");
 
-// Scale factors based on current device vs. base design
-const widthScale = width / 390; // Using iPhone 13 Pro's width as base
 const heightScale = height / 844; // Using iPhone 13 Pro's height as base
-
-// Dynamic margin bottom to ensure consistent spacing
-const dynamicMarginBottom = heightScale === 1 ? 0 : heightScale * 13;
-const dynamicTabHeight = heightScale < 0.95 ? heightScale * 0.8 : 1;
 
 const Card: React.FC<CardData> = ({
   images,
@@ -64,12 +65,14 @@ const Card: React.FC<CardData> = ({
   setViewProductDetails,
   ...rest
 }) => {
+  const {
+    productModalVisible: modalVisible,
+    setProductModalVisible: setModalVisible,
+  } = useModal();
   const rotate = Animated.multiply(swipe.x, titlSign).interpolate({
     inputRange: [-100, 0, 100],
     outputRange: ["8deg", "0deg", "-8deg"],
   });
-
-  const navigation = useNavigation();
 
   const animatedCardStyle = {
     transform: [...swipe.getTranslateTransform(), { rotate }],
@@ -88,7 +91,6 @@ const Card: React.FC<CardData> = ({
     extrapolate: "clamp",
   });
 
-  const [modalVisible, setModalVisible] = useState(false);
   const fadeAnim = useState(new Animated.Value(0))[0];
 
   const showModal = () => {
@@ -127,86 +129,256 @@ const Card: React.FC<CardData> = ({
     );
   }, [likeOpacity, nopeOpacity]);
 
+  // Use a flag to track whether the component should be animated or not
+
+  // Use an animated value to control the opacity for the transition effect
+  const opacityAnimation = new Animated.Value(modalVisible ? 1 : 0);
+
+  useEffect(() => {
+    // Animate the opacity based on the modalVisible flag
+    Animated.timing(opacityAnimation, {
+      toValue: modalVisible ? 1 : 0,
+      duration: 300,
+      useNativeDriver: true,
+    }).start();
+  }, [modalVisible]);
+
+  const imageH =
+    height -
+    verticalScale(98) -
+    (Platform.OS === "ios" ? 80 : 75) -
+    60 -
+    verticalScale(Platform.OS === "ios" ? 45 : 55) -
+    (heightScale < 1.2 ? 2 : 3);
+
+  const cardH = useSharedValue<number>(imageH);
+  const top = useSharedValue<number>(0);
+
+  const handleOpen = () => {
+    setModalVisible(!modalVisible);
+    // Animate width and top values
+
+    cardH.value = withTiming(cardH.value - 50, { duration: 500 });
+    top.value = withTiming(-18, { duration: 500 });
+  };
+  const handleClose = () => {
+    setModalVisible(!modalVisible);
+    // Animate width and top values
+
+    cardH.value = withTiming(cardH.value + 50, { duration: 100 });
+    top.value = withTiming(0, { duration: 500 });
+  };
+
+  const detailsAnimatedStyle = useAnimatedStyle(() => {
+    return {
+      opacity: modalVisible && isFirst ? withTiming(100) : withTiming(0),
+    };
+  }, [modalVisible, isFirst]);
+
   return (
     <>
-      <Animated.View
-        style={[styles.card, isFirst && animatedCardStyle]}
-        {...rest}
+      <Reanimated.View
+        style={{ top: top }}
+        className={` absolute z-30 top-0   right-0 w-full items-center justify-center`}
       >
-        <Image source={images[0]} style={styles.image} resizeMode="contain" />
-        <LinearGradient
-          colors={[
-            "rgba(0,0,0,.9)",
-            "transparent",
-            "transparent",
-            "transparent",
-            "rgba(0,0,0,.9)",
-          ]}
-          className="absolute bottom-0 left-0 right-0 w-full h-full rounded-lg"
+        <Animated.View
+          style={[isFirst && !modalVisible ? animatedCardStyle : null]}
+          {...(!modalVisible ? rest : {})}
+          className={`
+          ${
+            modalVisible
+              ? isFirst
+                ? "z-30  "
+                : "hidden"
+              : isFirst
+              ? "z-30  "
+              : " "
+          }
+           rounded-2xl top-0 w-[95%]  mt-2  transition duration-[35000ms] ease-in-out  absolute overflow-hidden bg-[#303030]`}
         >
-          <View className=" flex-row items-center absolute top-2 right-0  px-[18px] h-[4px] z-20 w-full">
-            <View className="  flex-1   ">
-              <View className=" h-[4px] rounded-2xl bg-white "></View>
-            </View>
-            <View className="  flex-1   opacity-10 px-[4px] ">
-              <View className=" h-[4px] rounded-2xl bg-white "></View>
-            </View>
-            <View className="  flex-1   opacity-10 ">
-              <View className=" h-[4px] rounded-2xl bg-white "></View>
-            </View>
-          </View>
+          <Reanimated.Image
+            source={images[0]}
+            style={[{ height: cardH }]}
+            resizeMode="contain"
+            className={`  w-full duration-700 `}
+          />
 
-          <View className="absolute top-[27px] left-0 w-full flex-row">
-            <Pressable
-              onPress={() => router.push(`/(product)/user/${product_id}`)}
+          <LinearGradient
+            colors={[
+              "rgba(0,0,0,.9)",
+              "transparent",
+              "transparent",
+              "transparent",
+              "rgba(0,0,0,.9)",
+            ]}
+            className="absolute bottom-0 left-0 right-0 w-full h-full rounded-lg"
+          >
+            <View
+              className={` flex-row items-center px-[18px] absolute top-2 right-0   h-[4px] z-20 w-full`}
             >
-              <View className=" pl-[18px] w-full flex-row items-center">
-                <Image
-                  source={seller.avatar}
-                  className="w-[61px] h-[61px] rounded-full"
-                  resizeMode="contain"
-                />
-                <View className="ml-4">
-                  <Text className=" font-bold text-white  capitalize text-[21px]">
-                    {seller.name}
+              <View className="  flex-1   ">
+                <View className=" h-[4px] rounded-2xl bg-white "></View>
+              </View>
+              <View className="  flex-1   opacity-10 px-[4px] ">
+                <View className=" h-[4px] rounded-2xl bg-white "></View>
+              </View>
+              <View className="  flex-1   opacity-10 ">
+                <View className=" h-[4px] rounded-2xl bg-white "></View>
+              </View>
+            </View>
+
+            <View
+              className={`absolute top-[27px] left-0 w-full flex-row ${
+                modalVisible ? "hidden" : " block"
+              }`}
+            >
+              <Pressable
+                onPress={() => router.push(`/(product)/user/${product_id}`)}
+              >
+                <View className=" pl-[18px] w-full flex-row items-center">
+                  <Image
+                    source={seller.avatar}
+                    className="w-[61px] h-[61px] rounded-full"
+                    resizeMode="contain"
+                  />
+                  <View className="ml-4">
+                    <Text className=" font-bold text-white  capitalize text-[21px]">
+                      {seller.name}
+                    </Text>
+                    <Text className="text-white text-[19px] font-light">
+                      {distance} miles away
+                    </Text>
+                  </View>
+                </View>
+              </Pressable>
+            </View>
+
+            <View className="absolute bottom-6 left-0 w-full flex-row">
+              <View className=" w-full flex-row items-end">
+                <View
+                  className={`mr-1 pb-[14px] items-center flex-1 ${
+                    modalVisible ? "  opacity-0" : " opacity-100"
+                  } duration-700`}
+                >
+                  <Text className="text-white text-[19px]  text-center font-bold">
+                    {name}
                   </Text>
-                  <Text className="text-white text-[19px] font-light">
-                    {distance} miles away
+                  <Text className="text-white text-[17px] text-center font-light">
+                    {price} or Best Offer
                   </Text>
                 </View>
+                {modalVisible ? (
+                  <Pressable
+                    className="  active:scale-110  duration-700 mr-[25px]"
+                    onPress={() => handleClose()}
+                  >
+                    <DownIcon />
+                  </Pressable>
+                ) : (
+                  <Pressable
+                    className="  active:scale-110  duration-700 mr-[25px]"
+                    onPress={() => handleOpen()}
+                  >
+                    <InfoIcon />
+                  </Pressable>
+                )}
               </View>
-            </Pressable>
+            </View>
+          </LinearGradient>
+          {isFirst && renderChoice()}
+        </Animated.View>
+      </Reanimated.View>
+
+      <Reanimated.View
+        style={[
+          {
+            paddingTop: cardH,
+          },
+          detailsAnimatedStyle,
+        ]}
+        className={` bg-[#F3F3F3]  ${
+          modalVisible && isFirst ? "" : "hidden"
+        }  ${isFirst ? "" : "hidden"}`}
+      >
+        <Reanimated.View
+          style={[detailsAnimatedStyle]}
+          className="flex-1 mt-[-18px]  p-[10px]"
+        >
+          <View
+            style={[styles.container]}
+            className="px-[20px] py-[10px] mt-[10px] bg-white rounded-xl "
+          >
+            <Text className="text-black text-[26px] font-semibold">
+              Description
+            </Text>
+
+            <Text className="text-black text-[17px] font-light mt-[5px]">
+              Size 11 and brand new in box, never worn. I bought them from the
+              adidas store. Local pick up or I can ship them out if for $15.
+            </Text>
           </View>
 
-          <View className="absolute bottom-6 left-0 w-full flex-row">
-            <View className=" w-full flex-row items-end">
-              <View className="mr-1 pb-[14px] items-center flex-1">
-                <Text className="text-white text-[19px]  text-center font-bold">
-                  {name}
-                </Text>
-                <Text className="text-white text-[17px] text-center font-light">
-                  {price} or Best Offer
-                </Text>
-              </View>
-              <Pressable
-                className=" active:scale-150  duration-500 mr-[25px]"
-                onPress={showModal}
-              >
-                <InfoIcon />
+          <View
+            style={styles.container}
+            className="px-[20px] py-[10px] mt-[10px] bg-white rounded-xl "
+          >
+            <Text className="text-black text-[26px] font-semibold">
+              Seller Details
+            </Text>
+            <Text className="text-black text-[17px] font-light mt-[5px]">
+              Seller: <Text className="text-primary underline">Kyle R</Text>
+            </Text>
+            <Text className="text-black text-[17px] font-light mt-[5px]">
+              Rating: 5 Stars 99% Positive feedback
+            </Text>
+            <Text className="text-black text-[17px] font-light mt-[5px]">
+              Location: Point Pleasant NJ, O8742
+            </Text>
+          </View>
+
+          <View
+            style={styles.container}
+            className="px-[20px] py-[10px] mt-[10px] bg-white rounded-xl "
+          >
+            <Text className="text-[#EE393B] text-[26px]  font-semibold text-center">
+              Report Item
+            </Text>
+          </View>
+
+          <View className=" flex-1 w-full">
+            <View className=" w-full px-[10px] flex-row">
+              <Pressable className=" flex-1 items-end mr-[20px] justify-center">
+                <View className=" w-[80px] items-center justify-end">
+                  <Image
+                    source={next}
+                    width={200}
+                    className=" w-full "
+                    resizeMode="contain"
+                  />
+                </View>
+              </Pressable>
+              <Pressable className=" flex-1 items-start justify-center">
+                <View className=" w-[100px] items-center justify-center">
+                  <Image
+                    source={offer}
+                    width={200}
+                    className=" w-full "
+                    resizeMode="contain"
+                  />
+                </View>
               </Pressable>
             </View>
           </View>
-        </LinearGradient>
-        {isFirst && renderChoice()}
-      </Animated.View>
-
-      <ProductDetails
-        modalVisible={modalVisible}
-        hideModal={hideModal}
-        images={images}
-        price={price}
-        name={name}
-      />
+          <View className="  w-[50%] -top-[20px] relative  mx-auto ">
+            <Image
+              source={line}
+              width={200}
+              className=" w-full "
+              resizeMode="contain"
+            />
+          </View>
+        </Reanimated.View>
+      </Reanimated.View>
     </>
   );
 };
@@ -214,25 +386,16 @@ const Card: React.FC<CardData> = ({
 export default Card;
 
 const styles = StyleSheet.create({
-  card: {
-    position: "absolute",
-    top: 10,
-    backgroundColor: "#303030",
-    borderRadius: 20,
-    borderWidth: 1,
-    overflow: "hidden",
+  container: {
+    // For iOS
+    shadowColor: "gray",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.5,
+    shadowRadius: 3,
+    // For Android
+    elevation: 5,
   },
-  image: {
-    width: width * 0.95,
-    height:
-      height -
-      verticalScale(98) -
-      (Platform.OS === "ios" ? 80 : 75) -
-      60 -
-      verticalScale(Platform.OS === "ios" ? 45 : 55) -
-      (heightScale < 1.2 ? 2 : 3),
-    borderRadius: 20,
-  },
+
   gradient: {
     position: "absolute",
     bottom: 0,

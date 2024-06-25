@@ -40,12 +40,12 @@ const Settings = () => {
             style={styles.container}
             className="  p-4 rounded-xl  bg-white "
           >
-            <Text className=" text-[26px]">Notifications</Text>
-            <View className=" flex-row  mt-[10px] items-center justify-between">
+            <Text className=" text-[26px]  font-bold">Notifications</Text>
+            <View className=" flex-row  mt-[4px] items-center justify-between">
               <Text
                 className={`${
                   itemOfferRequests ? "text-primary" : ""
-                } text-[19px] `}
+                } text-[19px] leading-none font-semibold `}
               >
                 Item Offer Requests
               </Text>
@@ -58,11 +58,11 @@ const Settings = () => {
                 value={itemOfferRequests}
               />
             </View>
-            <View className="  mt-[10px] flex-row items-center justify-between">
+            <View className="   flex-row items-center justify-between">
               <Text
                 className={`${
                   messageReplies ? "text-primary" : ""
-                } text-[19px] `}
+                } text-[19px] leading-none font-semibold `}
               >
                 Message Replies
               </Text>
@@ -74,11 +74,11 @@ const Settings = () => {
                 value={messageReplies}
               />
             </View>
-            <View className=" mt-[10px] flex-row items-center justify-between">
+            <View className=" leading-none flex-row items-center justify-between">
               <Text
                 className={`${
                   buyingNotifications ? "text-primary" : "text-black"
-                } text-[19px] duration-300 `}
+                } text-[19px] font-semibold duration-300 `}
               >
                 Buying Notifications
               </Text>
@@ -96,11 +96,11 @@ const Settings = () => {
             style={styles.container}
             className="mt-[10px] p-4 rounded-xl  bg-white "
           >
-            <Text className=" text-[26px]">Account Information</Text>
+            <Text className=" text-[26px]  font-bold">Account Information</Text>
             <Text>Verify private information to help secure your account.</Text>
 
             <View className="  mt-[10px] flex-row items-center justify-between">
-              <Text className=" text-[19px]">Phone Number</Text>
+              <Text className=" text-[19px] font-semibold">Phone Number</Text>
               <View className=" flex-row gap-2 items-center">
                 <Text className=" text-primary">909-956-1534</Text>
                 <Image
@@ -111,7 +111,7 @@ const Settings = () => {
             </View>
 
             <View className="  mt-[10px] flex-row items-center justify-between">
-              <Text className=" text-[19px]">Email</Text>
+              <Text className=" text-[19px] font-semibold">Email</Text>
               <View className=" flex-row gap-2 items-center">
                 <Text className=" text-primary">{auth.currentUser?.email}</Text>
 
@@ -122,7 +122,7 @@ const Settings = () => {
               </View>
             </View>
             <View className="  mt-[10px] flex-row items-center justify-between">
-              <Text className=" text-[19px]">Connected Accounts</Text>
+              <Text className=" text-[19px] font-semibold">Connected Accounts</Text>
 
               <Image
                 source={ArrowDown}
@@ -135,10 +135,10 @@ const Settings = () => {
             style={styles.container}
             className=" mt-[10px] p-4 rounded-xl  bg-white "
           >
-            <Text className=" text-[26px]">Support</Text>
+            <Text className=" text-[26px]  font-bold">Support</Text>
 
             <View className="  mt-[10px] flex-row items-center justify-between">
-              <Text className=" text-[19px]">Terms and Services</Text>
+              <Text className=" text-[19px] font-semibold">Terms and Services</Text>
 
               <Image
                 source={ArrowDown}
@@ -146,7 +146,7 @@ const Settings = () => {
               />
             </View>
             <View className="  mt-[10px] flex-row items-center justify-between">
-              <Text className=" text-[19px]">Contact and FAQ</Text>
+              <Text className=" text-[19px] font-semibold">Contact and FAQ</Text>
 
               <Image
                 source={ArrowDown}
@@ -155,7 +155,7 @@ const Settings = () => {
             </View>
 
             <View className="  mt-[10px] flex-row items-center justify-between">
-              <Text className=" text-[19px]">Report Bugs</Text>
+              <Text className=" text-[19px] font-semibold">Report Bugs</Text>
 
               <Image
                 source={ArrowDown}
@@ -168,10 +168,10 @@ const Settings = () => {
             style={styles.container}
             className="mt-[10px] p-4 rounded-xl  bg-white "
           >
-            <Text className=" text-[26px]">App Settings</Text>
+            <Text className=" text-[26px]  font-bold">App Settings</Text>
 
             <View className="  mt-[10px] flex-row items-center justify-between">
-              <Text className=" text-[19px]">Privacy and Security</Text>
+              <Text className=" text-[19px] font-semibold">Privacy and Security</Text>
 
               <Image
                 source={ArrowDown}
@@ -179,7 +179,7 @@ const Settings = () => {
               />
             </View>
             <View className="  mt-[10px] flex-row items-center justify-between">
-              <Text className=" text-[19px]">Delete Account</Text>
+              <Text className=" text-[19px] font-semibold">Delete Account</Text>
 
               <Image
                 source={ArrowDown}
@@ -212,7 +212,7 @@ const Settings = () => {
               colors={["#B1B1B1", "#E4E4E4"]}
               className={` mt-10 items-center justify-center rounded-lg w-full max-w-[200px] mx-auto  h-[45px] relative `}
             >
-              <Text className=" text-white text-[19px]">Logout</Text>
+              <Text className=" text-white text-[19px] font-semibold">Logout</Text>
             </LinearGradient>
           </Pressable>
           <Text className=" text-center mb-[20px] mt-[10px]">

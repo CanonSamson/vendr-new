@@ -18,6 +18,9 @@ import { router } from "expo-router";
 import FilterProductModal from "@/components/Model/FIlterModel";
 import { useModal } from "@/context/ModalContext";
 import { scale, verticalScale, moderateScale } from "react-native-size-matters";
+import { ScrollView } from "react-native";
+import { Text } from "react-native";
+import { Platform } from "react-native";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -42,13 +45,9 @@ export default function HomeScreen() {
   const swipe = useRef(new Animated.ValueXY()).current;
   const titlSign = useRef(new Animated.Value(1)).current;
   const [productData, setProductData] = useState<ProductDataMap>(ProductObject);
-  const [viewProductDetails, setViewProductDetails] = useState<ProductData>();
+  const [viewProductDetails, setViewProductDetails] = useState<any>();
   const [filterProduct, setFilterProduct] = useState(false);
-  const {
-    confirmAnicationModal,
-    setConfirmAnicationModal,
-    setListAnItemModal,
-  } = useModal();
+  const { confirmAnicationModal, productModalVisible } = useModal();
 
   const triggerSwipe = (direction: number) => {
     Animated.timing(swipe, {
@@ -103,69 +102,98 @@ export default function HomeScreen() {
     }
   }, [productData]);
 
+  const heightScale = height / 844; // Using iPhone 13 Pro's height as base
+
+  const imageH =
+    height -
+    verticalScale(98) -
+    (Platform.OS === "ios" ? 80 : 75) -
+    60 -
+    verticalScale(Platform.OS === "ios" ? 45 : 55) -
+    (heightScale < 1.2 ? 2 : 3);
+
   return (
     <>
       <StatusBar style="light" hidden={false} />
-      <LinearGradient
-        colors={["#00A3FF", "#85DBF9"]}
-        className={`${
-          confirmAnicationModal ? " opacity-0" : " opacity-100"
-        } z-40   pt-[50px]  px-4 items-center relative pb-[10px]`}
-        style={{ height: verticalScale(85) }}
+      <ScrollView
+        style={{ flex: 1, flexGrow: 1 }}
+        bounces={false}
+        showsHorizontalScrollIndicator={false}
+        className=" h-screen  "
+        scrollEnabled={productModalVisible}
       >
-        <View className="  px-[10px] w-full justify-center items-center relative flex-row  ">
-          <Pressable
-            onPress={() => router.push("list-an-item")}
-            className=" active:scale-90 duration-900  absolute left-0"
-          >
-            <PlusIon width={40} height={40} />
-          </Pressable>
+        <LinearGradient
+          colors={["#00A3FF", "#85DBF9"]}
+          className={`${
+            confirmAnicationModal ? " opacity-0" : " opacity-100"
+          } z-40   pt-[50px]  px-4 items-center relative pb-[10px]`}
+          style={{ height: verticalScale(85) }}
+        >
+          <View className="  px-[10px] w-full justify-center items-center relative flex-row  ">
+            <Pressable
+              onPress={() => router.push("list-an-item")}
+              className={` ${
+                productModalVisible ? " opacity-0" : " opacity-100"
+              } active:scale-90 duration-900  absolute left-0`}
+            >
+              <PlusIon width={40} height={40} />
+            </Pressable>
 
-          <View className=" w-auto h-[45px] z-40 relative ">
-            <LogoV1White color={`#fff`} height={"100%"} />
+            <View className=" w-auto h-[45px] z-40 relative ">
+              <LogoV1White color={`#fff`} height={"100%"} />
+            </View>
+            <Pressable
+              onPress={() => router.push("user-profile")}
+              className={` ${
+                productModalVisible ? " opacity-0" : " opacity-100"
+              } active:scale-90 duration-900  absolute right-0`}
+            >
+              <PersonIon width={40} height={40} />
+            </Pressable>
           </View>
-          <Pressable
-            onPress={() => router.push("user-profile")}
-            className=" active:scale-90 duration-900  absolute right-0"
-          >
-            <PersonIon width={40} height={40} />
-          </Pressable>
+        </LinearGradient>
+
+        <View
+          style={{ height: !productModalVisible ? imageH + 20 : "auto" }}
+          className={`  ${
+            productModalVisible ? "bg-[#F3F3F3] " : "   "
+          } items-center   flex-1  relative z-50 justify-center `}
+        >
+          {Object.values(productData).map((item, index) => {
+            let isFirst =
+              item.id ===
+              Object.keys(productData)[Object.keys(productData).length - 1];
+
+            const dragHandlers = isFirst ? panResponder.panHandlers : {};
+
+            return (
+              <Card
+                key={index}
+                {...item}
+                isFirst={isFirst}
+                swipe={swipe}
+                titlSign={titlSign}
+                {...dragHandlers}
+                viewProductDetails={viewProductDetails}
+                setViewProductDetails={setViewProductDetails}
+                product_id={item.id}
+              />
+            );
+          })}
         </View>
-      </LinearGradient>
 
-      <View className=" flex items-center relative z-50 justify-center">
-        {Object.values(productData).map((item, index) => {
-          let isFirst =
-            item.id ===
-            Object.keys(productData)[Object.keys(productData).length - 1];
-
-          const dragHandlers = isFirst ? panResponder.panHandlers : {};
-
-          return (
-            <Card
-              key={index}
-              {...item}
-              isFirst={isFirst}
-              swipe={swipe}
-              titlSign={titlSign}
-              {...dragHandlers}
-              viewProductDetails={viewProductDetails}
-              setViewProductDetails={setViewProductDetails}
-              product_id={item.id}
-            />
-          );
-        })}
-      </View>
-
-      <FilterProductModal
-        modalVisible={filterProduct}
-        hideModal={() => setFilterProduct(false)}
-      />
-      <SwiperButtons
-        handleFilter={() => setFilterProduct(true)}
-        onSwipeLeft={() => triggerSwipe(-1)}
-        onSwipeRight={() => triggerSwipe(1)}
-      />
+        <FilterProductModal
+          modalVisible={filterProduct}
+          hideModal={() => setFilterProduct(false)}
+        />
+      </ScrollView>
+      {!productModalVisible && (
+        <SwiperButtons
+          handleFilter={() => setFilterProduct(true)}
+          onSwipeLeft={() => triggerSwipe(-1)}
+          onSwipeRight={() => triggerSwipe(1)}
+        />
+      )}
     </>
   );
 }
