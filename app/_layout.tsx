@@ -136,6 +136,23 @@ function AppRoutes() {
             ),
           }}
         />
+        <Stack.Screen
+          name="serviceterms"
+          options={{
+            animation: "slide_from_bottom",
+            gestureDirection: "vertical",
+            animationDuration: 175,
+            header: () => (
+              <Header
+                title="Terms"
+                Left={<CloseIconSvg width={25} height={25} />}
+                hendleLeft={() => router.back()}
+                hendleRight={() => {}}
+                Right={<View className="w-[25px]" />}
+              />
+            ),
+          }}
+        />
         <Stack.Screen name="+not-found" />
       </Stack>
     </>

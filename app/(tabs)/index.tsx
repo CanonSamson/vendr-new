@@ -115,85 +115,83 @@ export default function HomeScreen() {
   return (
     <>
       <StatusBar style="light" hidden={false} />
-      <ScrollView
-        style={{ flex: 1, flexGrow: 1 }}
-        bounces={false}
-        showsHorizontalScrollIndicator={false}
-        className=" h-screen  "
-        scrollEnabled={productModalVisible}
-      >
-        <LinearGradient
-          colors={["#00A3FF", "#85DBF9"]}
-          className={`${
-            confirmAnicationModal ? " opacity-0" : " opacity-100"
-          } z-40   pt-[50px]  px-4 items-center relative pb-[10px]`}
-          style={{ height: verticalScale(85) }}
+        <ScrollView
+          style={{ flex: 1 }}
+          bounces={false}
+          showsHorizontalScrollIndicator={false}
+          scrollEnabled={productModalVisible}
         >
-          <View className="  px-[10px] w-full justify-center items-center relative flex-row  ">
-            <Pressable
-              onPress={() => router.push("list-an-item")}
-              className={` ${
-                productModalVisible ? " opacity-0" : " opacity-100"
-              } active:scale-90 duration-900  absolute left-0`}
-            >
-              <PlusIon width={40} height={40} />
-            </Pressable>
+          <LinearGradient
+            colors={["#00A3FF", "#85DBF9"]}
+            className={`${
+              confirmAnicationModal ? " opacity-0" : " opacity-100"
+            } z-40   pt-[50px]  px-4 items-center relative pb-[10px]`}
+            style={{ height: verticalScale(85) }}
+          >
+            <View className="  px-[10px] w-full justify-center items-center relative flex-row  ">
+              <Pressable
+                onPress={() => router.push("list-an-item")}
+                className={` ${
+                  productModalVisible ? " opacity-0" : " opacity-100"
+                } active:scale-90 duration-900  absolute left-0`}
+              >
+                <PlusIon width={40} height={40} />
+              </Pressable>
 
-            <View className=" w-auto h-[45px] z-40 relative ">
-              <LogoV1White color={`#fff`} height={"100%"} />
+              <View className=" w-auto h-[45px] z-40 relative ">
+                <LogoV1White color={`#fff`} height={"100%"} />
+              </View>
+              <Pressable
+                onPress={() => router.push("user-profile")}
+                className={` ${
+                  productModalVisible ? " opacity-0" : " opacity-100"
+                } active:scale-90 duration-900  absolute right-0`}
+              >
+                <PersonIon width={40} height={40} />
+              </Pressable>
             </View>
-            <Pressable
-              onPress={() => router.push("user-profile")}
-              className={` ${
-                productModalVisible ? " opacity-0" : " opacity-100"
-              } active:scale-90 duration-900  absolute right-0`}
-            >
-              <PersonIon width={40} height={40} />
-            </Pressable>
+          </LinearGradient>
+
+          <View
+            className={`  ${
+              productModalVisible ? "bg-[#F3F3F3] " : "   "
+            } items-center   relative z-50 justify-center `}
+          >
+            {Object.values(productData).map((item, index) => {
+              let isFirst =
+                item.id ===
+                Object.keys(productData)[Object.keys(productData).length - 1];
+
+              const dragHandlers = isFirst ? panResponder.panHandlers : {};
+
+              return (
+                <Card
+                  key={index}
+                  {...item}
+                  isFirst={isFirst}
+                  swipe={swipe}
+                  titlSign={titlSign}
+                  {...dragHandlers}
+                  viewProductDetails={viewProductDetails}
+                  setViewProductDetails={setViewProductDetails}
+                  product_id={item.id}
+                />
+              );
+            })}
           </View>
-        </LinearGradient>
 
-        <View
-          style={{ height: !productModalVisible ? imageH + 20 : "auto" }}
-          className={`  ${
-            productModalVisible ? "bg-[#F3F3F3] " : "   "
-          } items-center   flex-1  relative z-50 justify-center `}
-        >
-          {Object.values(productData).map((item, index) => {
-            let isFirst =
-              item.id ===
-              Object.keys(productData)[Object.keys(productData).length - 1];
-
-            const dragHandlers = isFirst ? panResponder.panHandlers : {};
-
-            return (
-              <Card
-                key={index}
-                {...item}
-                isFirst={isFirst}
-                swipe={swipe}
-                titlSign={titlSign}
-                {...dragHandlers}
-                viewProductDetails={viewProductDetails}
-                setViewProductDetails={setViewProductDetails}
-                product_id={item.id}
-              />
-            );
-          })}
-        </View>
-
-        <FilterProductModal
-          modalVisible={filterProduct}
-          hideModal={() => setFilterProduct(false)}
-        />
-      </ScrollView>
-      {!productModalVisible && (
-        <SwiperButtons
-          handleFilter={() => setFilterProduct(true)}
-          onSwipeLeft={() => triggerSwipe(-1)}
-          onSwipeRight={() => triggerSwipe(1)}
-        />
-      )}
+          <FilterProductModal
+            modalVisible={filterProduct}
+            hideModal={() => setFilterProduct(false)}
+          />
+        </ScrollView>
+        {!productModalVisible && (
+          <SwiperButtons
+            handleFilter={() => setFilterProduct(true)}
+            onSwipeLeft={() => triggerSwipe(-1)}
+            onSwipeRight={() => triggerSwipe(1)}
+          />
+        )}
     </>
   );
 }

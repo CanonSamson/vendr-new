@@ -110,12 +110,12 @@ const UserProfile = () => {
         <TouchableOpacity onPress={() => {}}>
           <View
             style={styles.container}
-            className="  mt-[7px] p-4 bg-white rounded-xl"
+            className="  mt-[7px] p-2 bg-white rounded-xl"
           >
             <Text className="  font-semibold text-primary text-[24px] text-center ">
               Feedback
             </Text>
-            <Text className=" font-semibold text-primary text-[25px] text-center mt-2 ">
+            <Text className=" font-semibold text-primary text-[25px] text-center mt-1 ">
               Coming Soon
             </Text>
           </View>
@@ -124,7 +124,7 @@ const UserProfile = () => {
         <TouchableOpacity onPress={() => {}}>
           <View
             style={styles.container}
-            className="  mt-[7px] p-4 bg-white rounded-xl"
+            className="  mt-[7px] p-3.5 bg-white rounded-xl"
           >
             <Text className=" font-semibold text-primary text-[24px] text-center ">
               Preview Profile

@@ -5,6 +5,7 @@ import {
   StyleSheet,
   ActivityIndicator,
   Platform,
+  TouchableOpacity
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import {

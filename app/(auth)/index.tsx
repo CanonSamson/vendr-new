@@ -1,7 +1,7 @@
 import MainButton from "@/components/button/MainButton";
 import { Colors } from "@/constants/Colors";
 import React, { useEffect, useState } from "react";
-import { View, Text, SafeAreaView, Pressable } from "react-native";
+import { View, Text, SafeAreaView, Pressable, TouchableOpacity } from "react-native";
 import LogoV1 from "@/assets/vector/logo-v1.svg";
 import { router } from "expo-router";
 import * as Linking from "expo-linking";
@@ -72,20 +72,20 @@ const Index = () => {
               <View className=" flex-1 h-[2px] bg-primary rounded-lg " />
             </View>
 
-            <Pressable
+            <TouchableOpacity
               style={{ marginTop: hp(2) }}
               onPress={() => router.push("/log-in")}
             >
               <Text className=" text-[21px] text-center justify-center  font-bold text-primary">
                 Login
               </Text>
-            </Pressable>
+            </TouchableOpacity>
 
             <View
               style={{ marginTop: hp(10) }}
               className=" flex-row items-center pb-[10px]"
             >
-              <Pressable
+              <TouchableOpacity
                 className=" flex-1  justify-center p-[10px] items-center"
                 onPress={() => {
                   Linking.openURL("https://www.vendr.com/legal/privacy-policy");
@@ -94,8 +94,8 @@ const Index = () => {
                 <Text className=" text-xl text-gray-500 font-medium ">
                   Safety
                 </Text>
-              </Pressable>
-              <Pressable
+              </TouchableOpacity>
+              <TouchableOpacity
                 className=" flex-1  justify-center p-[10px] items-center"
                 onPress={() => {
                   Linking.openURL("https://www.vendr.com/about");
@@ -104,8 +104,8 @@ const Index = () => {
                 <Text className=" text-xl text-gray-500 font-medium">
                   About
                 </Text>
-              </Pressable>
-              <Pressable
+              </TouchableOpacity>
+              <TouchableOpacity
                 className=" flex-1  justify-center p-2 items-center"
                 onPress={() => {
                   Linking.openURL("https://www.vendr.com/legal/terms-of-use");
@@ -114,7 +114,7 @@ const Index = () => {
                 <Text className=" text-xl text-gray-500 font-medium ">
                   Terms
                 </Text>
-              </Pressable>
+              </TouchableOpacity>
             </View>
           </View>
         </View>
