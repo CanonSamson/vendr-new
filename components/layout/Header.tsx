@@ -1,5 +1,13 @@
 import React from "react";
-import { View, Text, Pressable, Platform, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  Pressable,
+  Platform,
+  StyleSheet,
+  StatusBar,
+} from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface HeaderProps {
   Left: React.ReactNode;
@@ -18,12 +26,17 @@ const Header: React.FC<HeaderProps> = ({
   title,
   absolute,
 }) => {
+  const insets = useSafeAreaInsets();
+
+  const statusBarHeight =
+    Platform.OS === "android" ? StatusBar.currentHeight : insets.top;
+
   return (
     <View
-      className={` ${Platform.OS === "ios" ? " pt-14" : "  pt-14"}   ${
+      className={`  ${
         absolute && "absolute"
       }  top-0 w-full flex-row   justify-between  right-0 z-20 items-center bg-white border-b-[3px] border-primary`}
-      style={styles.heading}
+      style={[styles.heading, { paddingTop: statusBarHeight }]}
     >
       <Pressable onPress={hendleLeft} className="p-4 px-7   ">
         {Left}

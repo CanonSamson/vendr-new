@@ -18,6 +18,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface FilterProductModalProps {
   modalVisible: boolean;
@@ -36,6 +37,7 @@ const FilterProductModal: React.FC<FilterProductModalProps> = ({
     maximumDistance: [20, 50],
   });
   const [condition, setCondition] = useState("Not Specified");
+  const insets = useSafeAreaInsets();
 
   return (
     <Modal
@@ -52,11 +54,10 @@ const FilterProductModal: React.FC<FilterProductModalProps> = ({
           style={{ flex: 1 }}
           bounces={false}
           showsHorizontalScrollIndicator={false}
-          className=" "
         >
           <View className="flex-1 justify-end mb-auto h-screen items-center bg-black/20">
             <View
-              style={{ height: hp(60) }}
+              style={{ paddingBottom: insets.bottom + 20 }}
               className="w-full bg-white rounded-lg p-5 shadow-lg"
             >
               <Pressable onPress={hideModal}>

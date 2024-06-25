@@ -33,12 +33,11 @@ const UserProfile = () => {
       <StatusBar backgroundColor="white" style="dark" />
 
       <View
-        style={{ marginTop: Platform.OS === "ios" ? hp(2) : hp(1.6) }}
-        className="  bg-[#F3F3F3] justify-center   px-1 pt-5"
+        className="  bg-[#F3F3F3] justify-center px-1 "
       >
         <View
           style={styles.container}
-          className=" pt-[20px] pb-2 bg-white rounded-xl"
+          className=" pt-[20px] pb-2  mt-4 bg-white rounded-xl"
         >
           <View
             style={[

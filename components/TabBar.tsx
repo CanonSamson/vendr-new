@@ -10,6 +10,7 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { useModal } from "@/context/ModalContext";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 // Define the keys of the icons object
 type IconNames = "Home" | "Buying" | "Selling" | "Messages";
@@ -31,9 +32,14 @@ const TabBar: React.FC<BottomTabBarProps> = ({
   insets,
 }) => {
   const { productModalVisible } = useModal();
+
+  const insetsSefe = useSafeAreaInsets();
   return (
     <View
-      style={{ height: Platform.OS === "ios" ? 95 : 75 }}
+      style={{
+        height: Platform.OS === "ios" ? 95 : 75,
+        // paddingBottom: insetsSefe.bottom,
+      }}
       className={`flex-row  items-center justify-evenly bg-white border-t-[2.5px] border-primary ${
         Platform.OS === "ios" ? " pb-[20px] " : " "
       } ${productModalVisible ? "hidden" : ""}`}

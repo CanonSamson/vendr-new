@@ -10,6 +10,7 @@ import {
   Animated,
   PanResponder,
   Dimensions,
+  StatusBar as StatusBarN,
 } from "react-native";
 import SwiperButtons from "@/components/SwiperButtons";
 import { StatusBar } from "expo-status-bar";
@@ -21,6 +22,7 @@ import { scale, verticalScale, moderateScale } from "react-native-size-matters";
 import { ScrollView } from "react-native";
 import { Text } from "react-native";
 import { Platform } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -112,6 +114,11 @@ export default function HomeScreen() {
     verticalScale(Platform.OS === "ios" ? 45 : 55) -
     (heightScale < 1.2 ? 2 : 3);
 
+  const insets = useSafeAreaInsets();
+
+  const statusBarHeight =
+    Platform.OS === "android" ? StatusBarN.currentHeight : insets.top;
+
   return (
     <>
       <StatusBar style="light" hidden={false} />
@@ -126,8 +133,8 @@ export default function HomeScreen() {
           colors={["#00A3FF", "#85DBF9"]}
           className={`${
             confirmAnicationModal ? " opacity-0" : " opacity-100"
-          } z-40   pt-[50px]  px-4 items-center relative pb-[10px]`}
-          style={{ height: verticalScale(85) }}
+          } z-40 px-4 items-center relative pb-[10px]`}
+          style={{ height: verticalScale(85), paddingTop: statusBarHeight }}
         >
           <View className="  px-[10px] w-full justify-center items-center relative flex-row  ">
             <Pressable
