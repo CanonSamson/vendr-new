@@ -123,11 +123,12 @@ export default function HomeScreen() {
     <>
       <StatusBar style="light" hidden={false} />
       <ScrollView
-        style={{ flex: 1, flexGrow: 1 }}
+        style={{ flex: 1, flexGrow: 1, zIndex: 4 }}
         bounces={false}
         showsHorizontalScrollIndicator={false}
         className=" h-screen  "
         scrollEnabled={productModalVisible}
+  
       >
         <LinearGradient
           colors={["#00A3FF", "#85DBF9"]}
@@ -167,7 +168,7 @@ export default function HomeScreen() {
           style={{ height: !productModalVisible ? height : "auto" }}
           className={`  ${
             productModalVisible ? "bg-[#F3F3F3] " : "   "
-          } items-center  overflow-visible relative z-40 justify-center `}
+          } items-center  overflow-visible relative z-50 justify-center `}
         >
           {Object.values(productData).map((item, index) => {
             let isFirst =

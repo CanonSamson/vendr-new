@@ -6,16 +6,14 @@ import {
   StyleSheet,
   TextInput,
   Pressable,
-  Image,
   Platform,
+  Alert,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
-import ImageCard from "../components/ImageCard";
 import { Colors } from "../constants/Colors";
 import { LinearGradient } from "expo-linear-gradient";
 import CustomKeyBoardView from "@/components/CustomKeyBoardView";
-import { router } from "expo-router";
-import { CloseIcon } from "@/constants/Icons";
+
 import Pen from "@/assets/icon/pen.svg";
 import {
   widthPercentageToDP as wp,
@@ -24,14 +22,31 @@ import {
 import { MaterialIcons } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
 import Slider from "@react-native-community/slider";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 interface ImageData {
   id: string;
   uri?: string | null;
 }
 
+import ImageCard from "@/components/ImageCardDragable";
+import SortableList from "@/components/SortableList";
+
 const ListAnItem: React.FC = () => {
-  const [images, setImages] = useState<{ [key: string]: ImageData }>({});
+  const [images, setImages] = useState<{ [key: string]: ImageData }>({
+    "0": {
+      id: "1",
+      uri: null,
+    },
+    "1": {
+      id: "1",
+      uri: null,
+    },
+    "2": {
+      id: "1",
+      uri: null,
+    },
+  });
   const [values, setValues] = useState({
     localPickup: false,
     allCategories: false,
@@ -44,9 +59,11 @@ const ListAnItem: React.FC = () => {
   const pickImage = async (id: string) => {
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
       aspect: [4, 3],
       quality: 1,
+      allowsMultipleSelection: true,
+      orderedSelection: true,
+      selectionLimit: 3,
     });
 
     if (!result.canceled && result.assets && result.assets.length > 0) {
@@ -85,8 +102,6 @@ const ListAnItem: React.FC = () => {
   const [rightLabel, setRightLabel] = useState<string>("0-20mi.");
   const maxDistance = 50;
 
-  // Update the range from the slider
-  // Update the right label to match the current range value
   const updateRange = (range: number) => {
     setRangeValue(range);
 
@@ -116,9 +131,30 @@ const ListAnItem: React.FC = () => {
             </View>
             <View
               style={styles.grid}
-              className=" duration-700 items-start justify-start mt-[10px]"
+              className=" duration-700  items-start justify-start mt-[10px] pb-2"
             >
-              {Object.values(images).map((item) => (
+              <GestureHandlerRootView>
+                <SortableList
+                  editing={true}
+                  onDragEnd={(positions) =>
+                    console.log(JSON.stringify(positions, null, 2))
+                  }
+                  pickImage={() => {}}
+                >
+                  {[...Object.values(images)].map((item, index) => (
+                    <ImageCard
+                      onLongPress={() => true}
+                      key={item.id + "-" + index}
+                      id={item.id + "-" + index}
+                      uri={item.uri ? item.uri : null}
+                      // pickImage={() => Alert.alert(`${index}`)}
+                      pickImage={() => pickImage(`${index}`)}
+                    />
+                  ))}
+                </SortableList>
+              </GestureHandlerRootView>
+
+              {/* {Object.values(images).map((item) => (
                 <ImageCard
                   key={item.id}
                   id={item.id.toString()}
@@ -140,7 +176,7 @@ const ListAnItem: React.FC = () => {
                 <View className="  relative   opacity-0">
                   <View style={styles.placeholder}></View>
                 </View>
-              )}
+              )} */}
             </View>
           </View>
 
@@ -374,7 +410,10 @@ const ListAnItem: React.FC = () => {
               </Text>
             </View>
 
-            <Pressable className=" active:scale-95 active:opacity-80 mt-4" onPress={() => {}}>
+            <Pressable
+              className=" active:scale-95 active:opacity-80 mt-4"
+              onPress={() => {}}
+            >
               <LinearGradient
                 colors={[Colors.primary, "#85DBF9"]}
                 className="mx-auto p-3 rounded-xl w-[200px] items-center  justify-center"

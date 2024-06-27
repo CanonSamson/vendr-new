@@ -1,41 +1,44 @@
-import { View, Pressable, StyleSheet, Image } from "react-native";
+import { View, StyleSheet, Image, Pressable, Alert } from "react-native";
 import React, { useState } from "react";
 import Add from "../assets/svg/add.svg";
 import { Colors } from "../constants/Colors";
 
 interface ImageCardProps {
+  onLongPress: () => void;
   uri: string | null;
   id: string;
-  pickImage: (id: string) => void;
+  pickImage: any
 }
 
-const ImageCard: React.FC<ImageCardProps> = ({ uri, id, pickImage }) => {
+const ImageCard = ({ uri, id, pickImage }: ImageCardProps) => {
   const [isLoading, setIsLoading] = useState(true);
+
   return (
-    <Pressable
-      style={styles.container}
-      onPress={() => {
-        pickImage(id);
-      }}
-      className=" duration-700 active:opacity-75"
-      pointerEvents="none"
-    >
-      {uri ? (
-        <Image
-          source={{ uri }}
-          style={styles.image}
-          onLoadEnd={() => setIsLoading(false)}
-          onLoadStart={() => setIsLoading(true)}
-        />
-      ) : (
-        <View>
-          <View className="duration-700" style={styles.placeholder}>
-            <View className="  absolute  bottom-[2px] right-[2px]">
-              <Add width={28} height={28} color={Colors.primary} />
+    <Pressable onPress={pickImage}>
+      <View className=" items-center  justify-center">
+        <View
+          style={styles.container}
+          className=" duration-700 active:opacity-75"
+          pointerEvents="none"
+        >
+          {uri ? (
+            <Image
+              source={{ uri }}
+              style={styles.image}
+              onLoadEnd={() => setIsLoading(false)}
+              onLoadStart={() => setIsLoading(true)}
+            />
+          ) : (
+            <View>
+              <View className="duration-700" style={styles.placeholder}>
+                <View className="  absolute  bottom-[2px] right-[2px]">
+                  <Add width={28} height={28} color={Colors.primary} />
+                </View>
+              </View>
             </View>
-          </View>
+          )}
         </View>
-      )}
+      </View>
     </Pressable>
   );
 };
