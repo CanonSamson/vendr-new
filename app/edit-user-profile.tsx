@@ -111,7 +111,7 @@ const EditProfileModel: React.FC<EditProfileModelProps> = ({
                       },
                     }),
                   },
-                  { height: 200, width: 200 },
+                  { height: hp(20), width: hp(20) },
                 ]}
                 className=" relative border-4 justify-center
                    p-2 mx-auto flex-row bg-white  items-center border-primary rounded-full"

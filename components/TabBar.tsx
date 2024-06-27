@@ -93,7 +93,7 @@ const TabBar: React.FC<BottomTabBarProps> = ({
             testID={options.tabBarTestID}
             onPress={onPress}
             onLongPress={onLongPress}
-            className="items-center justify-center"
+            className="items-center justify-center  flex-1 gap-x-4 "
           >
             {IconComponent && (
               <IconComponent

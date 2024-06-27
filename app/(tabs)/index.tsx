@@ -133,10 +133,10 @@ export default function HomeScreen() {
           colors={["#00A3FF", "#85DBF9"]}
           className={`${
             confirmAnicationModal ? " opacity-0" : " opacity-100"
-          } z-40 px-4 items-center relative pb-[10px]`}
+          } z-40 px-4 items-center justify-center relative pb-[10px]`}
           style={{
             height: verticalScale(85),
-            paddingTop: statusBarHeight + 10,
+            paddingTop: statusBarHeight ,
           }}
         >
           <View className="  w-full justify-between items-center relative flex-row  ">
@@ -164,10 +164,10 @@ export default function HomeScreen() {
         </LinearGradient>
 
         <View
-          style={{ height: !productModalVisible ? imageH + 20 : "auto" }}
+          style={{ height: !productModalVisible ? height : "auto" }}
           className={`  ${
             productModalVisible ? "bg-[#F3F3F3] " : "   "
-          } items-center   flex-1  relative z-40 justify-center `}
+          } items-center  overflow-visible relative z-40 justify-center `}
         >
           {Object.values(productData).map((item, index) => {
             let isFirst =

@@ -4,19 +4,16 @@ import {
   Platform,
   StyleSheet,
   Image,
-  ScrollView,
   Pressable,
   TouchableOpacity,
 } from "react-native";
-import React, { useState } from "react";
+import React from "react";
 import Pen from "@/assets/svg/pen_blue.svg";
 import SettingsIcon from "@/assets/svg/Settings.svg";
 import SafteyIcon from "@/assets/svg/saftey.svg";
 import { router } from "expo-router";
 import { useAuth } from "@/context/GlobalContext";
 import { auth } from "@/firebase_config";
-const ArrowDown = require("@/assets/icon/arrow-down.png");
-import { ArrowRight } from "@/constants/Icons";
 
 import {
   widthPercentageToDP as wp,
@@ -32,12 +29,10 @@ const UserProfile = () => {
     <>
       <StatusBar backgroundColor="white" style="dark" />
 
-      <View
-        className="  bg-[#F3F3F3] justify-center px-1 "
-      >
+      <View className=" bg-[#F3F3F3] mt-2 justify-start px-1 ">
         <View
-          style={styles.container}
-          className=" pt-[20px] pb-2  mt-4 bg-white rounded-xl"
+          style={[styles.container, { paddingTop: hp(2) }]}
+          className=" pb-2   bg-white rounded-xl"
         >
           <View
             style={[
@@ -54,7 +49,7 @@ const UserProfile = () => {
                   },
                 }),
               },
-              { height: 200, width: 200 },
+              { height: hp(20), width: hp(20) },
             ]}
             className=" relative border-4 justify-center
                  p-2 mx-auto flex-row bg-white  items-center border-primary rounded-full"
@@ -83,7 +78,9 @@ const UserProfile = () => {
             </Pressable>
           </View>
 
-          <Text className=" text-center mt-[7px] text-[30px] font-bold">
+          <Text 
+            style={{  fontSize: hp(3.2) }}
+            className=" text-center mt-[7px]  font-bold">
             {auth.currentUser?.displayName}
           </Text>
           <Text
@@ -93,14 +90,14 @@ const UserProfile = () => {
             Check out my store I sell shoes and vintage clothing.
           </Text>
           <Text
-            style={{ width: wp(75) }}
-            className=" text-[21px] mx-auto text-black text-center mt-10"
+            style={{ width: wp(75), fontSize: hp(2.5), marginTop: hp(3) }}
+            className="mx-auto text-black text-center "
           >
             Member since {convertDateFormat(user?.joinAt ?? "")}
           </Text>
           <Text
-            style={{ width: wp(75) }}
-            className=" text-[21px] mt-2 mx-auto text-black text-center  pb-4"
+            style={{ width: wp(75), fontSize: hp(2.5) }}
+            className="mt-2 mx-auto text-black text-center  pb-4"
           >
             Based in {user?.address},{user?.zipcode}
           </Text>
@@ -111,10 +108,16 @@ const UserProfile = () => {
             style={styles.container}
             className="  mt-[7px] p-2 bg-white rounded-xl"
           >
-            <Text className="  font-semibold text-primary text-[24px] text-center ">
+            <Text
+              style={{ fontSize: hp(2.5) }}
+              className="  font-semibold text-primary  text-center "
+            >
               Feedback
             </Text>
-            <Text className=" font-semibold text-primary text-[25px] text-center mt-1 ">
+            <Text
+              style={{ fontSize: hp(2.5) }}
+              className=" font-semibold text-primary  text-center mt-1 "
+            >
               Coming Soon
             </Text>
           </View>
@@ -125,7 +128,10 @@ const UserProfile = () => {
             style={styles.container}
             className="  mt-[7px] p-3.5 bg-white rounded-xl"
           >
-            <Text className=" font-semibold text-primary text-[24px] text-center ">
+            <Text
+              style={{ fontSize: hp(2.5) }}
+              className=" font-semibold text-primary text-center "
+            >
               Preview Profile
             </Text>
           </View>
@@ -143,7 +149,10 @@ const UserProfile = () => {
             >
               <SettingsIcon width={35} />
             </View>
-            <Text className=" text-[#616161] mt-2   font-semibold text-[20px]">
+            <Text
+              style={{ fontSize: hp(2.5) }}
+              className=" text-[#616161] mt-2 font-semibold "
+            >
               Settings
             </Text>
           </TouchableOpacity>
@@ -158,7 +167,10 @@ const UserProfile = () => {
             >
               <SafteyIcon width={35} />
             </View>
-            <Text className=" text-[#616161] font-semibold mt-2 text-[20px]">
+            <Text
+              style={{ fontSize: hp(2.5) }}
+              className=" text-[#616161] font-semibold mt-2 "
+            >
               Safety
             </Text>
           </TouchableOpacity>

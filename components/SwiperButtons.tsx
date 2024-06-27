@@ -18,7 +18,7 @@ const SwiperButtons: React.FC<SwiperButtonsProps> = ({
   onSwipeRight,
 }) => {
   return (
-    <View className="  relative  justify-end  ">
+    <View className="   bottom-0 w-full absolute  justify-end  ">
       <View className=" flex-row justify-evenly pb-[2px], px-[30px]">
         <TouchableOpacity className=" pt-[20px] " onPress={() => {}}>
           <UndoBtn />

@@ -6,11 +6,7 @@ const undo = require("@/assets/icon/undo-button.png");
 const search = require("@/assets/icon/search-button.png");
 const offer = require("@/assets/icon/offer-button.png");
 const next = require("@/assets/icon/next-button.png");
-import UndoBtn from "@/assets/icon/CardButtons/3DUndoBtn";
-import NopeBtn from "@/assets/icon/CardButtons/3DNopeBtn";
-import LikeBtn from "@/assets/icon/CardButtons/3DLikeBtn";
-import SearchBtn from "@/assets/icon/CardButtons/3DSearchBtn";
-import UnderLine from "@/assets/icon/CardButtons/UnderLine";
+
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,

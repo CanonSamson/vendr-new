@@ -179,7 +179,7 @@ const Card: React.FC<CardData> = ({
     <>
       <Reanimated.View
         style={{ top: top }}
-        className={` absolute z-30 top-0   right-0 w-full items-center justify-center`}
+        className={` absolute z-30 top-0 overflow-visible  right-0 w-full items-center justify-center`}
       >
         <Animated.View
           style={[isFirst && !modalVisible ? animatedCardStyle : null]}
