@@ -169,14 +169,14 @@ const LogIn = () => {
                 Safety
               </Text>
             </TouchableOpacity>
-            <Pressable
+            <TouchableOpacity
               className=" flex-1  justify-center p-[10px] items-center"
               onPress={() => {
                 Linking.openURL("https://www.vendr.com/about");
               }}
             >
               <Text className=" text-xl text-gray-500 font-medium">About</Text>
-            </Pressable>
+            </TouchableOpacity>
             <TouchableOpacity
               className=" flex-1  justify-center p-2 items-center"
               onPress={() => router.push("serviceterms")}

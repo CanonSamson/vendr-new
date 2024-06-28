@@ -35,7 +35,7 @@ import SortableList from "@/components/SortableList";
 const ListAnItem: React.FC = () => {
   const [images, setImages] = useState<{ [key: string]: ImageData }>({
     "0": {
-      id: "1",
+      id: "0",
       uri: null,
     },
     "1": {
@@ -43,7 +43,7 @@ const ListAnItem: React.FC = () => {
       uri: null,
     },
     "2": {
-      id: "1",
+      id: "2",
       uri: null,
     },
   });
@@ -57,20 +57,43 @@ const ListAnItem: React.FC = () => {
   const [condication, setCondication] = useState("Not Specified");
 
   const pickImage = async (id: string) => {
-    const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      aspect: [4, 3],
-      quality: 1,
-      allowsMultipleSelection: true,
-      orderedSelection: true,
-      selectionLimit: 3,
-    });
+    const images_copy = Object.values(images);
+    const isImage = images_copy.find((item) => item.uri != null);
 
-    if (!result.canceled && result.assets && result.assets.length > 0) {
-      setImages((prev) => ({
-        ...prev,
-        [id]: { ...prev[id], uri: result.assets[0].uri },
-      }));
+    if (isImage) {
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        aspect: [4, 3],
+        quality: 1,
+        // allowsMultipleSelection: true,
+        orderedSelection: true,
+        selectionLimit: 1,
+        allowsEditing: true
+      });
+
+      if (!result.canceled && result.assets && result.assets.length > 0) {
+        setImages((prev) => ({
+          ...prev,
+          [id]: { ...prev[id], uri: result.assets[0].uri },
+        }));
+      }
+    } else {
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        aspect: [4, 3],
+        quality: 1,
+        allowsMultipleSelection: true,
+        orderedSelection: true,
+        selectionLimit: 3,
+      });
+
+      if (!result.canceled && result.assets && result.assets.length > 0) {
+        setImages((prev) => ({
+          [0]: { ...prev[0], uri: result.assets[0]?.uri ?? null },
+          [1]: { ...prev[1], uri: result.assets[1]?.uri ?? null },
+          [2]: { ...prev[2], uri: result.assets[2]?.uri ?? null },
+        }));
+      }
     }
   };
 
@@ -299,11 +322,11 @@ const ListAnItem: React.FC = () => {
                       ? ["#26BCF2", "#82DAF9"]
                       : ["#d3d3d3", "#d3d3d3"]
                   }
-                  className={`py-3  rounded-full bg-[#DBDBDB]  items-center`}
+                  className={`py-2  rounded-full bg-[#DBDBDB]  items-center`}
                 >
                   <Text
-                    style={{ fontSize: hp(1.5) }}
-                    className=" font-medium text-white"
+                    style={{ fontSize: hp(2.1) }}
+                    className=" font-semibold text-white"
                   >
                     New
                   </Text>
@@ -319,11 +342,11 @@ const ListAnItem: React.FC = () => {
                       ? ["#26BCF2", "#82DAF9"]
                       : ["#d3d3d3", "#d3d3d3"]
                   }
-                  className={`py-3 duration-500  rounded-full bg-[#DBDBDB]  items-center`}
+                  className={`py-2 duration-500  rounded-full bg-[#DBDBDB]  items-center`}
                 >
                   <Text
-                    style={{ fontSize: hp(1.5) }}
-                    className=" font-medium text-white"
+                    style={{ fontSize: hp(2.1) }}
+                    className=" font-semibold text-white"
                   >
                     Used
                   </Text>
@@ -339,11 +362,11 @@ const ListAnItem: React.FC = () => {
                       ? ["#26BCF2", "#82DAF9"]
                       : ["#d3d3d3", "#d3d3d3"]
                   }
-                  className={`py-3 duration-300 rounded-full bg-[#DBDBDB]  items-center`}
+                  className={`py-2 duration-300 rounded-full bg-[#DBDBDB]  items-center`}
                 >
                   <Text
-                    style={{ fontSize: hp(1.5) }}
-                    className="  font-medium text-white"
+                    style={{ fontSize: hp(2.1) }}
+                    className="  font-semibold text-white"
                   >
                     Not Specified
                   </Text>

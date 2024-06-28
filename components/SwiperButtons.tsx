@@ -11,16 +11,18 @@ interface SwiperButtonsProps {
   handleFilter: () => void;
   onSwipeLeft: () => void;
   onSwipeRight: () => void;
+  isActionActive?: boolean;
 }
 const SwiperButtons: React.FC<SwiperButtonsProps> = ({
   handleFilter,
   onSwipeLeft,
   onSwipeRight,
+  isActionActive,
 }) => {
   return (
     <View
-      style={{ zIndex: 2 }}
-      className="   bottom-0 w-full absolute  justify-end  "
+      style={{ zIndex: isActionActive ? 2 : 4 }}
+      className="  bottom-0 w-full absolute  justify-end  "
     >
       <View className=" flex-row justify-evenly pb-[2px], px-[30px]">
         <TouchableOpacity className=" pt-[20px] " onPress={() => {}}>

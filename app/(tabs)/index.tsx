@@ -50,6 +50,7 @@ export default function HomeScreen() {
   const [viewProductDetails, setViewProductDetails] = useState<any>();
   const [filterProduct, setFilterProduct] = useState(false);
   const { confirmAnicationModal, productModalVisible } = useModal();
+  const [isActionActive, setIsActionActive] = useState(false);
 
   const triggerSwipe = (direction: number) => {
     Animated.timing(swipe, {
@@ -71,6 +72,13 @@ export default function HomeScreen() {
     onPanResponderMove: (_, { dx, dy, y0 }) => {
       swipe.setValue({ x: dx, y: dy });
       titlSign.setValue(y0 > (height * 0.9) / 2 ? 1 : -1);
+
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      const isHolding = distance > 15;
+
+      if (isHolding) setIsActionActive(true);
+      else setIsActionActive(false);
     },
     onPanResponderRelease: (_, { dx, dy }) => {
       const direction = Math.sign(dx);
@@ -85,6 +93,7 @@ export default function HomeScreen() {
           friction: 5,
         }).start();
       }
+      setTimeout(() => setIsActionActive(false), 10);
     },
   });
 
@@ -119,16 +128,18 @@ export default function HomeScreen() {
   const statusBarHeight =
     Platform.OS === "android" ? StatusBarN.currentHeight : insets.top;
 
+  useEffect(() => {
+    console.log(isActionActive);
+  }, [isActionActive]);
   return (
     <>
       <StatusBar style="light" hidden={false} />
       <ScrollView
-        style={{ flex: 1, flexGrow: 1, zIndex: 4 }}
+        style={{ flex: 1, zIndex: isActionActive ? 4 : 2 }}
         bounces={false}
         showsHorizontalScrollIndicator={false}
         className=" h-screen  "
         scrollEnabled={productModalVisible}
-  
       >
         <LinearGradient
           colors={["#00A3FF", "#85DBF9"]}
@@ -137,7 +148,7 @@ export default function HomeScreen() {
           } z-40 px-4 items-center justify-center relative pb-[10px]`}
           style={{
             height: verticalScale(85),
-            paddingTop: statusBarHeight ,
+            paddingTop: statusBarHeight,
           }}
         >
           <View className="  w-full justify-between items-center relative flex-row  ">
@@ -168,7 +179,7 @@ export default function HomeScreen() {
           style={{ height: !productModalVisible ? height : "auto" }}
           className={`  ${
             productModalVisible ? "bg-[#F3F3F3] " : "   "
-          } items-center  overflow-visible relative z-50 justify-center `}
+          } items-center   overflow-visible relative z-50 justify-center `}
         >
           {Object.values(productData).map((item, index) => {
             let isFirst =
@@ -203,6 +214,7 @@ export default function HomeScreen() {
           handleFilter={() => setFilterProduct(true)}
           onSwipeLeft={() => triggerSwipe(-1)}
           onSwipeRight={() => triggerSwipe(1)}
+          isActionActive={isActionActive}
         />
       )}
     </>

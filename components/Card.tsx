@@ -26,6 +26,7 @@ import Reanimated, {
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
+import SwiperButtons from "./SwiperButtons";
 
 interface CardData {
   name: string;
