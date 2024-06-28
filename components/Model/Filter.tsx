@@ -116,8 +116,8 @@ const Filter: React.FC<FilterProductModalProps> = ({
               onPress={() => setFilterProduct(false)}
             >
               <Text
-                style={{ fontSize: hp(2), marginBottom: hp(1.5) }}
-                className=" items-end text-end  text-[#007AFF] "
+                style={{ fontSize: hp(2), marginBottom: hp(1.5), marginRight:wp(1)}}
+                className=" items-end text-end  text-[#007AFF] font-bold"
               >
                 Done
               </Text>
@@ -131,7 +131,7 @@ const Filter: React.FC<FilterProductModalProps> = ({
               <TextInput
                 placeholder="Search for categories to add"
                 placeholderTextColor={"#3C3C4399"}
-                className=" flex-1 py-3"
+                className=" flex-1 py-3 text-lg"
               />
             </View>
 
@@ -220,7 +220,7 @@ const Filter: React.FC<FilterProductModalProps> = ({
               style={{ fontSize: hp(3), marginVertical: hp(2.5) }}
               className="text-center font-bold"
             >
-              Condiction
+              Condition
             </Text>
             <View className=" flex-row   w-full gap-2">
               <Pressable
@@ -234,11 +234,11 @@ const Filter: React.FC<FilterProductModalProps> = ({
                       ? ["#26BCF2", "#82DAF9"]
                       : ["#d3d3d3", "#d3d3d3"]
                   }
-                  className={`py-3  rounded-full bg-[#DBDBDB]  items-center`}
+                  className={`py-2  rounded-full bg-[#DBDBDB]  items-center`}
                 >
                   <Text
-                    style={{ fontSize: hp(1.9) }}
-                    className=" font-semibold text-white"
+                    style={{ fontSize: hp(1.96) }}
+                    className=" font-bold text-white"
                   >
                     New
                   </Text>
@@ -255,11 +255,11 @@ const Filter: React.FC<FilterProductModalProps> = ({
                       ? ["#26BCF2", "#82DAF9"]
                       : ["#d3d3d3", "#d3d3d3"]
                   }
-                  className={`py-3 duration-500  rounded-full bg-[#DBDBDB]  items-center`}
+                  className={`py-2 duration-500  rounded-full bg-[#DBDBDB]  items-center`}
                 >
                   <Text
-                    style={{ fontSize: hp(1.9) }}
-                    className=" font-semibold text-white"
+                    style={{ fontSize: hp(1.96) }}
+                    className=" font-bold text-white"
                   >
                     Used
                   </Text>
@@ -276,11 +276,11 @@ const Filter: React.FC<FilterProductModalProps> = ({
                       ? ["#26BCF2", "#82DAF9"]
                       : ["#d3d3d3", "#d3d3d3"]
                   }
-                  className={`py-3 duration-300 rounded-full bg-[#DBDBDB]  items-center`}
+                  className={`py-2 duration-300 rounded-full bg-[#DBDBDB]  items-center`}
                 >
                   <Text
-                    style={{ fontSize: hp(1.9) }}
-                    className="  font-semibold text-white"
+                    style={{ fontSize: hp(1.96) }}
+                    className="  font-bold text-white"
                   >
                     Not Specified
                   </Text>

@@ -309,7 +309,7 @@ const ListAnItem: React.FC = () => {
             </View>
 
             <Text className="my-4 text-[24px]  text-primary text-p ">
-              Condiction
+              Condition
             </Text>
             <View className=" flex-row   w-full gap-2">
               <Pressable
@@ -323,10 +323,10 @@ const ListAnItem: React.FC = () => {
                       ? ["#26BCF2", "#82DAF9"]
                       : ["#d3d3d3", "#d3d3d3"]
                   }
-                  className={`py-3  rounded-full bg-[#DBDBDB]  items-center`}
+                  className={`py-2  rounded-full bg-[#DBDBDB]  items-center`}
                 >
                   <Text
-                    style={{ fontSize: hp(1.9) }}
+                    style={{ fontSize: hp(2.1) }}
                     className=" font-semibold text-white"
                   >
                     New
@@ -344,10 +344,10 @@ const ListAnItem: React.FC = () => {
                       ? ["#26BCF2", "#82DAF9"]
                       : ["#d3d3d3", "#d3d3d3"]
                   }
-                  className={`py-3 duration-500  rounded-full bg-[#DBDBDB]  items-center`}
+                  className={`py-2 duration-500  rounded-full bg-[#DBDBDB]  items-center`}
                 >
                   <Text
-                    style={{ fontSize: hp(1.9) }}
+                    style={{ fontSize: hp(2.1) }}
                     className=" font-semibold text-white"
                   >
                     Used
@@ -365,10 +365,10 @@ const ListAnItem: React.FC = () => {
                       ? ["#26BCF2", "#82DAF9"]
                       : ["#d3d3d3", "#d3d3d3"]
                   }
-                  className={`py-3 duration-300 rounded-full bg-[#DBDBDB]  items-center`}
+                  className={`py-2 duration-300 rounded-full bg-[#DBDBDB]  items-center`}
                 >
                   <Text
-                    style={{ fontSize: hp(1.9) }}
+                    style={{ fontSize: hp(2.1) }}
                     className="  font-semibold text-white"
                   >
                     Not Specified

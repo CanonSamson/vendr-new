@@ -25,14 +25,14 @@ const SwiperButtons: React.FC<SwiperButtonsProps> = ({
 }) => {
   const { filterSheetRef } = useModal();
   const likeScale = swipe.x.interpolate({
-    inputRange: [50, 150],
-    outputRange: [1, 1.3], // Adjust the scale values as needed
+    inputRange: [400, 500],
+    outputRange: [1, 1.4], // Adjust the scale values as needed
     extrapolate: "clamp",
   });
 
   const nopeScale = swipe.x.interpolate({
-    inputRange: [-150, -50],
-    outputRange: [1.3, 1], // Adjust the scale values as needed
+    inputRange: [-500, -400],
+    outputRange: [1.4, 1], 
     extrapolate: "clamp",
   });
 
