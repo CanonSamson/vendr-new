@@ -23,6 +23,11 @@ import { ScrollView } from "react-native";
 import { Text } from "react-native";
 import { Platform } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import Filter from "@/components/Model/Filter";
+import {
+  GestureHandlerRootView,
+  PanGestureHandler,
+} from "react-native-gesture-handler";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -48,9 +53,14 @@ export default function HomeScreen() {
   const titlSign = useRef(new Animated.Value(1)).current;
   const [productData, setProductData] = useState<ProductDataMap>(ProductObject);
   const [viewProductDetails, setViewProductDetails] = useState<any>();
-  const [filterProduct, setFilterProduct] = useState(false);
-  const { confirmAnicationModal, productModalVisible } = useModal();
+  const {
+    confirmAnicationModal,
+    productModalVisible,
+    filterProduct,
+    setFilterProduct,
+  } = useModal();
   const [isActionActive, setIsActionActive] = useState(false);
+  const [isHolding, setIsHolding] = useState(false);
 
   const triggerSwipe = (direction: number) => {
     Animated.timing(swipe, {
@@ -70,15 +80,14 @@ export default function HomeScreen() {
   const panResponder = PanResponder.create({
     onMoveShouldSetPanResponder: () => true,
     onPanResponderMove: (_, { dx, dy, y0 }) => {
-      swipe.setValue({ x: dx, y: dy });
-      titlSign.setValue(y0 > (height * 0.9) / 2 ? 1 : -1);
-
       const distance = Math.sqrt(dx * dx + dy * dy);
-
       const isHolding = distance > 15;
-
       if (isHolding) setIsActionActive(true);
       else setIsActionActive(false);
+
+      setIsHolding(isHolding);
+      swipe.setValue({ x: dx, y: dy });
+      titlSign.setValue(y0 > (height * 0.9) / 2 ? 1 : -1);
     },
     onPanResponderRelease: (_, { dx, dy }) => {
       const direction = Math.sign(dx);
@@ -113,16 +122,6 @@ export default function HomeScreen() {
     }
   }, [productData]);
 
-  const heightScale = height / 844; // Using iPhone 13 Pro's height as base
-
-  const imageH =
-    height -
-    verticalScale(98) -
-    (Platform.OS === "ios" ? 80 : 75) -
-    60 -
-    verticalScale(Platform.OS === "ios" ? 45 : 55) -
-    (heightScale < 1.2 ? 2 : 3);
-
   const insets = useSafeAreaInsets();
 
   const statusBarHeight =
@@ -131,6 +130,7 @@ export default function HomeScreen() {
   useEffect(() => {
     console.log(isActionActive);
   }, [isActionActive]);
+
   return (
     <>
       <StatusBar style="light" hidden={false} />
@@ -203,11 +203,6 @@ export default function HomeScreen() {
             );
           })}
         </View>
-
-        <FilterProductModal
-          modalVisible={filterProduct}
-          hideModal={() => setFilterProduct(false)}
-        />
       </ScrollView>
       {!productModalVisible && (
         <SwiperButtons
@@ -215,6 +210,7 @@ export default function HomeScreen() {
           onSwipeLeft={() => triggerSwipe(-1)}
           onSwipeRight={() => triggerSwipe(1)}
           isActionActive={isActionActive}
+          swipe={swipe}
         />
       )}
     </>

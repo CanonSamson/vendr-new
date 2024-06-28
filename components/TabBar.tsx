@@ -31,7 +31,7 @@ const TabBar: React.FC<BottomTabBarProps> = ({
   navigation,
   insets,
 }) => {
-  const { productModalVisible } = useModal();
+  const { productModalVisible, filterProduct } = useModal();
 
   const insetsSefe = useSafeAreaInsets();
   return (
@@ -40,7 +40,7 @@ const TabBar: React.FC<BottomTabBarProps> = ({
         height: Platform.OS === "ios" ? 95 : 75,
         // paddingBottom: insetsSefe.bottom,
       }}
-      className={`flex-row  items-center justify-evenly bg-white border-t-[2.5px] border-primary ${
+      className={`flex-row  items-center justify-evenly bg-white duration-500 border-t-[2.5px] border-primary ${
         Platform.OS === "ios" ? " pb-[20px] " : " "
       } ${productModalVisible ? "hidden" : ""}`}
     >

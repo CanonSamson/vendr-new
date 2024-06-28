@@ -2,6 +2,8 @@ import React from "react";
 import { Tabs } from "expo-router";
 import { StyleSheet, Dimensions } from "react-native";
 import TabBar from "@/components/TabBar";
+import Filter from "@/components/Model/Filter";
+import { useModal } from "@/context/ModalContext";
 
 // Device dimensions and base design dimensions
 const { width, height } = Dimensions.get("window");
@@ -15,37 +17,46 @@ const dynamicMarginBottom = heightScale === 1 ? 0 : heightScale * 13;
 const dynamicTabHeight = heightScale < 0.95 ? heightScale * 0.8 : 1.1;
 
 const TabsLayout = () => {
+  const { filterProduct, setFilterProduct } = useModal();
   return (
-    <Tabs tabBar={(props) => <TabBar {...props} />}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          headerShown: false,
-          title: "Home",
-        }}
+    <>
+      <Filter
+        modalVisible={filterProduct}
+        hideModal={() => setFilterProduct(false)}
+        setFilterProduct={setFilterProduct}
       />
-      <Tabs.Screen
-        name="(buying)"
-        options={{
-          headerShown: false,
-          title: "Buying",
-        }}
-      />
-      <Tabs.Screen
-        name="selling"
-        options={{
-          headerShown: false,
-          title: "Selling",
-        }}
-      />
-      <Tabs.Screen
-        name="messages"
-        options={{
-          headerShown: false,
-          title: "Messages",
-        }}
-      />
-    </Tabs>
+
+      <Tabs tabBar={(props) => <TabBar {...props} />}>
+        <Tabs.Screen
+          name="index"
+          options={{
+            headerShown: false,
+            title: "Home",
+          }}
+        />
+        <Tabs.Screen
+          name="(buying)"
+          options={{
+            headerShown: false,
+            title: "Buying",
+          }}
+        />
+        <Tabs.Screen
+          name="selling"
+          options={{
+            headerShown: false,
+            title: "Selling",
+          }}
+        />
+        <Tabs.Screen
+          name="messages"
+          options={{
+            headerShown: false,
+            title: "Messages",
+          }}
+        />
+      </Tabs>
+    </>
   );
 };
 

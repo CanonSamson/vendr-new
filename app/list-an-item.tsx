@@ -54,7 +54,7 @@ const ListAnItem: React.FC = () => {
   });
   const [rangeValue, setRangeValue] = useState(20);
 
-  const [condication, setCondication] = useState("Not Specified");
+  const [condiction, setCondiction] = useState("Not Specified");
 
   const pickImage = async (id: string) => {
     const images_copy = Object.values(images);
@@ -68,7 +68,7 @@ const ListAnItem: React.FC = () => {
         // allowsMultipleSelection: true,
         orderedSelection: true,
         selectionLimit: 1,
-        allowsEditing: true
+        allowsEditing: true,
       });
 
       if (!result.canceled && result.assets && result.assets.length > 0) {
@@ -309,23 +309,24 @@ const ListAnItem: React.FC = () => {
             </View>
 
             <Text className="my-4 text-[24px]  text-primary text-p ">
-              Condition
+              Condiction
             </Text>
-            <View className=" flex-row  w-full gap-2">
+            <View className=" flex-row   w-full gap-2">
               <Pressable
-                onPress={() => setCondication("New")}
-                className=" active:scale-95 duration-300  flex-1"
+                onPress={() => setCondiction("New")}
+                className="  rounded-full active:scale-95 duration-300  flex-1"
+                style={condiction == "New" ? styles.condictions : {}}
               >
                 <LinearGradient
                   colors={
-                    condication == "New"
+                    condiction == "New"
                       ? ["#26BCF2", "#82DAF9"]
                       : ["#d3d3d3", "#d3d3d3"]
                   }
-                  className={`py-2  rounded-full bg-[#DBDBDB]  items-center`}
+                  className={`py-3  rounded-full bg-[#DBDBDB]  items-center`}
                 >
                   <Text
-                    style={{ fontSize: hp(2.1) }}
+                    style={{ fontSize: hp(1.9) }}
                     className=" font-semibold text-white"
                   >
                     New
@@ -333,19 +334,20 @@ const ListAnItem: React.FC = () => {
                 </LinearGradient>
               </Pressable>
               <Pressable
-                onPress={() => setCondication("Used")}
-                className=" active:scale-95 duration-300  flex-1"
+                onPress={() => setCondiction("Used")}
+                className=" rounded-full active:scale-95 duration-300  flex-1"
+                style={condiction == "Used" ? styles.condictions : {}}
               >
                 <LinearGradient
                   colors={
-                    condication == "Used"
+                    condiction == "Used"
                       ? ["#26BCF2", "#82DAF9"]
                       : ["#d3d3d3", "#d3d3d3"]
                   }
-                  className={`py-2 duration-500  rounded-full bg-[#DBDBDB]  items-center`}
+                  className={`py-3 duration-500  rounded-full bg-[#DBDBDB]  items-center`}
                 >
                   <Text
-                    style={{ fontSize: hp(2.1) }}
+                    style={{ fontSize: hp(1.9) }}
                     className=" font-semibold text-white"
                   >
                     Used
@@ -353,19 +355,20 @@ const ListAnItem: React.FC = () => {
                 </LinearGradient>
               </Pressable>
               <Pressable
-                onPress={() => setCondication("Not Specified")}
-                className=" active:scale-95 duration-300  flex-1"
+                onPress={() => setCondiction("Not Specified")}
+                className=" active:scale-95 duration-300  rounded-full  flex-1"
+                style={condiction == "Not Specified" ? styles.condictions : {}}
               >
                 <LinearGradient
                   colors={
-                    condication == "Not Specified"
+                    condiction == "Not Specified"
                       ? ["#26BCF2", "#82DAF9"]
                       : ["#d3d3d3", "#d3d3d3"]
                   }
-                  className={`py-2 duration-300 rounded-full bg-[#DBDBDB]  items-center`}
+                  className={`py-3 duration-300 rounded-full bg-[#DBDBDB]  items-center`}
                 >
                   <Text
-                    style={{ fontSize: hp(2.1) }}
+                    style={{ fontSize: hp(1.9) }}
                     className="  font-semibold text-white"
                   >
                     Not Specified
@@ -535,13 +538,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
   },
-  condicationButtons: {
+  condictionButtons: {
     flexDirection: "row",
     alignItems: "center",
     gap: 10,
     marginTop: 20,
   },
-  condicationButton: {
+  condictionButton: {
     flex: 1,
     height: 45,
     backgroundColor: "#DBDBDB",
@@ -584,5 +587,19 @@ const styles = StyleSheet.create({
     borderWidth: 4,
     borderColor: Colors.primary,
     borderStyle: "dashed",
+  },
+  condictions: {
+    ...Platform.select({
+      ios: {
+        shadowColor: "black",
+        shadowOpacity: 0.2,
+        shadowOffset: { width: 0, height: 3 },
+        shadowRadius: 2,
+      },
+      android: {
+        elevation: 5,
+        borderColor: "rgba(0, 0, 0, 0.1)",
+      },
+    }),
   },
 });

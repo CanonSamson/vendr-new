@@ -5,7 +5,9 @@ import React, {
   useEffect,
   useState,
   ReactNode,
+  useRef,
 } from "react";
+import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 
 // Define the context type
 interface ModalContextType {
@@ -15,6 +17,9 @@ interface ModalContextType {
   setListAnItemModal: React.Dispatch<React.SetStateAction<boolean>>;
   productModalVisible: boolean;
   setProductModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  filterProduct: boolean;
+  setFilterProduct: React.Dispatch<React.SetStateAction<boolean>>;
+  filterSheetRef: any;
 }
 
 // Create the context with an undefined initial value
@@ -39,6 +44,9 @@ export function ModalProvider({ children }: ModalProviderProps) {
   const [confirmAnicationModal, setConfirmAnicationModal] = useState(true);
   const [listAnItemModal, setListAnItemModal] = useState(true);
   const [productModalVisible, setProductModalVisible] = useState(false);
+  const [filterProduct, setFilterProduct] = useState(false);
+  const filterSheetRef = useRef<BottomSheet>(null);
+
 
   useSocketConnection();
 
@@ -63,6 +71,9 @@ export function ModalProvider({ children }: ModalProviderProps) {
     setListAnItemModal,
     productModalVisible,
     setProductModalVisible,
+    filterProduct,
+    setFilterProduct,
+    filterSheetRef
   };
 
   return (

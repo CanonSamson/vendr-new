@@ -22,14 +22,13 @@ const CustomKeyBoardView: React.FC<CustomKeyBoardViewProps> = ({
     <KeyboardAvoidingView
       behavior={ios ? "padding" : "height"}
       style={styles.container}
+      onTouchMove={() => Keyboard.dismiss()}
     >
       <ScrollView
         contentContainerStyle={styles.scrollViewContent}
         bounces={false}
         showsHorizontalScrollIndicator={false}
         keyboardShouldPersistTaps="always"
-        // onScroll={() => Keyboard.dismiss()} 
-        
       >
         {children}
       </ScrollView>
