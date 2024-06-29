@@ -1,9 +1,10 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, StyleSheet } from "react-native";
 import React from "react";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
+import { Platform } from "react-native";
 
 interface Product {
   id: string;
@@ -12,11 +13,13 @@ interface Product {
   images: any[];
 }
 
-
 const ProductCard: React.FC<Product> = ({ images, name, price }) => {
   return (
-    <View className="flex-1 relative w-[120px]  items-center justify-center m-2">
-      <View className=" w-[120px] h-[150px]  bg-[#303030]  rounded-xl flex relative justify-center">
+    <View className="flex-1 relative w-[120px]  items-center justify-center mr-4">
+      <View
+        style={styles.container}
+        className=" w-[120px] h-[150px]  bg-[#303030]  rounded-xl flex relative justify-center"
+      >
         <View className="z-20 absolute p-2 w-full flex-row top-0 left-0 justify-center">
           <Text
             className="text-white font-semibold text-center"
@@ -43,8 +46,8 @@ const ProductCard: React.FC<Product> = ({ images, name, price }) => {
         </View>
       </View>
       <Text
-      style={{ fontSize:hp(1.6)}}
-        className="text-black mt-2 h-[50px] font-semibold text-center"
+        style={{ fontSize: hp(1.6) }}
+        className="text-black mt-2 h-[50px] font-semibold text-start w-full"
         numberOfLines={2}
         ellipsizeMode="tail"
       >
@@ -56,4 +59,20 @@ const ProductCard: React.FC<Product> = ({ images, name, price }) => {
 
 export default ProductCard;
 
-
+const styles = StyleSheet.create({
+  container: {
+    borderRadius: 14,
+    ...Platform.select({
+      ios: {
+        shadowColor: "black",
+        shadowOpacity: 0.2,
+        shadowOffset: { width: 0, height: 3 },
+        shadowRadius: 2,
+      },
+      android: {
+        elevation: 5,
+        borderColor: "rgba(0, 0, 0, 0.1)",
+      },
+    }),
+  },
+});

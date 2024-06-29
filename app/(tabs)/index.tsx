@@ -1,6 +1,6 @@
 import Card from "@/components/Card";
 import { PersonIon, PlusIon } from "@/constants/Icons";
-import { ProductData, ProductObject } from "@/constants/testdata";
+import { ProductObject } from "@/constants/testdata";
 import { LogoV1White } from "@/constants/Vector";
 import { LinearGradient } from "expo-linear-gradient";
 import {
@@ -11,25 +11,21 @@ import {
   PanResponder,
   Dimensions,
   StatusBar as StatusBarN,
+  ScrollView,
+  Platform,
 } from "react-native";
 import SwiperButtons from "@/components/SwiperButtons";
 import { StatusBar } from "expo-status-bar";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { router } from "expo-router";
-import FilterProductModal from "@/components/Model/FIlterModel";
 import { useModal } from "@/context/ModalContext";
-import { scale, verticalScale, moderateScale } from "react-native-size-matters";
-import { ScrollView } from "react-native";
-import { Text } from "react-native";
-import { Platform } from "react-native";
+import { verticalScale } from "react-native-size-matters";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { BottomSheetModal, useBottomSheetModal } from "@gorhom/bottom-sheet";
+import CustomBottomSheetModal from "@/components/CustomBottomSheet";
 import Filter from "@/components/Model/Filter";
-import {
-  GestureHandlerRootView,
-  PanGestureHandler,
-} from "react-native-gesture-handler";
 
-const { width, height } = Dimensions.get("screen");
+const { height } = Dimensions.get("screen");
 
 interface ProductData {
   id: string;
@@ -53,14 +49,15 @@ export default function HomeScreen() {
   const titlSign = useRef(new Animated.Value(1)).current;
   const [productData, setProductData] = useState<ProductDataMap>(ProductObject);
   const [viewProductDetails, setViewProductDetails] = useState<any>();
-  const {
-    confirmAnicationModal,
-    productModalVisible,
-    filterProduct,
-    setFilterProduct,
-  } = useModal();
+  const { confirmAnicationModal, productModalVisible } = useModal();
   const [isActionActive, setIsActionActive] = useState(false);
-  const [isHolding, setIsHolding] = useState(false);
+
+  const filterBottomSheetRef = useRef<BottomSheetModal>(null);
+  const { dismiss } = useBottomSheetModal();
+
+  const handlePresentModalPress = () => filterBottomSheetRef.current?.present();
+  const handlePresentTOModalPress = () =>
+    filterBottomSheetRef.current?.snapToIndex(0);
 
   const triggerSwipe = (direction: number) => {
     Animated.timing(swipe, {
@@ -77,6 +74,7 @@ export default function HomeScreen() {
       swipe.setValue({ x: 0, y: 0 });
     });
   };
+
   const panResponder = PanResponder.create({
     onMoveShouldSetPanResponder: () => true,
     onPanResponderMove: (_, { dx, dy, y0 }) => {
@@ -85,11 +83,10 @@ export default function HomeScreen() {
       if (isHolding) setIsActionActive(true);
       else setIsActionActive(false);
 
-      setIsHolding(isHolding);
       swipe.setValue({ x: dx, y: dy });
       titlSign.setValue(y0 > (height * 0.9) / 2 ? 1 : -1);
     },
-    onPanResponderRelease: (_, { dx, dy }) => {
+    onPanResponderRelease: (_, { dx }) => {
       const direction = Math.sign(dx);
       const isActionActive = Math.abs(dx) > 100;
 
@@ -114,25 +111,23 @@ export default function HomeScreen() {
     });
   };
 
-  useEffect(() => {
-    if (!productData) {
-      setTimeout(() => {
-        setProductData(ProductObject);
-      }, 100);
-    }
-  }, [productData]);
-
   const insets = useSafeAreaInsets();
 
   const statusBarHeight =
     Platform.OS === "android" ? StatusBarN.currentHeight : insets.top;
 
-  useEffect(() => {
-    console.log(isActionActive);
-  }, [isActionActive]);
-
   return (
     <>
+      <CustomBottomSheetModal
+        ref={filterBottomSheetRef}
+        snapPoints={["60%", "80%"]}
+        title="My Custom Bottom Sheet"
+      >
+        <Filter
+          hideModal={() => dismiss()}
+          handlePresentTo={handlePresentTOModalPress}
+        />
+      </CustomBottomSheetModal>
       <StatusBar style="light" hidden={false} />
       <ScrollView
         style={{ flex: 1, zIndex: isActionActive ? 4 : 2 }}
@@ -206,7 +201,7 @@ export default function HomeScreen() {
       </ScrollView>
       {!productModalVisible && (
         <SwiperButtons
-          handleFilter={() => setFilterProduct(true)}
+          handleFilter={handlePresentModalPress}
           onSwipeLeft={() => triggerSwipe(-1)}
           onSwipeRight={() => triggerSwipe(1)}
           isActionActive={isActionActive}

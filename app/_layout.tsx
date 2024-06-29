@@ -11,6 +11,8 @@ import { ModalProvider, useModal } from "@/context/ModalContext";
 import ConfirmAnicationModal from "@/components/Model/ConfirmAnicationModal";
 import { ArrowRight, CloseIconSvg } from "@/constants/Icons";
 import Header from "@/components/layout/Header";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -173,10 +175,15 @@ export default function RootLayout() {
   if (!loaded) return null;
 
   return (
+    <GestureHandlerRootView style={{ flex: 1 }}>
     <AuthProvider>
       <ModalProvider>
-        <AppRoutes />
+        <BottomSheetModalProvider>
+          <AppRoutes />
+        </BottomSheetModalProvider>
       </ModalProvider>
     </AuthProvider>
+    </GestureHandlerRootView>
+
   );
 }

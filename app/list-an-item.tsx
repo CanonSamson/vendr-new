@@ -7,7 +7,6 @@ import {
   TextInput,
   Pressable,
   Platform,
-  Alert,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { Colors } from "../constants/Colors";
@@ -176,30 +175,6 @@ const ListAnItem: React.FC = () => {
                   ))}
                 </SortableList>
               </GestureHandlerRootView>
-
-              {/* {Object.values(images).map((item) => (
-                <ImageCard
-                  key={item.id}
-                  id={item.id.toString()}
-                  uri={item.uri ? item.uri.toString() : null}
-                  pickImage={pickImage}
-                />
-              ))}
-              {Object.keys(images).length < 6 && (
-                <ImageCard id={"1"} uri={null} pickImage={AddImage} />
-              )}
-              {(Object.keys(images).length == 1 ||
-                Object.keys(images).length == 3) && (
-                <View className="  relative   opacity-0">
-                  <View style={styles.placeholder}></View>
-                </View>
-              )}
-              {(Object.keys(images).length == 3 ||
-                Object.keys(images).length == 4) && (
-                <View className="  relative   opacity-0">
-                  <View style={styles.placeholder}></View>
-                </View>
-              )} */}
             </View>
           </View>
 

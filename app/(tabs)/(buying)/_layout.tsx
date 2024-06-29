@@ -1,14 +1,33 @@
-import { Colors } from "@/constants/Colors";
 import { LinearGradient } from "expo-linear-gradient";
-import { router, Stack, usePathname, useRouter } from "expo-router";
+import { router, usePathname, withLayoutContext } from "expo-router";
 import React from "react";
-import { Alert, Pressable, View } from "react-native";
+import { Pressable, View } from "react-native";
 import { LogoV1White } from "@/constants/Vector";
 import { ActionIcon } from "@/constants/Icons";
 import { Text } from "react-native";
+import {
+  createMaterialTopTabNavigator,
+  MaterialTopTabNavigationOptions,
+  MaterialTopTabNavigationEventMap,
+} from "@react-navigation/material-top-tabs";
+import { ParamListBase, TabNavigationState } from "@react-navigation/native";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
+
+const { Navigator } = createMaterialTopTabNavigator();
+
+export const MaterialTopTabs = withLayoutContext<
+  MaterialTopTabNavigationOptions,
+  typeof Navigator,
+  TabNavigationState<ParamListBase>,
+  MaterialTopTabNavigationEventMap
+>(Navigator);
 
 export default function RootLayout() {
   const pathname = usePathname();
+
   return (
     <>
       <LinearGradient
@@ -59,13 +78,22 @@ export default function RootLayout() {
           </Pressable>
         </View>
       </LinearGradient>
-      <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen
+
+      <MaterialTopTabs
+        screenOptions={{
+          tabBarActiveTintColor: "#42BEED",
+          tabBarLabelStyle: { fontWeight: "bold", textTransform: "capitalize" },
+          tabBarItemStyle: { display: "none" },
+          tabBarShowLabel: false,
+          tabBarShowIcon: false,
+        }}
+      >
+        <MaterialTopTabs.Screen name="index" options={{ title: "Saved" }} />
+        <MaterialTopTabs.Screen
           name="product-messages"
-          options={{ headerShown: false }}
+          options={{ title: "Messages" }}
         />
-      </Stack>
+      </MaterialTopTabs>
     </>
   );
 }
