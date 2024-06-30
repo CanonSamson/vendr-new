@@ -2,10 +2,10 @@ import React from "react";
 import {
   View,
   Text,
-  Pressable,
-  Platform,
+    Platform,
   StyleSheet,
   StatusBar,
+TouchableOpacity
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -38,13 +38,13 @@ const Header: React.FC<HeaderProps> = ({
       }  top-0 w-full flex-row   justify-between  right-0 z-20 items-center bg-white border-b-[3px] border-primary`}
       style={[styles.heading, { paddingTop: statusBarHeight }]}
     >
-      <Pressable onPress={hendleLeft} className="p-4 px-7   ">
+      <TouchableOpacity onPress={hendleLeft} className=" flex-1 items-start p-4 px-7   ">
         {Left}
-      </Pressable>
-      <Text className="text-[26px] text-black font-bold">{title}</Text>
-      <Pressable onPress={hendleRight} className="p-4 px-7  ">
+      </TouchableOpacity>
+      <Text className=" flex-2 text-center text-[26px] text-black font-bold">{title}</Text>
+      <TouchableOpacity onPress={hendleRight} className=" flex-1 items-end p-4 px-7  ">
         {Right}
-      </Pressable>
+      </TouchableOpacity>
     </View>
   );
 };

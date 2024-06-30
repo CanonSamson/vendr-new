@@ -8,6 +8,7 @@ import {
   StyleSheet,
   Pressable,
   Platform,
+TouchableOpacity,
 } from "react-native";
 import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
@@ -151,7 +152,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
                 Location: Point Pleasant NJ, O8742
               </Text>
             </View>
-
+<TouchableOpacity>
             <View
               className="px-[20px] py-[10px] mt-[10px] bg-white rounded-xl "
               style={styles.container}
@@ -160,10 +161,11 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
                 Report Item
               </Text>
             </View>
+</TouchableOpacity>
           </View>
           <View className=" flex-1 w-full">
             <View className=" w-full px-[10px] flex-row">
-              <Pressable className=" flex-1 items-end mr-[20px] justify-center">
+              <TouchableOpacity className=" flex-1 items-end mr-[20px] justify-center">
                 <View className=" w-[80px] items-center justify-end">
                   <Image
                     source={next}
@@ -172,8 +174,8 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
                     resizeMode="contain"
                   />
                 </View>
-              </Pressable>
-              <Pressable className=" flex-1 items-start justify-center">
+              </TouchableOpacity>
+              <TouchableOpacity className=" flex-1 items-start justify-center">
                 <View className=" w-[100px] items-center justify-center">
                   <Image
                     source={offer}
@@ -182,7 +184,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
                     resizeMode="contain"
                   />
                 </View>
-              </Pressable>
+              </TouchableOpacity>
             </View>
           </View>
           <View className="  w-[50%] -top-[20px] relative  mx-auto ">

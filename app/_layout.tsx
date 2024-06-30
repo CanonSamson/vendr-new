@@ -73,6 +73,15 @@ function AppRoutes() {
           }}
         />
         <Stack.Screen
+          name="(item)"
+          options={{
+            animation: "slide_from_bottom",
+            gestureDirection: "vertical",
+            animationDuration: 175,
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
           name="user-profile"
           options={{
             animationDuration: 175,
@@ -176,14 +185,13 @@ export default function RootLayout() {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-    <AuthProvider>
-      <ModalProvider>
-        <BottomSheetModalProvider>
-          <AppRoutes />
-        </BottomSheetModalProvider>
-      </ModalProvider>
-    </AuthProvider>
+      <AuthProvider>
+        <ModalProvider>
+          <BottomSheetModalProvider>
+            <AppRoutes />
+          </BottomSheetModalProvider>
+        </ModalProvider>
+      </AuthProvider>
     </GestureHandlerRootView>
-
   );
 }

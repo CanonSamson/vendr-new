@@ -47,15 +47,10 @@ export default function RootLayout() {
         </View>
         <View className="flex-row mt-5 items-center  pb-4">
           <Pressable
-            onPress={() => {
-              if (pathname == "/product-messages") {
-                return router.back();
-              }
-              router.push("/(buying)");
-            }}
+            onPress={() => router.push("/(buying)")}
             className="items-center  justify-center  flex-1"
           >
-            <Text className=" text-white  font-semibold text-xl ">Saved</Text>
+            <Text className=" text-white  font-bold text-xl ">Saved</Text>
             <View
               className={`mt-2 mx-auto w-[40%] bg-white h-[3px] rounded-3xl ${
                 pathname === "/" ? "opacity-100" : "opacity-0"
@@ -67,9 +62,7 @@ export default function RootLayout() {
             onPress={() => router.push("/(buying)/product-messages")}
             className="items-center  justify-center  flex-1"
           >
-            <Text className=" text-white  font-semibold text-xl ">
-              Messages
-            </Text>
+            <Text className=" text-white  font-bold text-xl ">Messages</Text>
             <View
               className={`mt-2 mx-auto w-[40%] bg-white h-[3px] rounded-3xl ${
                 pathname === "/product-messages" ? "opacity-100" : "opacity-0"

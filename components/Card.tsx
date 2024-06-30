@@ -44,6 +44,7 @@ interface CardData {
   viewProductDetails: any;
   product_id: string;
   setViewProductDetails: React.Dispatch<React.SetStateAction<any>>;
+  scrollToTop: () => void
 }
 
 const { width, height } = Dimensions.get("screen");
@@ -63,6 +64,7 @@ const Card: React.FC<CardData> = ({
   viewProductDetails,
   product_id,
   setViewProductDetails,
+  scrollToTop,
   ...rest
 }) => {
   const {
@@ -92,25 +94,6 @@ const Card: React.FC<CardData> = ({
   });
 
   const fadeAnim = useState(new Animated.Value(0))[0];
-
-  const showModal = () => {
-    setModalVisible(true);
-    Animated.timing(fadeAnim, {
-      toValue: 1,
-      duration: 300,
-      useNativeDriver: true,
-    }).start();
-  };
-
-  const hideModal = () => {
-    Animated.timing(fadeAnim, {
-      toValue: 0,
-      duration: 300,
-      useNativeDriver: true,
-    }).start(() => {
-      setModalVisible(false);
-    });
-  };
 
   const renderChoice = useCallback(() => {
     return (
@@ -185,15 +168,14 @@ const Card: React.FC<CardData> = ({
           style={[isFirst && !modalVisible ? animatedCardStyle : null]}
           {...(!modalVisible ? rest : {})}
           className={`
-          ${
-            modalVisible
+          ${modalVisible
               ? isFirst
                 ? "z-30  "
                 : "hidden"
               : isFirst
-              ? "z-30  "
-              : " "
-          }
+                ? "z-30  "
+                : " "
+            }
            rounded-2xl top-0 w-[95%]  mt-2  transition duration-[35000ms] ease-in-out  absolute overflow-hidden bg-[#303030]`}
         >
           <Reanimated.Image
@@ -228,9 +210,8 @@ const Card: React.FC<CardData> = ({
             </View>
 
             <View
-              className={`absolute top-[27px] left-0 w-full flex-row ${
-                modalVisible ? "hidden" : " block"
-              }`}
+              className={`absolute top-[27px] left-0 w-full flex-row ${modalVisible ? "hidden" : " block"
+                }`}
             >
               <Pressable
                 onPress={() => router.push(`/(product)/user/${product_id}`)}
@@ -256,9 +237,8 @@ const Card: React.FC<CardData> = ({
             <View className="absolute bottom-6 left-0 w-full flex-row">
               <View className=" w-full flex-row items-end">
                 <View
-                  className={`mr-1 pb-[14px] items-center flex-1 ${
-                    modalVisible ? "  opacity-0" : " opacity-100"
-                  } duration-700`}
+                  className={`mr-1 pb-[14px] items-center flex-1 ${modalVisible ? "  opacity-0" : " opacity-100"
+                    } duration-700`}
                 >
                   <Text className="text-white text-[19px]  text-center font-bold">
                     {name}
@@ -270,7 +250,10 @@ const Card: React.FC<CardData> = ({
                 {modalVisible ? (
                   <Pressable
                     className="  active:scale-110  duration-700 mr-[25px]"
-                    onPress={() => handleClose()}
+                    onPress={() => {
+                      scrollToTop()
+                      handleClose()
+                    }}
                   >
                     <DownIcon />
                   </Pressable>
@@ -296,9 +279,8 @@ const Card: React.FC<CardData> = ({
           },
           detailsAnimatedStyle,
         ]}
-        className={` bg-[#F3F3F3]  ${
-          modalVisible && isFirst ? "" : "hidden"
-        }  ${isFirst ? "" : "hidden"}`}
+        className={` bg-[#F3F3F3]  ${modalVisible && isFirst ? "" : "hidden"
+          }  ${isFirst ? "" : "hidden"}`}
       >
         <Reanimated.View
           style={[detailsAnimatedStyle]}

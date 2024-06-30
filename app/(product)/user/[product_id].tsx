@@ -22,22 +22,20 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
-import { convertDateFormat, getNameInitials } from "@/utils/functions";
 import { StatusBar } from "expo-status-bar";
 import { ProductObject } from "@/constants/testdata";
 
 const UserProfile = () => {
-  const [editProfile, setEditProfile] = useState(false);
   const { product_id } = useLocalSearchParams();
 
-  const user = ProductObject[product_id].seller;
+  const user = ProductObject[product_id?.toString() ?? ""].seller;
 
   return (
     <>
       <StatusBar backgroundColor="white" style="dark" />
 
       <View
-        style={{ marginTop:hp(1) }}
+        style={{ marginTop: hp(1) }}
         className="    justify-between flex-1 bg-[#F3F3F3]  px-1 "
       >
         <View className=" ">
@@ -100,7 +98,7 @@ const UserProfile = () => {
             </Text>
           </View>
 
-          <TouchableOpacity onPress={() => {}}>
+          <TouchableOpacity onPress={() => { }}>
             <View
               style={styles.container}
               className="  mt-[7px] p-4 bg-white rounded-xl"
@@ -111,7 +109,7 @@ const UserProfile = () => {
             </View>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => {}}>
+          <TouchableOpacity onPress={() => { }}>
             <View
               style={styles.container}
               className="  mt-[7px] p-4 bg-white rounded-xl"
@@ -123,7 +121,7 @@ const UserProfile = () => {
           </TouchableOpacity>
         </View>
         <View className=" pb-[30px] flex-row  items-center justify-center mt-[12px]">
-          <TouchableOpacity onPress={() => {}} className=" items-center px-2">
+          <TouchableOpacity onPress={() => { }} className=" items-center px-2">
             <View
               style={styles.container}
               className="  w-[69px] h-[69px]  items-center justify-center 

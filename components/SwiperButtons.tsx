@@ -1,13 +1,11 @@
 import { View, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import UndoBtn from "@/assets/icon/CardButtons/3DUndoBtn";
 import NopeBtn from "@/assets/icon/CardButtons/3DNopeBtn";
 import LikeBtn from "@/assets/icon/CardButtons/3DLikeBtn";
 import SearchBtn from "@/assets/icon/CardButtons/3DSearchBtn";
 import UnderLine from "@/assets/icon/CardButtons/UnderLine";
-import Filter from "./Model/Filter";
-import { useModal } from "@/context/ModalContext";
 
 interface SwiperButtonsProps {
   handleFilter: () => void;
@@ -15,6 +13,7 @@ interface SwiperButtonsProps {
   onSwipeRight: () => void;
   isActionActive?: boolean;
   swipe?: any;
+  swipWith: string;
 }
 const SwiperButtons: React.FC<SwiperButtonsProps> = ({
   handleFilter,
@@ -22,17 +21,17 @@ const SwiperButtons: React.FC<SwiperButtonsProps> = ({
   onSwipeRight,
   isActionActive,
   swipe,
+  swipWith,
 }) => {
-  const { filterSheetRef } = useModal();
   const likeScale = swipe.x.interpolate({
-    inputRange: [400, 500],
-    outputRange: [1, 1.4], // Adjust the scale values as needed
+    inputRange: [300, 400],
+    outputRange: [1, 1.3],
     extrapolate: "clamp",
   });
 
   const nopeScale = swipe.x.interpolate({
-    inputRange: [-500, -400],
-    outputRange: [1.4, 1], 
+    inputRange: [-400, -300],
+    outputRange: [1.3, 1],
     extrapolate: "clamp",
   });
 
@@ -47,18 +46,28 @@ const SwiperButtons: React.FC<SwiperButtonsProps> = ({
         </TouchableOpacity>
         <TouchableOpacity
           style={{
-            transform: [{ scale: nopeScale }],
+            transform: swipWith == "button" ? [] : [{ scale: nopeScale }],
           }}
-          onPress={onSwipeLeft}
+          onPress={async () => {
+            try {
+            } finally {
+              onSwipeLeft();
+            }
+          }}
           className=" z-2"
         >
           <NopeBtn />
         </TouchableOpacity>
         <TouchableOpacity
           style={{
-            transform: [{ scale: likeScale }],
+            transform: swipWith == "button" ? [] : [{ scale: likeScale }],
           }}
-          onPress={onSwipeRight}
+          onPress={async () => {
+            try {
+            } finally {
+              onSwipeRight();
+            }
+          }}
           className=" "
         >
           <LikeBtn />

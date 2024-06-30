@@ -2,6 +2,7 @@ import React from "react";
 import { Tabs } from "expo-router";
 import TabBar from "@/components/TabBar";
 
+
 const TabsLayout = () => {
   return (
     <>
@@ -21,7 +22,7 @@ const TabsLayout = () => {
           }}
         />
         <Tabs.Screen
-          name="selling"
+          name="(selling)"
           options={{
             headerShown: false,
             title: "Selling",

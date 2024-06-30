@@ -16,7 +16,7 @@ import {
 } from "react-native";
 import SwiperButtons from "@/components/SwiperButtons";
 import { StatusBar } from "expo-status-bar";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { router } from "expo-router";
 import { useModal } from "@/context/ModalContext";
 import { verticalScale } from "react-native-size-matters";
@@ -58,8 +58,14 @@ export default function HomeScreen() {
   const handlePresentModalPress = () => filterBottomSheetRef.current?.present();
   const handlePresentTOModalPress = () =>
     filterBottomSheetRef.current?.snapToIndex(0);
+  const [swipWith, setSwipWith] = useState<string>("card");
 
   const triggerSwipe = (direction: number) => {
+    if (direction === -1 || direction === 1) {
+      setSwipWith("card");
+    } else {
+      setSwipWith("button");
+    }
     Animated.timing(swipe, {
       duration: 200,
       toValue: {
@@ -80,8 +86,10 @@ export default function HomeScreen() {
     onPanResponderMove: (_, { dx, dy, y0 }) => {
       const distance = Math.sqrt(dx * dx + dy * dy);
       const isHolding = distance > 15;
-      if (isHolding) setIsActionActive(true);
-      else setIsActionActive(false);
+      if (isHolding) {
+        setIsActionActive(true);
+        setSwipWith("card");
+      } else setIsActionActive(false);
 
       swipe.setValue({ x: dx, y: dy });
       titlSign.setValue(y0 > (height * 0.9) / 2 ? 1 : -1);
@@ -90,6 +98,7 @@ export default function HomeScreen() {
       const direction = Math.sign(dx);
       const isActionActive = Math.abs(dx) > 100;
 
+      console.log(direction);
       if (isActionActive) {
         triggerSwipe(direction);
       } else {
@@ -116,6 +125,14 @@ export default function HomeScreen() {
   const statusBarHeight =
     Platform.OS === "android" ? StatusBarN.currentHeight : insets.top;
 
+
+    const scrollViewRef = useRef<ScrollView>(null);
+
+    const scrollToTop = () => {
+      if (scrollViewRef.current) {
+        scrollViewRef.current.scrollTo({ y: 0, animated: true });
+      }
+    };
   return (
     <>
       <CustomBottomSheetModal
@@ -130,11 +147,12 @@ export default function HomeScreen() {
       </CustomBottomSheetModal>
       <StatusBar style="light" hidden={false} />
       <ScrollView
-        style={{ flex: 1, zIndex: isActionActive ? 4 : 2 }}
+        style={{ flex: 1, zIndex: 4 }}
         bounces={false}
         showsHorizontalScrollIndicator={false}
         className=" h-screen  "
         scrollEnabled={productModalVisible}
+        ref={scrollViewRef}
       >
         <LinearGradient
           colors={["#00A3FF", "#85DBF9"]}
@@ -194,6 +212,7 @@ export default function HomeScreen() {
                 viewProductDetails={viewProductDetails}
                 setViewProductDetails={setViewProductDetails}
                 product_id={item.id}
+                scrollToTop={scrollToTop}
               />
             );
           })}
@@ -202,10 +221,11 @@ export default function HomeScreen() {
       {!productModalVisible && (
         <SwiperButtons
           handleFilter={handlePresentModalPress}
-          onSwipeLeft={() => triggerSwipe(-1)}
-          onSwipeRight={() => triggerSwipe(1)}
+          onSwipeLeft={() => triggerSwipe(-1.3)}
+          onSwipeRight={() => triggerSwipe(1.3)}
           isActionActive={isActionActive}
           swipe={swipe}
+          swipWith={swipWith}
         />
       )}
     </>

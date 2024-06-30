@@ -1,4 +1,4 @@
-import { Text, View, Image, ScrollView } from "react-native";
+import { Text, View, Image } from "react-native";
 import React from "react";
 import { chatData } from "@/constants/testdata";
 import { StyleSheet } from "react-native";

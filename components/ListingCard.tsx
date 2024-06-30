@@ -8,6 +8,8 @@ import {
 } from "react-native";
 import React from "react";
 import EditIcon from "../assets/svg/EditIcon.svg";
+import { Platform } from "react-native";
+import { router } from "expo-router";
 
 interface ListingCardProps {
   image: ImageSourcePropType;
@@ -34,7 +36,10 @@ const ListingCard: React.FC<ListingCardProps> = ({
   };
 
   return (
-    <View style={styles.card}>
+    <Pressable
+      onPress={() => router.push(`/(item)/details/1`)}
+      style={[styles.card, styles.container]}
+    >
       {type !== "Previous" && (
         <Pressable style={styles.editIcon} onPress={() => {}}>
           <EditIcon width={28} height={28} />
@@ -69,7 +74,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
           </View>
         )}
       </View>
-    </View>
+    </Pressable>
   );
 };
 
@@ -79,17 +84,28 @@ const styles = StyleSheet.create({
   card: {
     borderRadius: 8,
     backgroundColor: "#fff",
-    shadowColor: "#000",
-    shadowOpacity: 0.1,
-    shadowOffset: { width: 0, height: 1 },
-    shadowRadius: 5,
-    elevation: 2,
-    margin: 10,
+    marginBottom: 5,
     flexDirection: "row",
     alignItems: "center",
     position: "relative",
     padding: 10,
   },
+  container: {
+    borderRadius: 14,
+    ...Platform.select({
+      ios: {
+        shadowColor: "black",
+        shadowOpacity: 0.2,
+        shadowOffset: { width: 0, height: 3 },
+        shadowRadius: 2,
+      },
+      android: {
+        elevation: 5,
+        borderColor: "rgba(0, 0, 0, 0.1)",
+      },
+    }),
+  },
+
   image: {
     height: 100,
     width: 100,

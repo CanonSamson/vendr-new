@@ -8,7 +8,7 @@ interface ChoiceProps {
 }
 
 const COLORS = {
-  next: "#ff006f",
+  next: "#E31518",
   offer: "#3FC0EF",
 };
 
@@ -16,11 +16,11 @@ const Choice: React.FC<ChoiceProps> = ({ type }) => {
   return (
     <View
       className={` border-[7px] rounded-[15px] bg-[rgba(0,0,0,.2)] 
-        ${type == "offer" ? "border-primary" : "border-[#ff006f] "}`}
+        ${type == "offer" ? "border-primary" : "border-[#E31518] "}`}
     >
       <Text
         className={` uppercase font-semibold text-[48px] ${
-          type == "offer" ? "text-primary" : "text-[#ff006f]"
+          type == "offer" ? "text-primary" : "text-[#E31518]"
         }
        `}
       >

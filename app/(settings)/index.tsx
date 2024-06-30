@@ -6,7 +6,6 @@ import {
   Switch,
   Image,
   ScrollView,
-  Pressable,
   Alert,
   TouchableOpacity
 } from "react-native";

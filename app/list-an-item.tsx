@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import {
   View,
   Switch,
@@ -7,6 +7,7 @@ import {
   TextInput,
   Pressable,
   Platform,
+  Alert,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { Colors } from "../constants/Colors";
@@ -54,6 +55,12 @@ const ListAnItem: React.FC = () => {
   const [rangeValue, setRangeValue] = useState(20);
 
   const [condiction, setCondiction] = useState("Not Specified");
+
+  // Check if any images are present
+  const anyImages = useMemo(
+    () => Object.values(images).some((img) => img.uri !== null),
+    [images]
+  );
 
   const pickImage = async (id: string) => {
     const images_copy = Object.values(images);
@@ -155,26 +162,48 @@ const ListAnItem: React.FC = () => {
               style={styles.grid}
               className=" duration-700  items-start justify-start mt-[10px] pb-2"
             >
-              <GestureHandlerRootView>
-                <SortableList
-                  editing={true}
-                  onDragEnd={(positions) =>
-                    console.log(JSON.stringify(positions, null, 2))
-                  }
-                  pickImage={() => {}}
-                >
-                  {[...Object.values(images)].map((item, index) => (
-                    <ImageCard
-                      onLongPress={() => true}
-                      key={item.id + "-" + index}
-                      id={item.id + "-" + index}
-                      uri={item.uri ? item.uri : null}
-                      // pickImage={() => Alert.alert(`${index}`)}
-                      pickImage={() => pickImage(`${index}`)}
-                    />
-                  ))}
-                </SortableList>
-              </GestureHandlerRootView>
+              <SortableList
+                editing={anyImages} // Only enable editing if there are images
+                onDragEnd={(positions) =>
+                  console.log(JSON.stringify(positions, null, 2))
+                }
+                pickImage={() => {}}
+              >
+                {[...Object.values(images)].map((item, index) => (
+                  <ImageCard
+                    onLongPress={() => true}
+                    key={item.id + "-" + index}
+                    id={item.id + "-" + index}
+                    uri={item.uri ? item.uri : null}
+                    // pickImage={() => Alert.alert(`${index}`)}
+                    pickImage={() => pickImage(`${index}`)}
+                  />
+                ))}
+              </SortableList>
+
+              {/* {Object.values(images).map((item) => (
+                <ImageCard
+                  key={item.id}
+                  id={item.id.toString()}
+                  uri={item.uri ? item.uri.toString() : null}
+                  pickImage={pickImage}
+                />
+              ))}
+              {Object.keys(images).length < 6 && (
+                <ImageCard id={"1"} uri={null} pickImage={AddImage} />
+              )}
+              {(Object.keys(images).length == 1 ||
+                Object.keys(images).length == 3) && (
+                <View className="  relative   opacity-0">
+                  <View style={styles.placeholder}></View>
+                </View>
+              )}
+              {(Object.keys(images).length == 3 ||
+                Object.keys(images).length == 4) && (
+                <View className="  relative   opacity-0">
+                  <View style={styles.placeholder}></View>
+                </View>
+              )} */}
             </View>
           </View>
 

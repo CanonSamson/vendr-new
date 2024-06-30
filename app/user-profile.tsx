@@ -29,7 +29,9 @@ const UserProfile = () => {
     <>
       <StatusBar backgroundColor="white" style="dark" />
 
-      <View className=" bg-[#F3F3F3] mt-2 justify-start px-1 ">
+      <View
+        className="  bg-[#F3F3F3] justify-between flex-1 px-1 pt-1"
+      >
         <View
           style={[styles.container, { paddingTop: hp(2) }]}
           className=" pb-2   bg-white rounded-xl"
@@ -85,7 +87,7 @@ const UserProfile = () => {
           </Text>
           <Text
             style={{ width: wp(75) }}
-            className="text-[18px] mx-auto text-center mt-4"
+            className="text-[18px] mx-auto text-center mt-4 mb-4"
           >
             Check out my store I sell shoes and vintage clothing.
           </Text>
@@ -106,7 +108,7 @@ const UserProfile = () => {
         <TouchableOpacity onPress={() => {}}>
           <View
             style={styles.container}
-            className="  mt-[7px] p-2 bg-white rounded-xl"
+            className="  mt-[7px] p-3 bg-white rounded-xl"
           >
             <Text
               style={{ fontSize: hp(2.5) }}

@@ -44,7 +44,7 @@ const Buying: React.FC = () => {
             styles.container,
             { marginTop: hp(1), paddingVertical: hp(1) },
           ]}
-          className="bg-white rounded-xl"
+          className="bg-white rounded-xl mx-1"
         >
           <Text
             style={{ fontSize: hp(3.1), marginBottom: hp(2) }}
