@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, Platform } from "react-native";
 import React, { useRef } from "react";
 import { TouchableOpacity } from "react-native";
 import { FlatList } from "react-native";
@@ -7,36 +7,40 @@ import { listings } from "@/utils/data";
 import { StyleSheet } from "react-native";
 import { Colors } from "@/constants/Colors";
 
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 const index = () => {
 
- 
-  return (
 
-    <View className=" mt-4 bg-white rounded-t-xl">
+  return (
+    <View style={[{ marginBottom: Platform.OS === "ios" ? 55 :55, }, styles.container]} className=" overflow-hidden mx-1 bg-white rounded-xl">
       <View className=" flex-row justify-between items-center px-4 py-2">
         <Text style={styles.mainHeadingText}>Active Listings</Text>
         <TouchableOpacity style={styles.filterButton} onPress={() => { }}>
           <Text style={styles.filterButtonTest}>Filter</Text>
         </TouchableOpacity>
       </View>
-
-      <FlatList
-        data={listings}
-        contentContainerStyle={{ paddingBottom: 60 }}
-        className=" px-3"
-        renderItem={({ item }) => {
-          const mappedItem = {
-            ...item,
-            status:
-              item.status === "Unlisted" || item.status === "Sold"
-                ? item.status
-                : "Unlisted",
-          };
-          return <ListingCard {...mappedItem} />;
-        }}
-        keyExtractor={(item) => item.id.toString()}
-      />
+      <View className=" ">
+        <FlatList
+          data={listings}
+          contentContainerStyle={{ paddingBottom: 60 }}
+          className=" px-3"
+          renderItem={({ item }) => {
+            const mappedItem = {
+              ...item,
+              status:
+                item.status === "Unlisted" || item.status === "Sold"
+                  ? item.status
+                  : "Unlisted",
+            };
+            return <ListingCard {...mappedItem} />;
+          }}
+          keyExtractor={(item) => item.id.toString()}
+        />
+      </View>
     </View>
   );
 };
@@ -44,6 +48,19 @@ const index = () => {
 export default index;
 
 const styles = StyleSheet.create({
+  container: {
+    ...Platform.select({
+      ios: {
+        shadowColor: "black",
+        shadowOpacity: 0.2,
+        shadowOffset: { width: 0, height: 3 },
+        shadowRadius: 2,
+      },
+      android: {
+        elevation: 5,
+      },
+    }),
+  },
 
   listItem: {
     textAlign: "center",

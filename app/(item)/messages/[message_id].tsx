@@ -6,17 +6,19 @@ import { Colors } from "@/constants/Colors";
 import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
 
+
+import Filter from "@/assets/icon/Filter.svg"
+
 const Message = () => {
   const [show, setShow] = useState("Requests")
   return (
     <View className=" my-1">
       <View className="rounded-xl flex-row justify-between items-center shadow-xl shadow-gray-200 bg-white p-5">
         <Pressable>
-          <View className=" flex items-center flex-row ">
-            <Text className=" text-xl font-semibold">Messages</Text>
-            <Image
-              className=" mx-3"
-              source={ArrowDown}
+          <View className=" gap-x-1 items-center flex-row ">
+            <Text className="  text-[20px] font-bold">Messages</Text>
+            <Filter
+              className=" items-center justify-center  "
               width={24}
               height={24}
             />

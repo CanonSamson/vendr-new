@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Platform } from "react-native";
 import React from "react";
 import { Pressable } from "react-native";
 import { FlatList } from "react-native";
@@ -9,10 +9,9 @@ import { Colors } from "@/constants/Colors";
 
 const Previous = () => {
   return (
-    <View className=" mt-4 bg-white rounded-t-xl">
+    <View style={[{ marginBottom: Platform.OS === "ios" ? 55 : 55, }, styles.container]} className=" overflow-hidden mx-1 bg-white rounded-xl">
       <View className=" flex-row justify-between items-center px-4 py-2">
         <Text style={styles.mainHeadingText}>Previous Listings</Text>
-
         <TouchableOpacity style={styles.filterButton} onPress={() => { }}>
           <Text style={styles.filterButtonTest}>Filter</Text>
         </TouchableOpacity>
@@ -41,6 +40,19 @@ const Previous = () => {
 export default Previous;
 
 const styles = StyleSheet.create({
+  container: {
+    ...Platform.select({
+      ios: {
+        shadowColor: "black",
+        shadowOpacity: 0.2,
+        shadowOffset: { width: 0, height: 3 },
+        shadowRadius: 2,
+      },
+      android: {
+        elevation: 5,
+      },
+    }),
+  },
   listItem: {
     textAlign: "center",
     maxWidth: 200,

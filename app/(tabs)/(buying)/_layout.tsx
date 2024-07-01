@@ -15,8 +15,19 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
+import { Dimensions } from "react-native";
 
 const { Navigator } = createMaterialTopTabNavigator();
+
+
+const { width, height } = Dimensions.get('window');
+
+// Scale factors based on current device vs. base design
+const widthScale = width / 390; // Using iPhone 13 Pro's width as base
+const heightScale = height / 844; // Using iPhone 13 Pro's height as base
+
+//if height is smaller then iphone 13 pro's height, then use heightScale value, otherwise use 1
+const Scaler = heightScale < 1 ? heightScale : 1;
 
 export const MaterialTopTabs = withLayoutContext<
   MaterialTopTabNavigationOptions,
@@ -32,7 +43,7 @@ export default function RootLayout() {
     <>
       <LinearGradient
         colors={["#00A3FF", "#85DBF9"]}
-        className=" pt-14  px-4 items-center relative rounded-md min-h-[150px] "
+        className=" pt-14  px-4 items-center relative  min-h-[130px] "
       >
         <View className="  px-4 w-full justify-center items-center relative flex-row  ">
           <View className=" w-auto h-[45px] z-40 relative ">
@@ -45,40 +56,15 @@ export default function RootLayout() {
             <ActionIcon width={40} height={40} />
           </Pressable>
         </View>
-        <View className="flex-row mt-5 items-center  pb-4">
-          <Pressable
-            onPress={() => router.push("/(buying)")}
-            className="items-center  justify-center  flex-1"
-          >
-            <Text className=" text-white  font-bold text-xl ">Saved</Text>
-            <View
-              className={`mt-2 mx-auto w-[40%] bg-white h-[3px] rounded-3xl ${
-                pathname === "/" ? "opacity-100" : "opacity-0"
-              }`}
-            />
-          </Pressable>
-          <View className=" h-[60%] bg-white w-[2px] rounded-3xl " />
-          <Pressable
-            onPress={() => router.push("/(buying)/product-messages")}
-            className="items-center  justify-center  flex-1"
-          >
-            <Text className=" text-white  font-bold text-xl ">Messages</Text>
-            <View
-              className={`mt-2 mx-auto w-[40%] bg-white h-[3px] rounded-3xl ${
-                pathname === "/product-messages" ? "opacity-100" : "opacity-0"
-              }`}
-            />
-          </Pressable>
-        </View>
       </LinearGradient>
 
       <MaterialTopTabs
         screenOptions={{
-          tabBarActiveTintColor: "#42BEED",
-          tabBarLabelStyle: { fontWeight: "bold", textTransform: "capitalize" },
-          tabBarItemStyle: { display: "none" },
-          tabBarShowLabel: false,
-          tabBarShowIcon: false,
+          tabBarActiveTintColor: '#FFF',
+          tabBarBounces: true,
+          tabBarLabelStyle: { fontSize: 22 * Scaler, fontWeight: 'bold', textTransform: 'capitalize', bottom: 20, color: '#FFF' },
+          tabBarIndicatorStyle: { backgroundColor: '#FFF', height: 3 * Scaler, bottom: 10 * Scaler, width: '11.5%', left: '19.5%', borderRadius: 4 },
+          tabBarStyle: { backgroundColor: '#85DBF9', height: 41 * Scaler },
         }}
       >
         <MaterialTopTabs.Screen name="index" options={{ title: "Saved" }} />

@@ -5,30 +5,33 @@ import { listings } from "@/utils/data";
 import { StyleSheet } from "react-native";
 import { Colors } from "@/constants/Colors";
 import TasksCard from "@/components/TasksCard";
+import { TouchableOpacity } from "react-native";
+import { Platform } from "react-native";
 
 const Tasks = () => {
   return (
-    <View className=" mt-4 bg-white rounded-t-xl">
-    <View className=" flex-row justify-between items-center px-4 py-2">
-      <Text style={styles.mainHeadingText}>Requests</Text>
+    <View style={[{ marginBottom: Platform.OS === "ios" ? 55 : 55, }, styles.container]} className=" overflow-hidden mx-1 bg-white rounded-xl">
+      <View className=" flex-row justify-between items-center px-4 py-2">
+        <Text style={styles.mainHeadingText}>Tasks Listings</Text>
       </View>
-     
-      <FlatList
-        data={listings}
-        contentContainerStyle={{ paddingBottom: 60 }}
-        className=" px-3"
-        renderItem={({ item }) => {
-          const mappedItem = {
-            ...item,
-            status:
-              item.status === "Unlisted" || item.status === "Sold"
-                ? item.status
-                : "Unlisted",
-          };
-          return <TasksCard {...mappedItem} />;
-        }}
-        keyExtractor={(item) => item.id.toString()}
-      />
+      <View className=" ">
+        <FlatList
+          data={listings}
+          contentContainerStyle={{ paddingBottom: 60 }}
+          className=" px-3"
+          renderItem={({ item }) => {
+            const mappedItem = {
+              ...item,
+              status:
+                item.status === "Unlisted" || item.status === "Sold"
+                  ? item.status
+                  : "Unlisted",
+            };
+            return <TasksCard {...mappedItem} />;
+          }}
+          keyExtractor={(item) => item.id.toString()}
+        />
+      </View>
     </View>
   );
 };
@@ -36,6 +39,19 @@ const Tasks = () => {
 export default Tasks;
 
 const styles = StyleSheet.create({
+  container: {
+    ...Platform.select({
+      ios: {
+        shadowColor: "black",
+        shadowOpacity: 0.2,
+        shadowOffset: { width: 0, height: 3 },
+        shadowRadius: 2,
+      },
+      android: {
+        elevation: 5,
+      },
+    }),
+  },
   listItem: {
     textAlign: "center",
     maxWidth: 200,

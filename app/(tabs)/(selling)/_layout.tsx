@@ -1,5 +1,5 @@
 import { LinearGradient } from "expo-linear-gradient";
-import { router, usePathname, withLayoutContext } from "expo-router";
+import { Link, router, usePathname, withLayoutContext } from "expo-router";
 import React from "react";
 import { Pressable, View } from "react-native";
 import { LogoV1White } from "@/constants/Vector";
@@ -18,6 +18,7 @@ import { Colors } from "@/constants/Colors";
 import MainButton from "@/components/button/MainButton";
 import { StyleSheet } from "react-native";
 import { Platform } from "react-native";
+import { TouchableOpacity } from "react-native";
 
 const { Navigator } = createMaterialTopTabNavigator();
 
@@ -52,31 +53,31 @@ export default function RootLayout() {
           pressableClassName="  border-[#24BBF1] rounded-[9px] border-[2px]  "
         />
       </View>
-      <View
-        style={{ width: wp(90) }}
-        className=" mx-auto flex-row items-center justify-evenly mt-2"
+
+      {/* <View
+        style={{ width: wp(90), }}
+        className=" mx-auto flex-row  items-center justify-evenly mt-2"
       >
         <Pressable
           onPress={() => router.push("/(selling)")}
-          className=" items-center   flex-1 justify-center"
+          className=" items-center border  flex-1 justify-center"
         >
           <Text
             style={{ fontSize: hp(6) }}
-            className=" text-primary  text-[50px] leading-none font-black"
+            className=" text-primary m-0 border relative text-[50px]  font-black"
           >
             9
           </Text>
           <Text
             style={[{ fontSize: hp(2.6) }, styles.container]}
-            className=" leading-none font-bold text-[#5C5C5C]"
+            className=" m-0 font-bold text-[#5C5C5C]"
           >
             Active
           </Text>
           <View
             style={[styles.container]}
-            className={`mt-2 mx-auto w-[40%]  bg-primary h-[5px] rounded-3xl ${
-              pathname === "/" ? "opacity-100" : "opacity-0"
-            }`}
+            className={`mt-2 mx-auto w-[40%]  bg-primary h-[5px] rounded-3xl ${pathname === "/" ? "opacity-100" : "opacity-0"
+              }`}
           />
         </Pressable>
         <Pressable
@@ -85,7 +86,7 @@ export default function RootLayout() {
         >
           <Text
             style={[{ fontSize: hp(6) }, styles.container]}
-            className=" text-primary text-[50px] leading-none font-black"
+            className=" text-primary text-[50px]  font-black"
           >
             9
           </Text>
@@ -97,9 +98,8 @@ export default function RootLayout() {
           </Text>
           <View
             style={[styles.container]}
-            className={`mt-2 mx-auto w-[40%]  bg-primary h-[5px] rounded-3xl ${
-              pathname === "/tasks" ? "opacity-100" : "opacity-0"
-            }`}
+            className={`mt-2 mx-auto w-[40%]  bg-primary h-[5px] rounded-3xl ${pathname === "/tasks" ? "opacity-100" : "opacity-0"
+              }`}
           />
         </Pressable>
         <Pressable
@@ -108,7 +108,7 @@ export default function RootLayout() {
         >
           <Text
             style={[{ fontSize: hp(6) }, styles.container]}
-            className=" text-primary text-[50px] leading-none font-black"
+            className=" text-primary text-[50px]  font-black"
           >
             9
           </Text>
@@ -120,14 +120,13 @@ export default function RootLayout() {
           </Text>
           <View
             style={[styles.container]}
-            className={`mt-2 mx-auto w-[40%]  bg-primary h-[5px] rounded-3xl ${
-              pathname === "/previous" ? "opacity-100" : "opacity-0"
-            }`}
+            className={`mt-2 mx-auto w-[40%]  bg-primary h-[5px] rounded-3xl ${pathname === "/previous" ? "opacity-100" : "opacity-0"
+              }`}
           />
         </Pressable>
-      </View>
+      </View> */}
 
-      <MaterialTopTabs
+      {/* <MaterialTopTabs
         screenOptions={{
           tabBarActiveTintColor: "#42BEED",
           tabBarLabelStyle: { fontWeight: "bold", textTransform: "capitalize" },
@@ -135,9 +134,39 @@ export default function RootLayout() {
           tabBarShowLabel: false,
           tabBarShowIcon: false,
         }}
-      >
-        <MaterialTopTabs.Screen name="index" options={{ title: "active" }} />
-        <MaterialTopTabs.Screen name="tasks" options={{ title: "active" }} />
+      > */}
+
+      <View className=" justify-evenly px-1 mt-2 flex-row">
+        <Link href={"/(selling)"} className=" flex-1 items-center " asChild>
+          <TouchableOpacity>
+            <Text style={styles.tabNumbers}> 6 </Text>
+          </TouchableOpacity>
+        </Link>
+        <Link href={"/tasks"} className=" flex-1 items-center " asChild>
+          <TouchableOpacity>
+            <Text style={styles.tabNumbers}> 5 </Text>
+          </TouchableOpacity>
+        </Link>
+        <Link href={"/previous"} className=" flex-1 items-center " asChild>
+          <TouchableOpacity>
+            <Text style={styles.tabNumbers}> 8 </Text>
+          </TouchableOpacity>
+        </Link>
+      </View>
+
+      <MaterialTopTabs screenOptions={{
+        tabBarActiveTintColor: '#5C5C5C',
+        tabBarInactiveTintColor: '#5C5C5C',
+        //tabBarIconStyle: {width: 30, height: 30},
+        tabBarPressOpacity: 0.5,
+        tabBarBounces: true,
+        tabBarLabelStyle: { fontSize: 21, fontWeight: 'bold', textTransform: 'capitalize', bottom: 19 },
+        tabBarIndicatorStyle: { backgroundColor: '#2BBEF3', height: 4, bottom: 25, width: '13.5%', left: '10.2%', borderRadius: 4 },
+        tabBarStyle: { backgroundColor: '#00000000', elevation: 0 },
+
+      }}>
+        <MaterialTopTabs.Screen name="index" options={{ title: "Active" }} />
+        <MaterialTopTabs.Screen name="tasks" options={{ title: "Tasks" }} />
         <MaterialTopTabs.Screen
           name="previous"
           options={{ title: "previous" }}
@@ -159,5 +188,13 @@ const styles = StyleSheet.create({
       android: {
       },
     }),
+  },
+
+  tabNumbers: {
+    fontSize: 44,
+    //paddingHorizontal: 18,
+    color: "#2CBFF3",
+    fontWeight: "bold",
+    //backgroundColor: 'red',
   },
 });
