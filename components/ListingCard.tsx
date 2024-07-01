@@ -74,7 +74,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
     <Pressable onPress={() => router.push(`/(item)/details/1`)} className=" flex-1 relative">
 
       <View
-        className=" flex-row items-center py-2 bg-white"
+        className=" flex-row items-center py-2 gap-x-2 pb-4 bg-white"
       >
         <Image source={image} className=" h-[120px] rounded-2xl  object-cover  w-[100px]" />
         <View style={styles.details} className=" flex-1">
