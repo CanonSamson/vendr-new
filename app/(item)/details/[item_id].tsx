@@ -1,6 +1,7 @@
 import CustomKeyBoardView from "@/components/CustomKeyBoardView";
 import { LinearGradient } from "expo-linear-gradient";
 import { usePathname } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { Dimensions } from "react-native";
 import { StyleSheet } from "react-native";
@@ -15,15 +16,14 @@ import {
 
 const { width, height } = Dimensions.get("screen");
 
-const Seller5 = require("@/assets/images/sellers5.png");
 const Product5 = require("@/assets/images/product-5.png");
 
 
 const ItemDetails = () => {
-  const pathname = usePathname();
 
   return (
     <CustomKeyBoardView>
+      <StatusBar style="dark" backgroundColor="#fff" />
       <View className=" relative z-2 bg-[#F3F3F3] flex-1">
         <View className="  rounded-2xl overflow-hidden  relative  bg-[#303030]">
           <View className=" flex-row items-center absolute top-2 right-0  px-[18px] h-[4px] z-20 w-full">
@@ -40,7 +40,7 @@ const ItemDetails = () => {
           <Image
             source={Product5}
             style={styles.image}
-            className=" rounded-[20px]"
+            className="  items-center justify-center mx-auto rounded-[20px]"
             resizeMode="contain"
           />
           <LinearGradient

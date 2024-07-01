@@ -40,18 +40,18 @@ const MainButton: React.FC<MainButtonProps> = ({
       onPress={!isLoading && !isDisabled ? handlePress : undefined}
       disabled={isLoading || isDisabled}
       style={({ pressed }) => [styles.button, style]}
+      className={`${isDisabled ? "" : " bg-[#24BBF1] rounded-xl"}`}
     >
       <LinearGradient
         colors={isDisabled ? ["#d3d3d3", "#d3d3d3"] : colors}
-        className={`w-full h-[50px] items-center justify-center    rounded-[9px] border-[2px] ${isDisabled? "border-[#d3d3d3]": "border-[#24BBF1]"} `}
+        className={`w-full h-[50px] items-center justify-center    rounded-[9px] border-[2px] ${isDisabled ? "border-[#d3d3d3]" : "border-[#24BBF1]"} `}
       >
         {isLoading ? (
           <ActivityIndicator size="small" color="#fff" />
         ) : (
           <Text
-            className={`bg-transparent  ${
-              isDisabled ? " text-gray-500" : "text-white"
-            } font-bold text-[24px]  text-center`}
+            className={`bg-transparent  ${isDisabled ? " text-gray-500" : "text-white"
+              } font-bold text-[24px]  text-center`}
           >
             {title}
           </Text>
@@ -71,8 +71,7 @@ const styles = StyleSheet.create({
         shadowRadius: 2,
       },
       android: {
-        elevation: 5,
-        borderColor: "rgba(0, 0, 0, 0.1)",
+        elevation: 10,
       },
     }),
   },

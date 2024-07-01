@@ -145,6 +145,7 @@ export default function HomeScreen() {
           handlePresentTo={handlePresentTOModalPress}
         />
       </CustomBottomSheetModal>
+      
       <StatusBar style="light" hidden={false} />
       <ScrollView
         style={{ flex: 1, zIndex: 4 }}

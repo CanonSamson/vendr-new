@@ -1,26 +1,30 @@
 import { View, Text } from "react-native";
-import React from "react";
-import { Pressable } from "react-native";
+import React, { useRef } from "react";
+import { TouchableOpacity } from "react-native";
 import { FlatList } from "react-native";
 import ListingCard from "@/components/ListingCard";
 import { listings } from "@/utils/data";
 import { StyleSheet } from "react-native";
 import { Colors } from "@/constants/Colors";
 
-const index = () => {
-  return (
-    <View style={styles.main} className=" mt-4">
-      <View style={styles.mainHeading}>
-        <Text style={styles.mainHeadingText}>Active Listings</Text>
 
-        <Pressable style={styles.filterButton} onPress={() => {}}>
+const index = () => {
+
+ 
+  return (
+
+    <View className=" mt-4 bg-white rounded-t-xl">
+      <View className=" flex-row justify-between items-center px-4 py-2">
+        <Text style={styles.mainHeadingText}>Active Listings</Text>
+        <TouchableOpacity style={styles.filterButton} onPress={() => { }}>
           <Text style={styles.filterButtonTest}>Filter</Text>
-        </Pressable>
+        </TouchableOpacity>
       </View>
 
       <FlatList
         data={listings}
-        contentContainerStyle={{ paddingBottom: 120 }}
+        contentContainerStyle={{ paddingBottom: 60 }}
+        className=" px-3"
         renderItem={({ item }) => {
           const mappedItem = {
             ...item,
@@ -45,7 +49,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     maxWidth: 200,
   },
- 
+
   listItemText: {
     backgroundColor: "transparent",
     fontSize: 24,
@@ -74,6 +78,7 @@ const styles = StyleSheet.create({
     fontSize: 26,
     fontWeight: "700",
   },
+
   filterButton: {
     borderWidth: 2,
     borderRadius: 20,

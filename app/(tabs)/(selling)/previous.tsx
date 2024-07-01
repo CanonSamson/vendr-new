@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import { Pressable } from "react-native";
 import { FlatList } from "react-native";
@@ -9,18 +9,19 @@ import { Colors } from "@/constants/Colors";
 
 const Previous = () => {
   return (
-    <View style={styles.main} className=" mt-4">
-      <View style={styles.mainHeading}>
+    <View className=" mt-4 bg-white rounded-t-xl">
+      <View className=" flex-row justify-between items-center px-4 py-2">
         <Text style={styles.mainHeadingText}>Previous Listings</Text>
 
-        <Pressable style={styles.filterButton} onPress={() => {}}>
+        <TouchableOpacity style={styles.filterButton} onPress={() => { }}>
           <Text style={styles.filterButtonTest}>Filter</Text>
-        </Pressable>
+        </TouchableOpacity>
       </View>
 
       <FlatList
         data={listings}
-        contentContainerStyle={{ paddingBottom: 120 }}
+        contentContainerStyle={{ paddingBottom: 60 }}
+        className=" px-3"
         renderItem={({ item }) => {
           const mappedItem = {
             ...item,
@@ -67,7 +68,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 20,
   },
   mainHeadingText: {
     fontSize: 26,

@@ -149,7 +149,6 @@ export default function RootLayout() {
 
 const styles = StyleSheet.create({
   container: {
-    borderRadius: 14,
     ...Platform.select({
       ios: {
         shadowColor: "black",
@@ -158,8 +157,6 @@ const styles = StyleSheet.create({
         shadowRadius: 2,
       },
       android: {
-        elevation: 5,
-        borderColor: "rgba(0, 0, 0, 0.1)",
       },
     }),
   },

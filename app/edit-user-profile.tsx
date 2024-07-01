@@ -33,7 +33,7 @@ import {
 import { auth } from "@/firebase_config";
 import CustomKeyBoardView from "@/components/CustomKeyBoardView";
 import InputField from "@/components/InputField";
-import Header from "@/components/layout/Header";
+
 
 interface EditProfileModelProps {
   modalVisible: boolean;

@@ -5,11 +5,16 @@ import {
   StyleSheet,
   Pressable,
   ImageSourcePropType,
+  TouchableOpacity,
 } from "react-native";
-import React from "react";
+import React, { useRef } from "react";
 import EditIcon from "../assets/svg/EditIcon.svg";
 import { Platform } from "react-native";
-import { router } from "expo-router";
+
+import ThreeDot from "@/assets/icon/circle_three_dots.svg"
+
+import { useMemo, useCallback } from "react";
+import { BottomSheetBackdrop } from "@gorhom/bottom-sheet";
 
 interface ListingCardProps {
   image: ImageSourcePropType;
@@ -20,6 +25,9 @@ interface ListingCardProps {
   status: "Unlisted" | "Sold";
   name: string;
 }
+import { BottomSheetModal, useBottomSheetModal } from "@gorhom/bottom-sheet";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { router } from "expo-router";
 
 const ListingCard: React.FC<ListingCardProps> = ({
   image,
@@ -35,45 +43,106 @@ const ListingCard: React.FC<ListingCardProps> = ({
     Sold: "#57F654",
   };
 
-  return (
-    <Pressable
-      onPress={() => router.push(`/(item)/details/1`)}
-      style={[styles.card, styles.container]}
-    >
-      {type !== "Previous" && (
-        <Pressable style={styles.editIcon} onPress={() => {}}>
-          <EditIcon width={28} height={28} />
-        </Pressable>
-      )}
+  const bottomSheetRef = useRef<BottomSheetModal>(null);
+  const { dismiss } = useBottomSheetModal();
 
-      <Image source={image} resizeMode="contain" style={styles.image} />
-      <View style={styles.details}>
-        <View style={styles.info}>
-          <Text style={styles.name}>{name}</Text>
-          <Text style={styles.price}>
-            {price}
-            <Text style={styles.offerText}> or best offer</Text>
-          </Text>
-        </View>
-        {type !== "Previous" ? (
-          <View style={styles.chats}>
-            <View style={styles.chatSection}>
-              <Text style={styles.chatCount}>{openChats}</Text>
-              <Text style={styles.chatLabel}>Open Chats</Text>
-            </View>
-            <View style={styles.chatSection}>
-              <Text style={styles.chatCount}>{messageRequests}</Text>
-              <Text style={styles.chatLabel}>Message Requests</Text>
-            </View>
-          </View>
-        ) : (
-          <View style={styles.status}>
-            <Text style={[styles.statusText, { color: statusColor[status] }]}>
-              {status}
+  const handlePresentModalPress = () => bottomSheetRef.current?.present();
+  const handlePresentTOModalPress = () =>
+    bottomSheetRef.current?.snapToIndex(0);
+
+
+
+  const memoizedSnapPoints = useMemo(() => ["50%"], []);
+
+  const renderBackdrop = useCallback(
+    (props: any) => (
+      <BottomSheetBackdrop
+        {...props}
+        appearsOnIndex={0}
+        disappearsOnIndex={-1}
+      />
+    ),
+    []
+  );
+
+  const insets = useSafeAreaInsets();
+
+
+
+  // 
+  return (
+    <Pressable onPress={() => router.push(`/(item)/details/1`)} className=" flex-1 relative">
+
+      <View
+        className=" flex-row items-center py-2 bg-white"
+      >
+        <Image source={image} className=" h-[120px] rounded-2xl  object-cover  w-[100px]" />
+        <View style={styles.details} className=" flex-1">
+          <View style={styles.info}>
+            <Text style={styles.name} className=" ">{name}</Text>
+            <Text style={styles.price}>
+              {price}
+              <Text style={styles.offerText}> or best offer</Text>
             </Text>
           </View>
-        )}
+          {type !== "Previous" ? (
+            <View className=" flex-row items-center justify-between  flex-1">
+              <View style={styles.chatSection}>
+                <Text className=" text-[20px] font-bold text-primary">{openChats}</Text>
+                <Text style={styles.chatLabel}>Open Chats</Text>
+              </View>
+              <View style={styles.chatSection}>
+                <Text className=" text-[20px] font-bold text-primary">{messageRequests}</Text>
+                <Text style={styles.chatLabel}>Message Requests</Text>
+              </View>
+            </View>
+          ) : (
+            <View style={styles.status}>
+              <Text style={[styles.statusText, { color: statusColor[status] }]}>
+                {status}
+              </Text>
+            </View>
+          )}
+        </View>
+
+        <TouchableOpacity className=" absolute right-0 top-0 z-2  p-2" onPress={handlePresentModalPress}>
+          <ThreeDot width={28} height={28} />
+        </TouchableOpacity>
       </View>
+      <View className=" h-[1px] bg-gray-200 w-[80%] mx-auto" />
+
+
+      <BottomSheetModal
+        ref={bottomSheetRef}
+        index={0}
+        snapPoints={memoizedSnapPoints}
+        backdropComponent={renderBackdrop}
+        enablePanDownToClose={true}
+        handleIndicatorStyle={{ display: "none" }}
+        keyboardBehavior="extend"
+        backgroundStyle={{ backgroundColor: 'transparent', justifyContent: "flex-end", }}
+      >
+
+        <Pressable onPress={() => dismiss()} style={{ paddingBottom: insets.bottom + 10 }} className=" px-4 justify-end flex-1">
+          <View className=" bg-white rounded-xl">
+            <Pressable className=" p-4  border-b  border-gray-300 ">
+              <Text className=" text-[17px] text-center font-bold">Edit</Text>
+            </Pressable>
+            <Pressable className=" p-4  border-b   border-gray-300 ">
+              <Text className=" text-[17px] text-center font-bold">Preview</Text>
+            </Pressable>
+            <Pressable className=" p-4  border-b border-gray-300  ">
+              <Text className=" text-[17px] text-center font-bold">End Listing</Text>
+            </Pressable>
+          </View>
+          <View className=" bg-white rounded-xl mt-4">
+            <Pressable className=" p-4    ">
+              <Text className=" text-[17px] text-center font-bold">Cancel</Text>
+            </Pressable>
+          </View>
+        </Pressable>
+
+      </BottomSheetModal>
     </Pressable>
   );
 };
@@ -114,12 +183,7 @@ const styles = StyleSheet.create({
   details: {
     padding: 4,
   },
-  editIcon: {
-    alignSelf: "flex-end",
-    position: "absolute",
-    top: 4,
-    right: 4,
-  },
+
   info: {
     marginTop: 5,
     flex: 1,

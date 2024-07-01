@@ -35,15 +35,19 @@ export default function RootLayout() {
   return (
     <>
       <View className=" z-10 pt-14 bg-white  px-4 items-center relative rounded-md min-h-[150px] ">
-        <View className="  px-4 w-full justify-between items-center relative flex-row   ">
-          <Pressable onPress={() => router.back()}>
-            <ArrowRight />
+        <View className="  w-full justify-between items-center relative flex-row   ">
+          <Pressable className="  p-2   " onPress={() => router.back()}>
+            <ArrowRight width={24} height={24} />
           </Pressable>
 
           <View className=" w-auto h-[45px] z-40 relative ">
             <LogoV1 color={`#fff`} height={"100%"} />
           </View>
-          <Circle_three_dots />
+          <Pressable className="   p-2    " onPress={() => { }}>
+            <Circle_three_dots width={30} height={30} />
+          </Pressable>
+
+
         </View>
         <View className="flex-row mt-5 items-center  pb-4">
           <Pressable
@@ -60,7 +64,7 @@ export default function RootLayout() {
           </Pressable>
           <View className=" h-[60%] bg-primary w-[2px] rounded-3xl " />
           <Pressable
-                 onPress={() => router.push(`/(item)/messages/${message_id}`)}
+            onPress={() => router.push(`/(item)/messages/${message_id}`)}
             className="items-center  justify-center  flex-1"
           >
             <Text className=" text-primary  font-bold text-xl ">Messages</Text>

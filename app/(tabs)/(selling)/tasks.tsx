@@ -8,14 +8,15 @@ import TasksCard from "@/components/TasksCard";
 
 const Tasks = () => {
   return (
-    <View style={styles.main} className=" mt-4">
-      <View style={styles.mainHeading}>
-        <Text style={styles.mainHeadingText}>Requests</Text>
+    <View className=" mt-4 bg-white rounded-t-xl">
+    <View className=" flex-row justify-between items-center px-4 py-2">
+      <Text style={styles.mainHeadingText}>Requests</Text>
       </View>
-
+     
       <FlatList
         data={listings}
-        contentContainerStyle={{ paddingBottom: 120 }}
+        contentContainerStyle={{ paddingBottom: 60 }}
+        className=" px-3"
         renderItem={({ item }) => {
           const mappedItem = {
             ...item,
