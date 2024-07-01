@@ -13,6 +13,7 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { Colors } from "@/constants/Colors";
+import { View } from "react-native";
 
 interface MainButtonProps {
   title: string;
@@ -36,10 +37,11 @@ const MainButton: React.FC<MainButtonProps> = ({
   pressableClassName,
 }) => {
   return (
+    // <View >
     <Pressable
       onPress={!isLoading && !isDisabled ? handlePress : undefined}
       disabled={isLoading || isDisabled}
-      style={({ pressed }) => [styles.button, style]}
+      style={[styles.button, style]}
       className={`${isDisabled ? "" : " bg-[#24BBF1] rounded-xl"}`}
     >
       <LinearGradient
@@ -58,6 +60,7 @@ const MainButton: React.FC<MainButtonProps> = ({
         )}
       </LinearGradient>
     </Pressable>
+    // </View>
   );
 };
 
@@ -66,15 +69,16 @@ const styles = StyleSheet.create({
     ...Platform.select({
       ios: {
         shadowColor: "black",
-        shadowOpacity: 0.3,
+        shadowOpacity: 0.2,
         shadowOffset: { width: 0, height: 3 },
         shadowRadius: 2,
       },
       android: {
-        elevation: 10,
+        elevation: 5,
       },
     }),
   },
+
   disabledButton: {
     opacity: 0.6,
   },

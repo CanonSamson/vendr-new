@@ -62,29 +62,13 @@ const styles = StyleSheet.create({
         }),
     },
 
-    listItem: {
-        textAlign: "center",
-        maxWidth: 200,
-    },
 
-    listItemText: {
-        backgroundColor: "transparent",
-        fontSize: 24,
-        color: "#fff",
-    },
     tabs: {
         flexDirection: "row",
         marginTop: 20,
         paddingVertical: 20,
     },
-    main: {
-        padding: 20,
-        width: "100%",
-        flex: 1,
-        backgroundColor: "#ffff",
-        borderTopEndRadius: 40,
-        borderTopStartRadius: 40,
-    },
+
     mainHeading: {
         flexDirection: "row",
         justifyContent: "space-between",

@@ -9,7 +9,7 @@ import { Colors } from "@/constants/Colors";
 
 const Previous = () => {
   return (
-    <View style={[{ marginBottom: Platform.OS === "ios" ? 55 : 55, }, styles.container]} className=" overflow-hidden mx-1 bg-white rounded-xl">
+    <View style={[{ marginBottom: Platform.OS === "ios" ? 60 : 60, }, styles.container]} className=" overflow-hidden mx-1 bg-white rounded-xl">
       <View className=" flex-row justify-between items-center px-4 py-2">
         <Text style={styles.mainHeadingText}>Previous Listings</Text>
         <TouchableOpacity style={styles.filterButton} onPress={() => { }}>

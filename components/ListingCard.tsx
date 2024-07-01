@@ -82,11 +82,11 @@ const ListingCard: React.FC<ListingCardProps> = ({
             <View className=" flex-row items-center justify-between  flex-1">
               <View style={styles.chatSection}>
                 <Text className=" text-[20px] font-bold text-primary">{openChats}</Text>
-                <Text style={styles.chatLabel}>Open Chats</Text>
+                <Text className=" text-[11px]">Open Chats</Text>
               </View>
               <View style={styles.chatSection}>
                 <Text className=" text-[20px] font-bold text-primary">{messageRequests}</Text>
-                <Text style={styles.chatLabel}>Message Requests</Text>
+                <Text className=" text-[11px]">Message Requests</Text>
               </View>
             </View>
           ) : (
@@ -98,9 +98,11 @@ const ListingCard: React.FC<ListingCardProps> = ({
           )}
         </View>
 
-        <TouchableOpacity className=" absolute right-0 top-0 z-2  p-2" onPress={handlePresentModalPress}>
-          <ThreeDot width={28} height={28} />
-        </TouchableOpacity>
+        <View className=" h-full items-start justify-start  ">
+          <TouchableOpacity className=" p-1 " onPress={handlePresentModalPress}>
+            <ThreeDot width={24} height={24} />
+          </TouchableOpacity>
+        </View>
       </View>
       <View className=" h-[1px] bg-gray-200 w-[80%] mx-auto" />
 
@@ -207,10 +209,8 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "bold",
   },
-  chatLabel: {
-    fontSize: 12,
-    color: "#888",
-  },
+
+
   status: {
     alignItems: "flex-end",
     justifyContent: "flex-end",

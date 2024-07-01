@@ -22,7 +22,7 @@ const TabsLayout = () => {
           }}
         />
         <Tabs.Screen
-          name="(selling)"
+          name="selling"
           options={{
             headerShown: false,
             title: "Selling",
@@ -33,9 +33,11 @@ const TabsLayout = () => {
           options={{
             headerShown: false,
             title: "Messages",
+            lazy: true,
+
           }}
         />
-       
+
       </Tabs>
     </>
   );

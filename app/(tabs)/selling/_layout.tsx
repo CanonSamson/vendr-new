@@ -1,6 +1,6 @@
 import { LinearGradient } from "expo-linear-gradient";
 import { Link, router, usePathname, withLayoutContext } from "expo-router";
-import React from "react";
+import React, { useEffect } from "react";
 import { Pressable, View } from "react-native";
 import { LogoV1White } from "@/constants/Vector";
 import { Text } from "react-native";
@@ -32,6 +32,10 @@ export const MaterialTopTabs = withLayoutContext<
 export default function RootLayout() {
   const pathname = usePathname();
 
+  useEffect(() => {
+    console.log(pathname)
+  }, [pathname])
+
   return (
     <>
       <LinearGradient
@@ -48,7 +52,6 @@ export default function RootLayout() {
         <MainButton
           title="List an item"
           handlePress={() => router.push("/list-an-item")}
-          style={{}}
           colors={[Colors.primary, "#85DBF9"]}
           pressableClassName="rounded-[9px] "
         />
@@ -56,17 +59,17 @@ export default function RootLayout() {
 
 
       <View className=" justify-evenly px-1 mt-2 flex-row">
-        <Link href={"/active"} className=" flex-1 items-center " asChild>
+        <Link href={"/selling/active"} className=" flex-1 items-center " asChild>
           <TouchableOpacity onPress={() => router.push(`/active`)}>
             <Text style={styles.tabNumbers}> 6 </Text>
           </TouchableOpacity>
         </Link>
-        <Link href={"/(selling)"} className=" flex-1 items-center " asChild>
-          <TouchableOpacity onPress={() => router.push(`/(selling)`)}>
+        <Link href={"/selling"} className=" flex-1 items-center " asChild>
+          <TouchableOpacity onPress={() => router.push(`/selling`)}>
             <Text style={styles.tabNumbers}> 5 </Text>
           </TouchableOpacity>
         </Link>
-        <Link href={"/previous"} className=" flex-1 items-center " asChild>
+        <Link href={"/selling/previous"} className=" flex-1 items-center " asChild>
           <TouchableOpacity onPress={() => router.push(`/previous`)}>
             <Text style={styles.tabNumbers}> 8 </Text>
           </TouchableOpacity>
@@ -82,15 +85,20 @@ export default function RootLayout() {
         tabBarIndicatorStyle: { backgroundColor: '#2BBEF3', height: 4, bottom: 25, width: '13.5%', left: '10.2%', borderRadius: 4 },
         tabBarStyle: { backgroundColor: '#00000000', elevation: 0 },
         tabBarPressColor: 'transparent',
-
       }}>
 
-        <MaterialTopTabs.Screen name="active" options={{ title: "Active" }} />
-        <MaterialTopTabs.Screen name="index" options={{ title: "Tasks" }} />
+        <MaterialTopTabs.Screen
+          name="active"
+          options={{ title: "Active" }}
 
+        />
+        <MaterialTopTabs.Screen
+          name="index"
+          options={{ title: "Tasks" }}
+        />
         <MaterialTopTabs.Screen
           name="previous"
-          options={{ title: "previous" }}
+          options={{ title: "Previous" }}
         />
       </MaterialTopTabs>
     </>
@@ -98,18 +106,6 @@ export default function RootLayout() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    ...Platform.select({
-      ios: {
-        shadowColor: "black",
-        shadowOpacity: 0.2,
-        shadowOffset: { width: 0, height: 3 },
-        shadowRadius: 2,
-      },
-      android: {
-      },
-    }),
-  },
 
   tabNumbers: {
     fontSize: 44,

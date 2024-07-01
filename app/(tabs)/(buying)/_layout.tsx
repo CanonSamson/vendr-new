@@ -37,7 +37,6 @@ export const MaterialTopTabs = withLayoutContext<
 >(Navigator);
 
 export default function RootLayout() {
-  const pathname = usePathname();
 
   return (
     <>

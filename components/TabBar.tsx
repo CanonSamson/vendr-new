@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import { Platform, Text, TouchableOpacity, View } from "react-native";
 import HomeIcon from "@/assets/icon/Tabs/homeTab";
@@ -11,6 +11,7 @@ import {
 } from "react-native-responsive-screen";
 import { useModal } from "@/context/ModalContext";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { router } from "expo-router";
 
 // Define the keys of the icons object
 type IconNames = "Home" | "Buying" | "Selling" | "Messages";
@@ -34,15 +35,15 @@ const TabBar: React.FC<BottomTabBarProps> = ({
   const { productModalVisible, filterProduct } = useModal();
 
   const insetsSefe = useSafeAreaInsets();
+
   return (
     <View
       style={{
         height: Platform.OS === "ios" ? 95 : 75,
         // paddingBottom: insetsSefe.bottom,
       }}
-      className={`flex-row  items-center justify-evenly bg-white duration-500 border-t-[2.5px] border-primary ${
-        Platform.OS === "ios" ? " pb-[20px] " : " "
-      } ${productModalVisible ? "hidden" : ""}`}
+      className={`flex-row  items-center justify-evenly bg-white duration-500 border-t-[2.5px] border-primary ${Platform.OS === "ios" ? " pb-[20px] " : " "
+        } ${productModalVisible ? "hidden" : ""}`}
     >
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
@@ -50,15 +51,15 @@ const TabBar: React.FC<BottomTabBarProps> = ({
           options.tabBarLabel !== undefined
             ? typeof options.tabBarLabel === "function"
               ? options.tabBarLabel({
-                  focused: state.index === index,
-                  color: "#222",
-                  position: "below-icon",
-                  children: route.name,
-                })
+                focused: state.index === index,
+                color: "#222",
+                position: "below-icon",
+                children: route.name,
+              })
               : options.tabBarLabel
             : options.title !== undefined
-            ? options.title
-            : route.name;
+              ? options.title
+              : route.name;
 
         if (["_sitemap", "+not-found"].includes(route.name)) return null;
         const isFocused = state.index === index;
@@ -71,8 +72,9 @@ const TabBar: React.FC<BottomTabBarProps> = ({
           });
 
           if (!isFocused && !event.defaultPrevented) {
-            navigation.navigate(route.name, route.params);
+            router.navigate(route.name);
           }
+
         };
 
         const onLongPress = () => {
@@ -104,9 +106,8 @@ const TabBar: React.FC<BottomTabBarProps> = ({
             )}
             {typeof label === "string" ? (
               <Text
-                className={`font-bold mt-1 ${
-                  isFocused ? "text-primary" : " text-[#B3B3B3]"
-                }`}
+                className={`font-bold mt-1 ${isFocused ? "text-primary" : " text-[#B3B3B3]"
+                  }`}
               >
                 {label}
               </Text>
