@@ -1,51 +1,72 @@
-import { View, Text, Platform } from "react-native";
-import React, { useRef } from "react";
-import { TouchableOpacity } from "react-native";
-import { FlatList } from "react-native";
-import ListingCard from "@/components/ListingCard";
-import { listings } from "@/utils/data";
+import { View, Text } from "react-native";
+import React, { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 import { Colors } from "@/constants/Colors";
+import TasksCard from "@/components/TasksCard";
+import { Platform } from "react-native";
+import CustomKeyBoardView from "@/components/CustomKeyBoardView";
+import Animated, { FadeOut, FadeInDown } from 'react-native-reanimated';
+import { usePathname, useRouter } from "expo-router";
 
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
+const Tasks = () => {
 
-const index = () => {
+  const pathname = usePathname();
+  const [inView, setInView] = useState(false)
 
+  useEffect(() => {
+    console.log(pathname)
+    if (pathname === "/") {
+
+      setInView(true)
+    }
+
+    return () => {
+      setInView(false)
+    }
+
+  }, [pathname]);
 
   return (
-    <View style={[{ marginBottom: Platform.OS === "ios" ? 55 :55, }, styles.container]} className=" overflow-hidden mx-1 bg-white rounded-xl">
-      <View className=" flex-row justify-between items-center px-4 py-2">
-        <Text style={styles.mainHeadingText}>Active Listings</Text>
-        <TouchableOpacity style={styles.filterButton} onPress={() => { }}>
-          <Text style={styles.filterButtonTest}>Filter</Text>
-        </TouchableOpacity>
+    <CustomKeyBoardView>
+      <View className="gap-y-2 px-1">
+        {
+          inView ?
+            <>
+              <Animated.View entering={FadeInDown.delay(100).withInitialValues({ transform: [{ translateY: -25 }] })} exiting={FadeOut} style={[styles.container]} className="mx-1 bg-white rounded-xl">
+                <View className="flex-row justify-between items-center px-4 pt-2">
+                  <Text style={styles.mainHeadingText}>Requests</Text>
+                </View>
+                <View className="">
+                  <TasksCard message="Message requests need approval" unseen_task={3} />
+                </View>
+              </Animated.View>
+
+              <Animated.View
+                entering={FadeInDown.delay(250).withInitialValues({ transform: [{ translateY: -25 }] })} exiting={FadeOut} style={[styles.container]} className="mx-1 bg-white rounded-xl">
+                <View className="flex-row justify-between items-center px-4 pt-2">
+                  <Text style={styles.mainHeadingText}>Replies</Text>
+                </View>
+                <View className="">
+                  <TasksCard message="Buyers are awaiting responses" unseen_task={2} />
+                </View>
+              </Animated.View>
+
+              <Animated.View entering={FadeInDown.delay(500).withInitialValues({ transform: [{ translateY: -25 }] })} exiting={FadeOut} style={[styles.container]} className="mx-1 bg-white rounded-xl">
+                <View className="flex-row justify-between items-center px-4 pt-2">
+                  <Text style={styles.mainHeadingText}>Feedback</Text>
+                </View>
+                <TasksCard message="Buyers need to be given feedback" unseen_task={6} />
+              </Animated.View>
+            </>
+            : <></>
+        }
+
       </View>
-      <View className=" ">
-        <FlatList
-          data={listings}
-          contentContainerStyle={{ paddingBottom: 60 }}
-          className=" px-3"
-          renderItem={({ item }) => {
-            const mappedItem = {
-              ...item,
-              status:
-                item.status === "Unlisted" || item.status === "Sold"
-                  ? item.status
-                  : "Unlisted",
-            };
-            return <ListingCard {...mappedItem} />;
-          }}
-          keyExtractor={(item) => item.id.toString()}
-        />
-      </View>
-    </View>
+    </CustomKeyBoardView>
   );
 };
 
-export default index;
+export default Tasks;
 
 const styles = StyleSheet.create({
   container: {
@@ -61,41 +82,10 @@ const styles = StyleSheet.create({
       },
     }),
   },
-
-  listItem: {
-    textAlign: "center",
-    maxWidth: 200,
-  },
-
-  listItemText: {
-    backgroundColor: "transparent",
-    fontSize: 24,
-    color: "#fff",
-  },
-  tabs: {
-    flexDirection: "row",
-    marginTop: 20,
-    paddingVertical: 20,
-  },
-  main: {
-    padding: 20,
-    width: "100%",
-    flex: 1,
-    backgroundColor: "#ffff",
-    borderTopEndRadius: 40,
-    borderTopStartRadius: 40,
-  },
-  mainHeading: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 20,
-  },
   mainHeadingText: {
     fontSize: 26,
     fontWeight: "700",
   },
-
   filterButton: {
     borderWidth: 2,
     borderRadius: 20,

@@ -47,10 +47,6 @@ const ListingCard: React.FC<ListingCardProps> = ({
   const { dismiss } = useBottomSheetModal();
 
   const handlePresentModalPress = () => bottomSheetRef.current?.present();
-  const handlePresentTOModalPress = () =>
-    bottomSheetRef.current?.snapToIndex(0);
-
-
 
   const memoizedSnapPoints = useMemo(() => ["50%"], []);
 
@@ -67,9 +63,6 @@ const ListingCard: React.FC<ListingCardProps> = ({
 
   const insets = useSafeAreaInsets();
 
-
-
-  // 
   return (
     <Pressable onPress={() => router.push(`/(item)/details/1`)} className=" flex-1 relative">
 

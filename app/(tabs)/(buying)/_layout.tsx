@@ -65,6 +65,7 @@ export default function RootLayout() {
           tabBarLabelStyle: { fontSize: 22 * Scaler, fontWeight: 'bold', textTransform: 'capitalize', bottom: 20, color: '#FFF' },
           tabBarIndicatorStyle: { backgroundColor: '#FFF', height: 3 * Scaler, bottom: 10 * Scaler, width: '11.5%', left: '19.5%', borderRadius: 4 },
           tabBarStyle: { backgroundColor: '#85DBF9', height: 41 * Scaler },
+          tabBarPressColor: 'transparent',
         }}
       >
         <MaterialTopTabs.Screen name="index" options={{ title: "Saved" }} />

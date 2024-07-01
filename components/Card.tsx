@@ -7,14 +7,12 @@ import {
   Animated,
   Pressable,
   Platform,
-  Alert,
 } from "react-native";
 import React, { useCallback, useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import InfoIcon from "../assets/icon/info.svg";
 import Choice from "./Choice";
-import { scale, verticalScale } from "react-native-size-matters";
-import { router } from "expo-router";
+import { verticalScale } from "react-native-size-matters";
 import { useModal } from "@/context/ModalContext";
 import DownIcon from "@/assets/icon/down-arrow.svg";
 

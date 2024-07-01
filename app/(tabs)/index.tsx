@@ -85,7 +85,8 @@ export default function HomeScreen() {
     onMoveShouldSetPanResponder: () => true,
     onPanResponderMove: (_, { dx, dy, y0 }) => {
       const distance = Math.sqrt(dx * dx + dy * dy);
-      const isHolding = distance > 15;
+      const isHolding = distance > 0;
+
       if (isHolding) {
         setIsActionActive(true);
         setSwipWith("card");
@@ -126,13 +127,13 @@ export default function HomeScreen() {
     Platform.OS === "android" ? StatusBarN.currentHeight : insets.top;
 
 
-    const scrollViewRef = useRef<ScrollView>(null);
+  const scrollViewRef = useRef<ScrollView>(null);
 
-    const scrollToTop = () => {
-      if (scrollViewRef.current) {
-        scrollViewRef.current.scrollTo({ y: 0, animated: true });
-      }
-    };
+  const scrollToTop = () => {
+    if (scrollViewRef.current) {
+      scrollViewRef.current.scrollTo({ y: 0, animated: true });
+    }
+  };
   return (
     <>
       <CustomBottomSheetModal
@@ -157,9 +158,8 @@ export default function HomeScreen() {
       >
         <LinearGradient
           colors={["#00A3FF", "#85DBF9"]}
-          className={`${
-            confirmAnicationModal ? " opacity-0" : " opacity-100"
-          } z-40 px-4 items-center justify-center relative pb-[10px]`}
+          className={`${confirmAnicationModal ? " opacity-0" : " opacity-100"
+            } z-40 px-4 items-center justify-center relative pb-[10px]`}
           style={{
             height: verticalScale(85),
             paddingTop: statusBarHeight,
@@ -168,9 +168,8 @@ export default function HomeScreen() {
           <View className="  w-full justify-between items-center relative flex-row  ">
             <Pressable
               onPress={() => router.push("list-an-item")}
-              className={` ${
-                productModalVisible ? " opacity-0" : " opacity-100"
-              } active:scale-90 duration-900   `}
+              className={` ${productModalVisible ? " opacity-0" : " opacity-100"
+                } active:scale-90 duration-900   `}
             >
               <PlusIon width={40} height={40} />
             </Pressable>
@@ -180,9 +179,8 @@ export default function HomeScreen() {
             </View>
             <Pressable
               onPress={() => router.push("user-profile")}
-              className={` ${
-                productModalVisible ? " opacity-0" : " opacity-100"
-              } active:scale-90 duration-900   `}
+              className={` ${productModalVisible ? " opacity-0" : " opacity-100"
+                } active:scale-90 duration-900   `}
             >
               <PersonIon width={40} height={40} />
             </Pressable>
@@ -191,9 +189,8 @@ export default function HomeScreen() {
 
         <View
           style={{ height: !productModalVisible ? height : "auto" }}
-          className={`  ${
-            productModalVisible ? "bg-[#F3F3F3] " : "   "
-          } items-center   overflow-visible relative z-50 justify-center `}
+          className={`  ${productModalVisible ? "bg-[#F3F3F3] " : "   "
+            } items-center   overflow-visible relative z-50 justify-center `}
         >
           {Object.values(productData).map((item, index) => {
             let isFirst =
@@ -234,5 +231,5 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  
+
 });

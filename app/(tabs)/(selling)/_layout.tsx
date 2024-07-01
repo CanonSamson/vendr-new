@@ -50,105 +50,24 @@ export default function RootLayout() {
           handlePress={() => router.push("/list-an-item")}
           style={{}}
           colors={[Colors.primary, "#85DBF9"]}
-          pressableClassName="  border-[#24BBF1] rounded-[9px] border-[2px]  "
+          pressableClassName="rounded-[9px] "
         />
       </View>
 
-      {/* <View
-        style={{ width: wp(90), }}
-        className=" mx-auto flex-row  items-center justify-evenly mt-2"
-      >
-        <Pressable
-          onPress={() => router.push("/(selling)")}
-          className=" items-center border  flex-1 justify-center"
-        >
-          <Text
-            style={{ fontSize: hp(6) }}
-            className=" text-primary m-0 border relative text-[50px]  font-black"
-          >
-            9
-          </Text>
-          <Text
-            style={[{ fontSize: hp(2.6) }, styles.container]}
-            className=" m-0 font-bold text-[#5C5C5C]"
-          >
-            Active
-          </Text>
-          <View
-            style={[styles.container]}
-            className={`mt-2 mx-auto w-[40%]  bg-primary h-[5px] rounded-3xl ${pathname === "/" ? "opacity-100" : "opacity-0"
-              }`}
-          />
-        </Pressable>
-        <Pressable
-          onPress={() => router.push("/tasks")}
-          className=" items-center flex-1 justify-center"
-        >
-          <Text
-            style={[{ fontSize: hp(6) }, styles.container]}
-            className=" text-primary text-[50px]  font-black"
-          >
-            9
-          </Text>
-          <Text
-            style={[{ fontSize: hp(2.6) }, styles.container]}
-            className="  font-bold text-[#5C5C5C]"
-          >
-            Tasks
-          </Text>
-          <View
-            style={[styles.container]}
-            className={`mt-2 mx-auto w-[40%]  bg-primary h-[5px] rounded-3xl ${pathname === "/tasks" ? "opacity-100" : "opacity-0"
-              }`}
-          />
-        </Pressable>
-        <Pressable
-          onPress={() => router.push("/previous")}
-          className=" items-center flex-1 justify-center"
-        >
-          <Text
-            style={[{ fontSize: hp(6) }, styles.container]}
-            className=" text-primary text-[50px]  font-black"
-          >
-            9
-          </Text>
-          <Text
-            style={[{ fontSize: hp(2.6) }, styles.container]}
-            className="  font-bold text-[#5C5C5C]"
-          >
-            Previous
-          </Text>
-          <View
-            style={[styles.container]}
-            className={`mt-2 mx-auto w-[40%]  bg-primary h-[5px] rounded-3xl ${pathname === "/previous" ? "opacity-100" : "opacity-0"
-              }`}
-          />
-        </Pressable>
-      </View> */}
-
-      {/* <MaterialTopTabs
-        screenOptions={{
-          tabBarActiveTintColor: "#42BEED",
-          tabBarLabelStyle: { fontWeight: "bold", textTransform: "capitalize" },
-          tabBarItemStyle: { display: "none" },
-          tabBarShowLabel: false,
-          tabBarShowIcon: false,
-        }}
-      > */}
 
       <View className=" justify-evenly px-1 mt-2 flex-row">
-        <Link href={"/(selling)"} className=" flex-1 items-center " asChild>
-          <TouchableOpacity>
+        <Link href={"/active"} className=" flex-1 items-center " asChild>
+          <TouchableOpacity onPress={() => router.push(`/active`)}>
             <Text style={styles.tabNumbers}> 6 </Text>
           </TouchableOpacity>
         </Link>
-        <Link href={"/tasks"} className=" flex-1 items-center " asChild>
-          <TouchableOpacity>
+        <Link href={"/(selling)"} className=" flex-1 items-center " asChild>
+          <TouchableOpacity onPress={() => router.push(`/(selling)`)}>
             <Text style={styles.tabNumbers}> 5 </Text>
           </TouchableOpacity>
         </Link>
         <Link href={"/previous"} className=" flex-1 items-center " asChild>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => router.push(`/previous`)}>
             <Text style={styles.tabNumbers}> 8 </Text>
           </TouchableOpacity>
         </Link>
@@ -157,16 +76,18 @@ export default function RootLayout() {
       <MaterialTopTabs screenOptions={{
         tabBarActiveTintColor: '#5C5C5C',
         tabBarInactiveTintColor: '#5C5C5C',
-        //tabBarIconStyle: {width: 30, height: 30},
         tabBarPressOpacity: 0.5,
         tabBarBounces: true,
         tabBarLabelStyle: { fontSize: 21, fontWeight: 'bold', textTransform: 'capitalize', bottom: 19 },
         tabBarIndicatorStyle: { backgroundColor: '#2BBEF3', height: 4, bottom: 25, width: '13.5%', left: '10.2%', borderRadius: 4 },
         tabBarStyle: { backgroundColor: '#00000000', elevation: 0 },
+        tabBarPressColor: 'transparent',
 
       }}>
-        <MaterialTopTabs.Screen name="index" options={{ title: "Active" }} />
-        <MaterialTopTabs.Screen name="tasks" options={{ title: "Tasks" }} />
+
+        <MaterialTopTabs.Screen name="active" options={{ title: "Active" }} />
+        <MaterialTopTabs.Screen name="index" options={{ title: "Tasks" }} />
+
         <MaterialTopTabs.Screen
           name="previous"
           options={{ title: "previous" }}

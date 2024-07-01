@@ -44,7 +44,7 @@ const MainButton: React.FC<MainButtonProps> = ({
     >
       <LinearGradient
         colors={isDisabled ? ["#d3d3d3", "#d3d3d3"] : colors}
-        className={`w-full h-[50px] items-center justify-center    rounded-[9px] border-[2px] ${isDisabled ? "border-[#d3d3d3]" : "border-[#24BBF1]"} `}
+        className={`w-full  h-[50px] items-center justify-center    rounded-[9px] border-[2px] ${isDisabled ? "border-[#d3d3d3]" : "border-[#24BBF1]"} `}
       >
         {isLoading ? (
           <ActivityIndicator size="small" color="#fff" />
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     ...Platform.select({
       ios: {
         shadowColor: "black",
-        shadowOpacity: 0.2,
+        shadowOpacity: 0.3,
         shadowOffset: { width: 0, height: 3 },
         shadowRadius: 2,
       },
