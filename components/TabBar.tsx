@@ -72,7 +72,13 @@ const TabBar: React.FC<BottomTabBarProps> = ({
           });
 
           if (!isFocused && !event.defaultPrevented) {
-            router.navigate(route.name);
+
+            console.log(route.name)
+            if (route.name.includes("selling")) {
+              router.push("/selling")
+            } else {
+              navigation.navigate(route.name);
+            }
           }
 
         };
